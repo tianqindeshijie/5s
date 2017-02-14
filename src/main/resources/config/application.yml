@@ -18,12 +18,6 @@ spring:
     testWhileIdle: true
     testOnBorrow: false
     testOnReturn: false
-  rabbitmq:
-    host: 172.19.3.144
-    port: 5672
-    username: lightapp
-    password: lightapp123
-    virtual-host: lightapp
 mybatis:
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: com.chinamobile.iot.lightapp.mysql.model
