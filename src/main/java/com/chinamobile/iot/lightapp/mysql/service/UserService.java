@@ -59,4 +59,8 @@ public interface UserService {
      */
     @Transactional
     public int insert(User user);
+
+    public boolean login(String userName, String password);
+
+    boolean updatePassword(Integer userId, String oldPassword, String newPassword);
 }

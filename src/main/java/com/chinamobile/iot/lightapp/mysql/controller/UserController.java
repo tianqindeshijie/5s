@@ -2,6 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.model.User;
+import com.chinamobile.iot.lightapp.mysql.request.UpdatePasswordRequest;
 import com.chinamobile.iot.lightapp.mysql.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -17,15 +18,14 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
-@Api("模板管理")
+@Api("用户管理")
 public class UserController {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
 
     /**
-     * 根据指定userId查询模板信息
+     * 根据指定userId查询用户信息
      *
      * @param userId the user id
      * @return the user by user id
@@ -36,29 +36,35 @@ public class UserController {
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询用户信息列表
      *
-     * @param userName    the user name
-     * @param userContent the user content
-     * @param userType    the user type
-     * @param pageNum    the page num
-     * @param pageSize   the page size
+     * @param userName the user name
+     * @param nickName the nick name
+     * @param phone    the phone
+     * @param email    the email
+     * @param pageNum  the page num
+     * @param pageSize the page size
      * @return the users
      */
-
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public PageInfo<User> getUsers(@RequestParam(value = "userName", required = false) String userName,
-                                           @RequestParam(value = "userContent", required = false) String userContent,
-                                           @RequestParam(value = "userType", required = false) Integer userType,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+                                   @RequestParam(value = "nickName", required = false) String nickName,
+                                   @RequestParam(value = "phone", required = false) String phone,
+                                   @RequestParam(value = "email", required = false) String email,
+                                   @RequestParam(value = "department", required = false) String department,
+                                   @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         User user = new User();
-
+        user.setUserName(userName);
+        user.setNickName(nickName);
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setDepartment(department);
         return userService.findUsers(user, pageNum, pageSize);
     }
 
     /**
-     * 新增模板信息.
+     * 新增用户信息.
      *
      * @param user the add user request
      * @return the integer
@@ -69,7 +75,7 @@ public class UserController {
     }
 
     /**
-     * 更新模板信息.
+     * 更新用户信息.
      *
      * @param user the update user request
      * @return the integer
@@ -80,7 +86,7 @@ public class UserController {
     }
 
     /**
-     * 根据指定的userId删除模板信息
+     * 根据指定的userId删除用户信息
      *
      * @param userId the user id
      * @return the integer
@@ -90,4 +96,31 @@ public class UserController {
         return userService.deleteByUserId(userId);
     }
 
+    /**
+     * 登录
+     *
+     * @return the users
+     */
+    @RequestMapping(value = "/users/login", method = RequestMethod.GET)
+    public int login(@RequestParam(value = "userName", required = false) String userName,
+                                   @RequestParam(value = "password", required = false) String password) {
+        userService.login(userName,password);
+        return 0;
+    }
+
+    /**
+     * 更改密码
+     *
+     * @return the users
+     */
+    @RequestMapping(value = "/users/{userId}/updatePassword", method = RequestMethod.GET)
+    public int updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
+
+        String oldPassword = updatePasswordRequest.getOldPassword();
+        String newPassword = updatePasswordRequest.getNewPassword();
+        // TODO: 2017/2/15 从Session中取得
+        Integer userId = 0;
+        userService.updatePassword(userId,oldPassword,newPassword);
+        return 0;
+    }
 }
