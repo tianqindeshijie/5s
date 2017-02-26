@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mysql")
-@Api("模板管理")
+@Api("公告管理")
 public class NoticeController {
     private static Logger logger = LoggerFactory.getLogger(NoticeController.class);
     @Autowired
     private NoticeService noticeService;
 
     /**
-     * 根据指定noticeId查询模板信息
+     * 根据指定noticeId查询公告信息
      *
      * @param noticeId the notice id
      * @return the notice by notice id
@@ -36,11 +36,9 @@ public class NoticeController {
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询公告信息列表
      *
      * @param noticeName    the notice name
-     * @param noticeContent the notice content
-     * @param noticeType    the notice type
      * @param pageNum    the page num
      * @param pageSize   the page size
      * @return the notices
@@ -48,7 +46,6 @@ public class NoticeController {
 
     @RequestMapping(value = "/notices", method = RequestMethod.GET)
     public PageInfo<Notice> getNotices(@RequestParam(value = "noticeName", required = false) String noticeName,
-                                           @RequestParam(value = "noticeContent", required = false) String noticeContent,
                                            @RequestParam(value = "noticeType", required = false) Integer noticeType,
                                            @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
                                            @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
@@ -58,7 +55,7 @@ public class NoticeController {
     }
 
     /**
-     * 新增模板信息.
+     * 新增公告信息.
      *
      * @param notice the add notice request
      * @return the integer
@@ -69,7 +66,7 @@ public class NoticeController {
     }
 
     /**
-     * 更新模板信息.
+     * 更新公告信息.
      *
      * @param notice the update notice request
      * @return the integer
@@ -80,7 +77,7 @@ public class NoticeController {
     }
 
     /**
-     * 根据指定的noticeId删除模板信息
+     * 根据指定的noticeId删除公告信息
      *
      * @param noticeId the notice id
      * @return the integer

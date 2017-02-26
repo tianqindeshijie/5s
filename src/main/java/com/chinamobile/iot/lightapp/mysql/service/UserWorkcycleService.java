@@ -14,16 +14,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public interface UserWorkcycleService {
 
-
     /**
      * find userWorkcycles.
      *
-     * @param userWorkcycle     the userWorkcycle
-     * @param pageNum  the page num
-     * @param pageSize the page size
+     * @param userId      the user id
+     * @param workCycleId the work cycle id
+     * @param pageNum     the page num
+     * @param pageSize    the page size
      * @return the userWorkcycles
      */
-    public PageInfo<UserWorkcycle> findUserWorkcycles(UserWorkcycle userWorkcycle, Integer pageNum, Integer pageSize);
+    public PageInfo<UserWorkcycle> findUserWorkcycles(Integer userId,Integer workCycleId,Integer pageNum, Integer pageSize);
 
     /**
      * find userWorkcycle by userWorkcycle id.
@@ -36,11 +36,13 @@ public interface UserWorkcycleService {
     /**
      * Delete by userWorkcycle id int.
      *
-     * @param userWorkcycleId the userWorkcycle id
+     * @param userId       the user id
+     * @param deleteUserId the delete user id
+     * @param workCycleId  the work cycle id
      * @return the int
      */
     @Transactional
-    public int deleteByUserWorkcycleId(Integer userWorkcycleId);
+    public int deleteByUserWorkcycleId(Integer userId,Integer deleteUserId,Integer workCycleId);
 
     /**
      * Update by userWorkcycle id int.

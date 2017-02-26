@@ -22,14 +22,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mysql")
-@Api("模板管理")
+@Api("申请管理")
 public class ApplyController {
     private static Logger logger = LoggerFactory.getLogger(ApplyController.class);
     @Autowired
     private ApplyService applyService;
 
     /**
-     * 根据指定applyId查询模板信息
+     * 根据指定applyId查询申请信息
      *
      * @param applyId the apply id
      * @return the apply by apply id
@@ -40,7 +40,7 @@ public class ApplyController {
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询申请信息列表
      *
      * @param applyName    the apply name
      * @param applyContent the apply content
@@ -62,7 +62,7 @@ public class ApplyController {
     }
 
     /**
-     * 新增模板信息.
+     * 新增申请信息.
      *
      * @param apply the add apply request
      * @return the integer
@@ -73,7 +73,7 @@ public class ApplyController {
     }
 
     /**
-     * 更新模板信息.
+     * 更新申请信息.
      *
      * @param apply the update apply request
      * @return the integer
@@ -84,7 +84,7 @@ public class ApplyController {
     }
 
     /**
-     * 根据指定的applyId删除模板信息
+     * 根据指定的applyId删除申请信息
      *
      * @param applyId the apply id
      * @return the integer

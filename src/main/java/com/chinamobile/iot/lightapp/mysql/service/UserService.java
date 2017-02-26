@@ -26,6 +26,14 @@ public interface UserService {
     public PageInfo<User> findUsers(User user, Integer pageNum, Integer pageSize);
 
     /**
+     * Find user by user name user.
+     *
+     * @param userName the user name
+     * @return the user
+     */
+    User findUserByUserName(String userName);
+
+    /**
      * find user by user id.
      *
      * @param userId the user id
@@ -60,7 +68,22 @@ public interface UserService {
     @Transactional
     public int insert(User user);
 
+    /**
+     * Login boolean.
+     *
+     * @param userName the user name
+     * @param password the password
+     * @return the boolean
+     */
     public boolean login(String userName, String password);
 
+    /**
+     * Update password boolean.
+     *
+     * @param userId      the user id
+     * @param oldPassword the old password
+     * @param newPassword the new password
+     * @return the boolean
+     */
     boolean updatePassword(Integer userId, String oldPassword, String newPassword);
 }

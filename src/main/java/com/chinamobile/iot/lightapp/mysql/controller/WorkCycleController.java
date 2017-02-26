@@ -1,7 +1,11 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.dto.AddWorkCycleRequest;
 import com.chinamobile.iot.lightapp.mysql.model.WorkCycle;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
+import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.WorkCycleService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -9,6 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The devices controller.
@@ -18,14 +25,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mysql")
-@Api("模板管理")
+@Api("工作圈管理")
 public class WorkCycleController {
     private static Logger logger = LoggerFactory.getLogger(WorkCycleController.class);
     @Autowired
     private WorkCycleService workCycleService;
 
     /**
-     * 根据指定workCycleId查询模板信息
+     * 根据指定workCycleId查询工作圈信息
      *
      * @param workCycleId the workCycle id
      * @return the workCycle by workCycle id
@@ -36,58 +43,74 @@ public class WorkCycleController {
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询工作圈信息列表
      *
-     * @param workCycleName    the workCycle name
-     * @param workCycleContent the workCycle content
-     * @param workCycleType    the workCycle type
-     * @param pageNum    the page num
-     * @param pageSize   the page size
+     * @param workCycleName the workCycle name
+     * @param pageNum       the page num
+     * @param pageSize      the page size
      * @return the workCycles
      */
-
     @RequestMapping(value = "/workCycles", method = RequestMethod.GET)
-    public PageInfo<WorkCycle> getWorkCycles(@RequestParam(value = "workCycleName", required = false) String workCycleName,
-                                           @RequestParam(value = "workCycleContent", required = false) String workCycleContent,
-                                           @RequestParam(value = "workCycleType", required = false) Integer workCycleType,
+    public PageInfo<WorkCycle> getWorkCycles(@RequestParam(value = "workCycleName", required = true) String workCycleName,
                                            @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
                                            @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
         WorkCycle workCycle = new WorkCycle();
-
+        workCycle.setWorkCycleName(workCycleName);
         return workCycleService.findWorkCycles(workCycle, pageNum, pageSize);
     }
 
     /**
-     * 新增模板信息.
+     * 新增工作圈信息.
      *
-     * @param workCycle the add workCycle request
+     * @param addWorkCycleRequest the add work cycle request
      * @return the integer
      */
     @RequestMapping(value = "/workCycles", method = RequestMethod.POST)
-    public Integer addWorkCycle(@RequestBody WorkCycle workCycle) {
-        return workCycleService.insert(workCycle);
+    public BaseResponse addWorkCycle(@RequestBody AddWorkCycleRequest addWorkCycleRequest) {
+        WorkCycle workCycle = new WorkCycle();
+        workCycle.setWorkCycleName(addWorkCycleRequest.getWorkCycleName());
+        Integer userId = SecurityUtils.getCurrentUserId();
+        Integer workCycleId = workCycleService.insert(userId,workCycle,addWorkCycleRequest.getRegionList());
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功");
+        Map map = new HashMap<String,Integer>();
+        map.put("workCycleId", workCycleId);
+        response.setData(response);
+        return  response;
     }
 
     /**
-     * 更新模板信息.
+     * 更新工作圈信息.
      *
      * @param workCycle the update workCycle request
      * @return the integer
      */
     @RequestMapping(value = "/workCycles", method = RequestMethod.PUT)
-    public Integer updateWorkCycle(@RequestBody WorkCycle workCycle) {
-        return workCycleService.updateByWorkCycleId(workCycle);
+    public BaseResponse updateWorkCycle(@RequestBody WorkCycle workCycle) {
+        Integer userId = SecurityUtils.getCurrentUserId();
+        workCycleService.updateByWorkCycleId(userId, workCycle);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功");
+        return  response;
     }
 
     /**
-     * 根据指定的workCycleId删除模板信息
+     * 根据指定的workCycleId删除工作圈信息
      *
      * @param workCycleId the workCycle id
      * @return the integer
      */
     @RequestMapping(value = "/workCycles/{workCycleId}", method = RequestMethod.DELETE)
-    public Integer deleteWorkCycle(@PathVariable("workCycleId") Integer workCycleId) {
-        return workCycleService.deleteByWorkCycleId(workCycleId);
+    public BaseResponse deleteWorkCycle(@PathVariable("workCycleId") Integer workCycleId) {
+        // TODO: 2017/2/16 判断操作人是否有权限删除
+        Integer userId = SecurityUtils.getCurrentUserId();
+        workCycleService.deleteByWorkCycleId(userId,workCycleId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功");
+        return  response;
     }
 
 }

@@ -1,5 +1,8 @@
 package com.chinamobile.iot.lightapp.mysql.response;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ResponseCode {
     /**
      * 表示返回成功
@@ -60,4 +63,13 @@ public class ResponseCode {
      * 发送命令道设备失败.
      */
     public static final int SEND_COMMAND_ERROR = 412;
+
+    public static final Map<Integer,String> CODE_MSG_MAP = new HashMap<Integer,String>();
+    static {
+        CODE_MSG_MAP.put(SUCCESS,"操作成功");
+        CODE_MSG_MAP.put(NOT_FOUND,"不存在");
+        CODE_MSG_MAP.put(HTTP_PARAMETER_ERROR,"用户请求参数有误");
+        CODE_MSG_MAP.put(AUTHORIZE_FAILED,"鉴权失败");
+
+    }
 }

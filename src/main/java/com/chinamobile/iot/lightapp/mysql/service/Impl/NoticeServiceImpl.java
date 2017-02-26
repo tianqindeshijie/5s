@@ -29,8 +29,7 @@ public class NoticeServiceImpl implements NoticeService {
     public PageInfo<Notice> findNotices(Notice notice, Integer pageNum, Integer pageSize) {
         NoticeExample noticeExample = new NoticeExample();
         NoticeExample.Criteria criteria = noticeExample.createCriteria();
-
-
+        criteria.andNoticeNameLike(notice.getNoticeName());
         PageHelper.startPage(pageNum, pageSize,true,false);
         List<Notice> list= noticeMapper.selectByExample(noticeExample);
         return new PageInfo<Notice>(list);

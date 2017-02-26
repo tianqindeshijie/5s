@@ -30,6 +30,11 @@ public class PeriodServiceImpl implements PeriodService {
         PeriodExample periodExample = new PeriodExample();
         PeriodExample.Criteria criteria = periodExample.createCriteria();
 
+        String periodName = period.getPeriodName();
+        if(periodName != null&& periodName.trim().length() > 0) {
+            criteria.andPeriodNameEqualTo(periodName);
+        }
+
 
         PageHelper.startPage(pageNum, pageSize,true,false);
         List<Period> list= periodMapper.selectByExample(periodExample);

@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mysql")
-@Api("模板管理")
+@Api("区域管理")
 public class RegionController {
     private static Logger logger = LoggerFactory.getLogger(RegionController.class);
     @Autowired
     private RegionService regionService;
 
     /**
-     * 根据指定regionId查询模板信息
+     * 根据指定regionId查询区域信息
      *
      * @param regionId the region id
      * @return the region by region id
@@ -36,11 +36,9 @@ public class RegionController {
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询区域信息列表
      *
      * @param regionName    the region name
-     * @param regionContent the region content
-     * @param regionType    the region type
      * @param pageNum    the page num
      * @param pageSize   the page size
      * @return the regions
@@ -48,8 +46,6 @@ public class RegionController {
 
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
     public PageInfo<Region> getRegions(@RequestParam(value = "regionName", required = false) String regionName,
-                                           @RequestParam(value = "regionContent", required = false) String regionContent,
-                                           @RequestParam(value = "regionType", required = false) Integer regionType,
                                            @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
                                            @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
         Region region = new Region();
@@ -58,7 +54,7 @@ public class RegionController {
     }
 
     /**
-     * 新增模板信息.
+     * 新增区域信息.
      *
      * @param region the add region request
      * @return the integer
@@ -69,7 +65,7 @@ public class RegionController {
     }
 
     /**
-     * 更新模板信息.
+     * 更新区域信息.
      *
      * @param region the update region request
      * @return the integer
@@ -80,7 +76,7 @@ public class RegionController {
     }
 
     /**
-     * 根据指定的regionId删除模板信息
+     * 根据指定的regionId删除区域信息
      *
      * @param regionId the region id
      * @return the integer

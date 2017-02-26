@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mysql")
-@Api("模板管理")
+@Api("时间段管理")
 public class PeriodController {
     private static Logger logger = LoggerFactory.getLogger(PeriodController.class);
     @Autowired
     private PeriodService periodService;
 
     /**
-     * 根据指定periodId查询模板信息
+     * 根据指定periodId查询时间段信息
      *
      * @param periodId the period id
      * @return the period by period id
@@ -36,7 +36,7 @@ public class PeriodController {
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询时间段信息列表
      *
      * @param periodName    the period name
      * @param periodContent the period content
@@ -48,17 +48,17 @@ public class PeriodController {
 
     @RequestMapping(value = "/periods", method = RequestMethod.GET)
     public PageInfo<Period> getPeriods(@RequestParam(value = "periodName", required = false) String periodName,
-                                           @RequestParam(value = "periodContent", required = false) String periodContent,
-                                           @RequestParam(value = "periodType", required = false) Integer periodType,
+                                           @RequestParam(value = "cycleId", required = false) Integer cycleId,
                                            @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
                                            @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
         Period period = new Period();
-
+        period.setPeriodName(periodName);
+        period.setCycleId(cycleId);
         return periodService.findPeriods(period, pageNum, pageSize);
     }
 
     /**
-     * 新增模板信息.
+     * 新增时间段信息.
      *
      * @param period the add period request
      * @return the integer
@@ -69,7 +69,7 @@ public class PeriodController {
     }
 
     /**
-     * 更新模板信息.
+     * 更新时间段信息.
      *
      * @param period the update period request
      * @return the integer
@@ -80,7 +80,7 @@ public class PeriodController {
     }
 
     /**
-     * 根据指定的periodId删除模板信息
+     * 根据指定的periodId删除时间段信息
      *
      * @param periodId the period id
      * @return the integer
