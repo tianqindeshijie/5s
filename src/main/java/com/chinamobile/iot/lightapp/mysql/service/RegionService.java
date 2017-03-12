@@ -1,5 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.RegionDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Region;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public interface RegionService {
      * @param pageSize the page size
      * @return the regions
      */
-    public PageInfo<Region> findRegions(Region region, Integer pageNum, Integer pageSize);
+    public PageInfo<RegionDTO> findRegions(Region region, Integer userId, Integer pageNum, Integer pageSize);
 
     /**
      * find region by region id.

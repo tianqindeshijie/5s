@@ -2,6 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.model.User;
 import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
 import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;
 import com.github.pagehelper.PageInfo;
@@ -35,6 +36,7 @@ public class UserWorkcycleController {
     public Integer addUserWorkcycle(@RequestBody UserWorkcycle userWorkcycle) {
         return userWorkcycleService.insert(userWorkcycle);
     }
+
     /**
      * 根据指定userWorkcycleId查询用户工作圈关系信息
      *
@@ -49,19 +51,18 @@ public class UserWorkcycleController {
     /**
      * 根据指定参数查询用户工作圈关系信息列表
      *
-     * @param pageNum    the page num
-     * @param pageSize   the page size
+     * @param workCycleId the work cycle id
+     * @param pageNum     the page num
+     * @param pageSize    the page size
      * @return the userWorkcycles
      */
-
     @RequestMapping(value = "/userWorkcycles", method = RequestMethod.GET)
-    public PageInfo<UserWorkcycle> getUserWorkcycles(@RequestParam(value = "workCycleId", required = true) Integer workCycleId,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+    public PageInfo<User> getUserWorkcycles(@RequestParam(value = "workCycleId", required = true) Integer workCycleId,
+                                            @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
+                                            @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
         Integer userId = SecurityUtils.getCurrentUserId();
-        return userWorkcycleService.findUserWorkcycles(userId,workCycleId pageNum, pageSize);
+        return userWorkcycleService.findUserWorkcycles(userId,workCycleId,pageNum, pageSize);
     }
-
 
 
     /**
@@ -78,7 +79,8 @@ public class UserWorkcycleController {
     /**
      * 根据指定的userWorkcycleId删除用户工作圈关系信息
      *
-     * @param userWorkcycleId the userWorkcycle id
+     * @param workCycleId  the work cycle id
+     * @param deleteUserId the delete user id
      * @return the integer
      */
     @RequestMapping(value = "/userWorkcycles/removeMember", method = RequestMethod.DELETE)

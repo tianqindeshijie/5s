@@ -1,7 +1,10 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.dto.RegionDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Region;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.RegionService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -38,19 +41,20 @@ public class RegionController {
     /**
      * 根据指定参数查询区域信息列表
      *
-     * @param regionName    the region name
+     * @param regionName the region name
      * @param pageNum    the page num
      * @param pageSize   the page size
      * @return the regions
      */
 
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
-    public PageInfo<Region> getRegions(@RequestParam(value = "regionName", required = false) String regionName,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+    public PageInfo<RegionDTO> getRegions(@RequestParam(value = "regionName", required = false) String regionName,
+                                          @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                          @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Region region = new Region();
-
-        return regionService.findRegions(region, pageNum, pageSize);
+        region.setRegionName(regionName);
+        Integer userId = SecurityUtils.getCurrentUserId();
+        return regionService.findRegions(region,userId, pageNum, pageSize);
     }
 
     /**
@@ -60,8 +64,11 @@ public class RegionController {
      * @return the integer
      */
     @RequestMapping(value = "/regions", method = RequestMethod.POST)
-    public Integer addRegion(@RequestBody Region region) {
-        return regionService.insert(region);
+    public BaseResponse addRegion(@RequestBody Region region) {
+        regionService.insert(region);
+        BaseResponse response = new BaseResponse();
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -71,8 +78,11 @@ public class RegionController {
      * @return the integer
      */
     @RequestMapping(value = "/regions", method = RequestMethod.PUT)
-    public Integer updateRegion(@RequestBody Region region) {
-        return regionService.updateByRegionId(region);
+    public BaseResponse updateRegion(@RequestBody Region region) {
+        regionService.updateByRegionId(region);
+        BaseResponse response = new BaseResponse();
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -82,8 +92,11 @@ public class RegionController {
      * @return the integer
      */
     @RequestMapping(value = "/regions/{regionId}", method = RequestMethod.DELETE)
-    public Integer deleteRegion(@PathVariable("regionId") Integer regionId) {
-        return regionService.deleteByRegionId(regionId);
+    public BaseResponse deleteRegion(@PathVariable("regionId") Integer regionId) {
+        regionService.deleteByRegionId(regionId);
+        BaseResponse response = new BaseResponse();
+        response.setMsg("成功!");
+        return response;
     }
 
 }

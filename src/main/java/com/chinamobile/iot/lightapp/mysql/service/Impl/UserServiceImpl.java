@@ -31,11 +31,6 @@ public class UserServiceImpl implements UserService {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
 
-        String userName = user.getUserName();
-        if (userName != null && userName.trim().length() > 0) {
-            criteria.andUserNameEqualTo(userName);
-        }
-
         String nickName = user.getNickName();
         if (nickName != null && nickName.length() > 0) {
             criteria.andNickNameEqualTo(nickName);
@@ -60,20 +55,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUserName(String userName) {
-        if (userName == null || userName.trim().length() == 0) {
+    public User findUserByNickName(String nickName) {
+        if (nickName == null || nickName.trim().length() == 0) {
             return null;
         }
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
-        criteria.andUserNameEqualTo(userName);
+        criteria.andNickNameEqualTo(nickName);
         List<User> list = userMapper.selectByExample(userExample);
         if (list == null || list.size() == 0) {
             return null;
         }
         return list.get(0);
     }
-
+    @Override
+    public User findUserByPhone(String phone) {
+        if (phone == null || phone.trim().length() == 0) {
+            return null;
+        }
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andPhoneEqualTo(phone);
+        List<User> list = userMapper.selectByExample(userExample);
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+        return list.get(0);
+    }
     @Override
     public User findUserByUserId(Integer userId) {
         return userMapper.selectByPrimaryKey(userId);
@@ -94,20 +102,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.insertSelective(user);
     }
 
-    @Override
-    public boolean login(String userName, String password) {
-        UserExample userExample = new UserExample();
-        UserExample.Criteria criteria = userExample.createCriteria();
-        criteria.andUserNameEqualTo(userName);
-        List<User> list = userMapper.selectByExample(userExample);
-        if (list != null && list.size() > 0) {
-            User user = list.get(0);
-            if (password.trim().equals(user.getPassword())) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public boolean updatePassword(Integer userId, String oldPassword, String newPassword) {

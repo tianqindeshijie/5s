@@ -29,10 +29,24 @@ public class ReportServiceImpl implements ReportService {
     public PageInfo<Report> findReports(Report report, Integer pageNum, Integer pageSize) {
         ReportExample reportExample = new ReportExample();
         ReportExample.Criteria criteria = reportExample.createCriteria();
-
-
-        PageHelper.startPage(pageNum, pageSize,true,false);
-        List<Report> list= reportMapper.selectByExample(reportExample);
+        String reportName = report.getReportName();
+        if (reportName != null && reportName.trim().length() > 0) {
+            criteria.andReportNameLike(reportName);
+        }
+        Integer cycleId = report.getCycleId();
+        if (cycleId != null) {
+            criteria.andCycleIdEqualTo(cycleId);
+        }
+        Integer periodId = report.getPeriodId();
+        if (periodId != null) {
+            criteria.andPeriodIdEqualTo(periodId);
+        }
+        Integer regionId = report.getRegionId();
+        if (regionId != null) {
+            criteria.andRegionIdEqualTo(regionId);
+        }
+        PageHelper.startPage(pageNum, pageSize, true, false);
+        List<Report> list = reportMapper.selectByExample(reportExample);
         return new PageInfo<Report>(list);
     }
 

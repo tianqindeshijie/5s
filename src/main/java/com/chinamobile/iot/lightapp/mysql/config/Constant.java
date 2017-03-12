@@ -24,4 +24,14 @@ public class Constant {
      * 2-工作圈成员
      */
     public static final int CYCLE_MEMBER = 2;
+
+    /**
+     * 申请类型:0 -- 用户申请.
+     */
+    public static final int  APPLYTYPE_USER = 0;
+
+    /**
+     * 申请类型:1 -- 管理员邀请
+     */
+    public static final int  APPLYTYPE_ADMIN = 1;
 }

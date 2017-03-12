@@ -5,9 +5,7 @@ import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dao.UserMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
-import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
-import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycleExample;
-import com.chinamobile.iot.lightapp.mysql.model.WorkCycleExample;
+import com.chinamobile.iot.lightapp.mysql.model.*;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;
 import com.github.pagehelper.PageHelper;
@@ -15,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +34,7 @@ public class UserWorkcycleServiceImpl implements UserWorkcycleService {
     private WorkCycleMapper workCycleMapper;
 
     @Override
-    public PageInfo<UserWorkcycle> findUserWorkcycles(Integer userId, Integer workCycleId, Integer pageNum, Integer pageSize) {
+    public PageInfo<User> findUserWorkcycles(Integer userId, Integer workCycleId, Integer pageNum, Integer pageSize) {
         //判断用户是否为该workcycle用户
         UserWorkcycleExample userWorkcycleExample = new UserWorkcycleExample();
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
@@ -44,14 +43,21 @@ public class UserWorkcycleServiceImpl implements UserWorkcycleService {
         if (list == null || list.size() == 0) {
             return null;
         }
-        //判断用户是否为该workcycle用户
+        //查找用户userId列表
+        List<Integer> userIdList = new ArrayList<Integer>();
         userWorkcycleExample.clear();
         criteria = userWorkcycleExample.createCriteria();
         criteria.andWorkCycleIdEqualTo(workCycleId);
         list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
 
-        List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
-        return new PageInfo<UserWorkcycle>(list);
+        for(UserWorkcycle temp: list) {
+            userIdList.add(temp.getUserId());
+        }
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria1 =userExample.createCriteria();
+        criteria1.andUserIdIn(userIdList);
+        List<User> userList = userMapper.selectByExample(userExample);
+        return new PageInfo<User>(userList);
     }
 
     @Override

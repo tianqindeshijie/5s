@@ -1,9 +1,13 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.ApplyDTO;
+import com.chinamobile.iot.lightapp.mysql.dto.ApplyResult;
 import com.chinamobile.iot.lightapp.mysql.model.Apply;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * The devices service.
@@ -18,12 +22,13 @@ public interface ApplyService {
     /**
      * find applys.
      *
-     * @param apply     the apply
+     * @param apply    the apply
+     * @param userId   the user id
      * @param pageNum  the page num
      * @param pageSize the page size
      * @return the applys
      */
-    public PageInfo<Apply> findApplys(Apply apply, Integer pageNum, Integer pageSize);
+    public PageInfo<Apply> findApplys(Apply apply,Integer userId, Integer pageNum, Integer pageSize);
 
     /**
      * find apply by apply id.
@@ -51,12 +56,12 @@ public interface ApplyService {
     @Transactional
     public int updateByApplyId(Apply apply);
 
+
     /**
-     * Insert int.
+     * Insert apply result.
      *
-     * @param apply the apply
-     * @return the int
+     * @param applyList the apply list
+     * @return the apply result
      */
-    @Transactional
-    public int insert(Apply apply);
+    ApplyResult insert(List<ApplyDTO> applyList);
 }

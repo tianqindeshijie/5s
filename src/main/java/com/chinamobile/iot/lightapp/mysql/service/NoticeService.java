@@ -1,5 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.NoticeDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Notice;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,13 @@ public interface NoticeService {
     /**
      * find notices.
      *
-     * @param notice     the notice
+     * @param notice   the notice
+     * @param userId   the user id
      * @param pageNum  the page num
      * @param pageSize the page size
      * @return the notices
      */
-    public PageInfo<Notice> findNotices(Notice notice, Integer pageNum, Integer pageSize);
+    public PageInfo<NoticeDTO> findNotices(Notice notice, Integer userId, Integer pageNum, Integer pageSize);
 
     /**
      * find notice by notice id.

@@ -1,5 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.PeriodDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Period;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,13 @@ public interface PeriodService {
     /**
      * find periods.
      *
-     * @param period     the period
+     * @param period   the period
+     * @param userId   the user id
      * @param pageNum  the page num
      * @param pageSize the page size
      * @return the periods
      */
-    public PageInfo<Period> findPeriods(Period period, Integer pageNum, Integer pageSize);
+    public PageInfo<PeriodDTO> findPeriods(Period period, Integer userId, Integer pageNum, Integer pageSize);
 
     /**
      * find period by period id.

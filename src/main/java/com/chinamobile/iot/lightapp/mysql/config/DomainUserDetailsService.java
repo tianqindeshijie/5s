@@ -27,15 +27,14 @@ public class DomainUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(final String userName) throws UsernameNotFoundException {
-        log.debug("Authenticating {}", userName);
-        String lowercaseLogin = userName.toLowerCase(Locale.ENGLISH);
-        User user = userService.findUserByUserName(userName);
+    public UserDetails loadUserByUsername(final String phone) throws UsernameNotFoundException {
+        log.debug("Authenticating {}", phone);
+        User user = userService.findUserByPhone(phone);
         if(user == null) {
-            throw new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " + "database");
+            throw new UsernameNotFoundException("User " + phone + " was not found in the " + "database");
         }
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         grantedAuthorities.add(new SimpleGrantedAuthority("admin"));
-        return new org.springframework.security.core.userdetails.User(lowercaseLogin, user.getPassword(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(phone, user.getPassword(), grantedAuthorities);
     }
 }

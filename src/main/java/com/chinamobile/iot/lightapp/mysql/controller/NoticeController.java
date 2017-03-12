@@ -1,7 +1,11 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.dto.NoticeDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Notice;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
+import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.NoticeService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -38,20 +42,16 @@ public class NoticeController {
     /**
      * 根据指定参数查询公告信息列表
      *
-     * @param noticeName    the notice name
-     * @param pageNum    the page num
-     * @param pageSize   the page size
+     * @param pageNum  the page num
+     * @param pageSize the page size
      * @return the notices
      */
-
     @RequestMapping(value = "/notices", method = RequestMethod.GET)
-    public PageInfo<Notice> getNotices(@RequestParam(value = "noticeName", required = false) String noticeName,
-                                           @RequestParam(value = "noticeType", required = false) Integer noticeType,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+    public PageInfo<NoticeDTO> getNotices(@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                          @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Notice notice = new Notice();
-
-        return noticeService.findNotices(notice, pageNum, pageSize);
+        Integer userId = SecurityUtils.getCurrentUserId();
+        return noticeService.findNotices(notice,userId, pageNum, pageSize);
     }
 
     /**
@@ -61,8 +61,12 @@ public class NoticeController {
      * @return the integer
      */
     @RequestMapping(value = "/notices", method = RequestMethod.POST)
-    public Integer addNotice(@RequestBody Notice notice) {
-        return noticeService.insert(notice);
+    public BaseResponse addNotice(@RequestBody Notice notice) {
+        noticeService.insert(notice);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -72,8 +76,12 @@ public class NoticeController {
      * @return the integer
      */
     @RequestMapping(value = "/notices", method = RequestMethod.PUT)
-    public Integer updateNotice(@RequestBody Notice notice) {
-        return noticeService.updateByNoticeId(notice);
+    public BaseResponse updateNotice(@RequestBody Notice notice) {
+        noticeService.updateByNoticeId(notice);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -83,8 +91,12 @@ public class NoticeController {
      * @return the integer
      */
     @RequestMapping(value = "/notices/{noticeId}", method = RequestMethod.DELETE)
-    public Integer deleteNotice(@PathVariable("noticeId") Integer noticeId) {
-        return noticeService.deleteByNoticeId(noticeId);
+    public BaseResponse deleteNotice(@PathVariable("noticeId") Integer noticeId) {
+        noticeService.deleteByNoticeId(noticeId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功!");
+        return response;
     }
 
 }

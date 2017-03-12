@@ -1,7 +1,11 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.dto.PeriodDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Period;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
+import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.PeriodService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -38,23 +42,27 @@ public class PeriodController {
     /**
      * 根据指定参数查询时间段信息列表
      *
-     * @param periodName    the period name
-     * @param periodContent the period content
-     * @param periodType    the period type
+     * @param periodName the period name
+     * @param cycleId    the cycle id
      * @param pageNum    the page num
      * @param pageSize   the page size
      * @return the periods
      */
-
     @RequestMapping(value = "/periods", method = RequestMethod.GET)
-    public PageInfo<Period> getPeriods(@RequestParam(value = "periodName", required = false) String periodName,
-                                           @RequestParam(value = "cycleId", required = false) Integer cycleId,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+    public BaseResponse getPeriods(@RequestParam(value = "periodName", required = false) String periodName,
+                                          @RequestParam(value = "cycleId", required = false) Integer cycleId,
+                                          @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                          @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
+        Integer userId = SecurityUtils.getCurrentUserId();
         Period period = new Period();
         period.setPeriodName(periodName);
         period.setCycleId(cycleId);
-        return periodService.findPeriods(period, pageNum, pageSize);
+        PageInfo<PeriodDTO> pageInfo = periodService.findPeriods(period, userId, pageNum, pageSize);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功!");
+        response.setData(pageInfo);
+        return response;
     }
 
     /**
@@ -64,8 +72,12 @@ public class PeriodController {
      * @return the integer
      */
     @RequestMapping(value = "/periods", method = RequestMethod.POST)
-    public Integer addPeriod(@RequestBody Period period) {
-        return periodService.insert(period);
+    public BaseResponse addPeriod(@RequestBody Period period) {
+        periodService.insert(period);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -75,8 +87,12 @@ public class PeriodController {
      * @return the integer
      */
     @RequestMapping(value = "/periods", method = RequestMethod.PUT)
-    public Integer updatePeriod(@RequestBody Period period) {
-        return periodService.updateByPeriodId(period);
+    public BaseResponse updatePeriod(@RequestBody Period period) {
+        periodService.updateByPeriodId(period);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -86,8 +102,12 @@ public class PeriodController {
      * @return the integer
      */
     @RequestMapping(value = "/periods/{periodId}", method = RequestMethod.DELETE)
-    public Integer deletePeriod(@PathVariable("periodId") Integer periodId) {
-        return periodService.deleteByPeriodId(periodId);
+    public BaseResponse deletePeriod(@PathVariable("periodId") Integer periodId) {
+        periodService.deleteByPeriodId(periodId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg("成功!");
+        return response;
     }
 
 }
