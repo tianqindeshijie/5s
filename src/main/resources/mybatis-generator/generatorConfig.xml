@@ -59,6 +59,10 @@
             <property name="useActualColumnNames" value="false" />
             <generatedKey column="check_item_id" sqlStatement="Mysql" identity="true" />
         </table>
+        <table tableName="check_item_score" alias="check_item_score" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false" />
+            <generatedKey column="check_item_score_id" sqlStatement="Mysql" identity="true" />
+        </table>
         <table tableName="diagram" alias="diagram" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
             <generatedKey column="diagram_id" sqlStatement="Mysql" identity="true" />
@@ -82,6 +86,10 @@
         <table tableName="report_item" alias="report_item" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
             <generatedKey column="item_id" sqlStatement="Mysql" identity="true" />
+        </table>
+        <table tableName="report_item_score" alias="report_item_score" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false" />
+            <generatedKey column="report_item_score_id" sqlStatement="Mysql" identity="true" />
         </table>
         <table tableName="report" alias="report" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
