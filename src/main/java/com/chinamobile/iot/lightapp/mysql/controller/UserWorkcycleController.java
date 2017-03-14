@@ -1,7 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.chinamobile.iot.lightapp.mysql.model.User;
 import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
 import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;

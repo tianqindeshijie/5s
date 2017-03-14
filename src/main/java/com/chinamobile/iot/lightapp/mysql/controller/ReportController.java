@@ -1,7 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.chinamobile.iot.lightapp.mysql.dto.AddReportRequest;
 import com.chinamobile.iot.lightapp.mysql.model.Report;
 import com.chinamobile.iot.lightapp.mysql.request.UpdateApplyRequest;
@@ -43,11 +43,12 @@ public class ReportController {
     /**
      * 根据指定参数查询模板信息列表
      *
-     * @param reportName    the report name
-     * @param reportContent the report content
-     * @param reportType    the report type
-     * @param pageNum       the page num
-     * @param pageSize      the page size
+     * @param reportName the report name
+     * @param cycleId    the cycle id
+     * @param regionId   the region id
+     * @param periodId   the period id
+     * @param pageNum    the page num
+     * @param pageSize   the page size
      * @return the reports
      */
     @RequestMapping(value = "/reports", method = RequestMethod.GET)
@@ -58,7 +59,6 @@ public class ReportController {
                                        @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                        @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Report report = new Report();
-
         report.setReportName(reportName);
         report.setCycleId(cycleId);
         report.setRegionId(regionId);

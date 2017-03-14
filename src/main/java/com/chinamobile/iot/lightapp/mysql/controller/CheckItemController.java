@@ -2,6 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.model.CheckItem;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.CheckItemService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -38,23 +39,23 @@ public class CheckItemController {
     /**
      * 根据指定参数查询模板信息列表
      *
-     * @param checkItemName    the checkItem name
-     * @param checkItemContent the checkItem content
-     * @param checkItemType    the checkItem type
-     * @param pageNum    the page num
-     * @param pageSize   the page size
+     * @param itemId   the item id
+     * @param pageNum  the page num
+     * @param pageSize the page size
      * @return the checkItems
      */
-
     @RequestMapping(value = "/checkItems", method = RequestMethod.GET)
-    public PageInfo<CheckItem> getCheckItems(@RequestParam(value = "checkItemName", required = false) String checkItemName,
-                                           @RequestParam(value = "checkItemContent", required = false) String checkItemContent,
-                                           @RequestParam(value = "checkItemType", required = false) Integer checkItemType,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+    public BaseResponse getCheckItems(@RequestParam(value = "itemId", required = false) Integer itemId,
+                                      @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                      @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         CheckItem checkItem = new CheckItem();
-
-        return checkItemService.findCheckItems(checkItem, pageNum, pageSize);
+        checkItem.setItemId(itemId);
+        PageInfo<CheckItem> pageInfo = checkItemService.findCheckItems(checkItem, pageNum, pageSize);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        response.setData(pageInfo);
+        return response;
     }
 
     /**
@@ -64,8 +65,12 @@ public class CheckItemController {
      * @return the integer
      */
     @RequestMapping(value = "/checkItems", method = RequestMethod.POST)
-    public Integer addCheckItem(@RequestBody CheckItem checkItem) {
-        return checkItemService.insert(checkItem);
+    public BaseResponse addCheckItem(@RequestBody CheckItem checkItem) {
+        checkItemService.insert(checkItem);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -75,8 +80,12 @@ public class CheckItemController {
      * @return the integer
      */
     @RequestMapping(value = "/checkItems", method = RequestMethod.PUT)
-    public Integer updateCheckItem(@RequestBody CheckItem checkItem) {
-        return checkItemService.updateByCheckItemId(checkItem);
+    public BaseResponse updateCheckItem(@RequestBody CheckItem checkItem) {
+        checkItemService.updateByCheckItemId(checkItem);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
@@ -86,8 +95,12 @@ public class CheckItemController {
      * @return the integer
      */
     @RequestMapping(value = "/checkItems/{checkItemId}", method = RequestMethod.DELETE)
-    public Integer deleteCheckItem(@PathVariable("checkItemId") Integer checkItemId) {
-        return checkItemService.deleteByCheckItemId(checkItemId);
+    public BaseResponse deleteCheckItem(@PathVariable("checkItemId") Integer checkItemId) {
+        checkItemService.deleteByCheckItemId(checkItemId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        return response;
     }
 
 }

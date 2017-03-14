@@ -29,10 +29,10 @@ public class CheckItemServiceImpl implements CheckItemService {
     public PageInfo<CheckItem> findCheckItems(CheckItem checkItem, Integer pageNum, Integer pageSize) {
         CheckItemExample checkItemExample = new CheckItemExample();
         CheckItemExample.Criteria criteria = checkItemExample.createCriteria();
+        criteria.andItemIdEqualTo(checkItem.getItemId());
 
-
-        PageHelper.startPage(pageNum, pageSize,true,false);
-        List<CheckItem> list= checkItemMapper.selectByExample(checkItemExample);
+        PageHelper.startPage(pageNum, pageSize, true, false);
+        List<CheckItem> list = checkItemMapper.selectByExample(checkItemExample);
         return new PageInfo<CheckItem>(list);
     }
 

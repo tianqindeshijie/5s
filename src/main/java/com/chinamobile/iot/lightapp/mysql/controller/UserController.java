@@ -1,7 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.chinamobile.iot.lightapp.mysql.model.User;
 import com.chinamobile.iot.lightapp.mysql.request.AddUserRequest;
 import com.chinamobile.iot.lightapp.mysql.request.UpdatePasswordRequest;
@@ -15,10 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -54,7 +50,6 @@ public class UserController {
     /**
      * 根据指定参数查询用户信息列表
      *
-     * @param userName   the user name
      * @param nickName   the nick name
      * @param phone      the phone
      * @param email      the email
@@ -64,15 +59,13 @@ public class UserController {
      * @return the users
      */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public BaseResponse getUsers(@RequestParam(value = "userName", required = false) String userName,
-                                   @RequestParam(value = "nickName", required = false) String nickName,
+    public BaseResponse getUsers(@RequestParam(value = "nickName", required = false) String nickName,
                                    @RequestParam(value = "phone", required = false) String phone,
                                    @RequestParam(value = "email", required = false) String email,
                                    @RequestParam(value = "department", required = false) String department,
                                    @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                    @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         User user = new User();
-        user.setUserName(userName);
         user.setNickName(nickName);
         user.setPhone(phone);
         user.setEmail(email);
@@ -144,13 +137,10 @@ public class UserController {
      * @return the users
      */
     @RequestMapping(value = "/users/login", method = RequestMethod.GET)
-    public BaseResponse login(@RequestParam(value = "userName", required = false) String userName,
+    public void login(@RequestParam(value = "userName", required = false) String userName,
                                    @RequestParam(value = "password", required = false) String password) {
-        userService.login(userName,password);
-        BaseResponse response = new BaseResponse();
-        response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功");
-        return  response;
+
+
     }
 
     /**

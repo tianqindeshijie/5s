@@ -443,6 +443,66 @@ public class CheckItemScoreExample {
             addCriterion("check_item_score.score not between", value1, value2, "score");
             return (Criteria) this;
         }
+
+        public Criteria andReportItemScoreIdIsNull() {
+            addCriterion("check_item_score.report_item_score_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdIsNotNull() {
+            addCriterion("check_item_score.report_item_score_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdEqualTo(Integer value) {
+            addCriterion("check_item_score.report_item_score_id =", value, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdNotEqualTo(Integer value) {
+            addCriterion("check_item_score.report_item_score_id <>", value, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdGreaterThan(Integer value) {
+            addCriterion("check_item_score.report_item_score_id >", value, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("check_item_score.report_item_score_id >=", value, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdLessThan(Integer value) {
+            addCriterion("check_item_score.report_item_score_id <", value, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdLessThanOrEqualTo(Integer value) {
+            addCriterion("check_item_score.report_item_score_id <=", value, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdIn(List<Integer> values) {
+            addCriterion("check_item_score.report_item_score_id in", values, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdNotIn(List<Integer> values) {
+            addCriterion("check_item_score.report_item_score_id not in", values, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdBetween(Integer value1, Integer value2) {
+            addCriterion("check_item_score.report_item_score_id between", value1, value2, "reportItemScoreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportItemScoreIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("check_item_score.report_item_score_id not between", value1, value2, "reportItemScoreId");
+            return (Criteria) this;
+        }
     }
 
     /**

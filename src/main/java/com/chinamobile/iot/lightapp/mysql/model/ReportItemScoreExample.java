@@ -443,6 +443,66 @@ public class ReportItemScoreExample {
             addCriterion("report_item_score.score not between", value1, value2, "score");
             return (Criteria) this;
         }
+
+        public Criteria andReportIdIsNull() {
+            addCriterion("report_item_score.report_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdIsNotNull() {
+            addCriterion("report_item_score.report_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdEqualTo(Integer value) {
+            addCriterion("report_item_score.report_id =", value, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdNotEqualTo(Integer value) {
+            addCriterion("report_item_score.report_id <>", value, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdGreaterThan(Integer value) {
+            addCriterion("report_item_score.report_id >", value, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("report_item_score.report_id >=", value, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdLessThan(Integer value) {
+            addCriterion("report_item_score.report_id <", value, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdLessThanOrEqualTo(Integer value) {
+            addCriterion("report_item_score.report_id <=", value, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdIn(List<Integer> values) {
+            addCriterion("report_item_score.report_id in", values, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdNotIn(List<Integer> values) {
+            addCriterion("report_item_score.report_id not in", values, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdBetween(Integer value1, Integer value2) {
+            addCriterion("report_item_score.report_id between", value1, value2, "reportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("report_item_score.report_id not between", value1, value2, "reportId");
+            return (Criteria) this;
+        }
     }
 
     /**

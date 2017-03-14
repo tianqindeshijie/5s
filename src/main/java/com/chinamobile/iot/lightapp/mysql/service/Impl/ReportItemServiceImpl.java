@@ -29,10 +29,10 @@ public class ReportItemServiceImpl implements ReportItemService {
     public PageInfo<ReportItem> findReportItems(ReportItem reportItem, Integer pageNum, Integer pageSize) {
         ReportItemExample reportItemExample = new ReportItemExample();
         ReportItemExample.Criteria criteria = reportItemExample.createCriteria();
-
-
-        PageHelper.startPage(pageNum, pageSize,true,false);
-        List<ReportItem> list= reportItemMapper.selectByExample(reportItemExample);
+        Integer cycleId = reportItem.getCycleId();
+        criteria.andCycleIdEqualTo(cycleId);
+        PageHelper.startPage(pageNum, pageSize, true, false);
+        List<ReportItem> list = reportItemMapper.selectByExample(reportItemExample);
         return new PageInfo<ReportItem>(list);
     }
 

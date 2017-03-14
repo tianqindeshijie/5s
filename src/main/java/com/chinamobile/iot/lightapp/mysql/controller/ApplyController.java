@@ -1,10 +1,9 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResult;
 import com.chinamobile.iot.lightapp.mysql.model.Apply;
-import com.chinamobile.iot.lightapp.mysql.model.User;
 import com.chinamobile.iot.lightapp.mysql.request.AddApplyRequest;
 import com.chinamobile.iot.lightapp.mysql.request.UpdateApplyRequest;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
@@ -13,9 +12,6 @@ import com.chinamobile.iot.lightapp.mysql.service.ApplyService;
 import com.chinamobile.iot.lightapp.mysql.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

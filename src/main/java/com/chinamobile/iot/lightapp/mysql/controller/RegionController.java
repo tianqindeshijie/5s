@@ -1,7 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.lightapp.mysql.config.SecurityUtils;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.chinamobile.iot.lightapp.mysql.dto.RegionDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Region;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
@@ -95,6 +95,7 @@ public class RegionController {
     public BaseResponse deleteRegion(@PathVariable("regionId") Integer regionId) {
         regionService.deleteByRegionId(regionId);
         BaseResponse response = new BaseResponse();
+        response.setCode(200);
         response.setMsg("成功!");
         return response;
     }

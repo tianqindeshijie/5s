@@ -1,6 +1,7 @@
-package com.chinamobile.iot.lightapp.mysql.config;
+package com.chinamobile.iot.security;
 
 import com.alibaba.fastjson.JSON;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 

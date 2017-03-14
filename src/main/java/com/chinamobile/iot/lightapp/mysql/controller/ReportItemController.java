@@ -2,6 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.model.ReportItem;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.ReportItemService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -18,14 +19,14 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mysql")
-@Api("模板管理")
+@Api("检查大项管理")
 public class ReportItemController {
     private static Logger logger = LoggerFactory.getLogger(ReportItemController.class);
     @Autowired
     private ReportItemService reportItemService;
 
     /**
-     * 根据指定reportItemId查询模板信息
+     * 根据指定reportItemId查询检查大项信息
      *
      * @param reportItemId the reportItem id
      * @return the reportItem by reportItem id
@@ -36,58 +37,70 @@ public class ReportItemController {
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询检查大项信息列表
      *
-     * @param reportItemName    the reportItem name
-     * @param reportItemContent the reportItem content
-     * @param reportItemType    the reportItem type
-     * @param pageNum    the page num
-     * @param pageSize   the page size
+     * @param pageNum  the page num
+     * @param pageSize the page size
      * @return the reportItems
      */
 
     @RequestMapping(value = "/reportItems", method = RequestMethod.GET)
-    public PageInfo<ReportItem> getReportItems(@RequestParam(value = "reportItemName", required = false) String reportItemName,
-                                           @RequestParam(value = "reportItemContent", required = false) String reportItemContent,
-                                           @RequestParam(value = "reportItemType", required = false) Integer reportItemType,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+    public BaseResponse getReportItems(@RequestParam(value = "cycleId", required = true) Integer cycleId,
+                                       @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                       @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         ReportItem reportItem = new ReportItem();
-
-        return reportItemService.findReportItems(reportItem, pageNum, pageSize);
+        reportItem.setCycleId(cycleId);
+        PageInfo<ReportItem> pageInfo = reportItemService.findReportItems(reportItem, pageNum, pageSize);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        response.setData(pageInfo);
+        return response;
     }
 
     /**
-     * 新增模板信息.
+     * 新增检查大项信息.
      *
      * @param reportItem the add reportItem request
      * @return the integer
      */
     @RequestMapping(value = "/reportItems", method = RequestMethod.POST)
-    public Integer addReportItem(@RequestBody ReportItem reportItem) {
-        return reportItemService.insert(reportItem);
+    public BaseResponse addReportItem(@RequestBody ReportItem reportItem) {
+        reportItemService.insert(reportItem);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
-     * 更新模板信息.
+     * 更新检查大项信息.
      *
      * @param reportItem the update reportItem request
      * @return the integer
      */
     @RequestMapping(value = "/reportItems", method = RequestMethod.PUT)
-    public Integer updateReportItem(@RequestBody ReportItem reportItem) {
-        return reportItemService.updateByReportItemId(reportItem);
+    public BaseResponse updateReportItem(@RequestBody ReportItem reportItem) {
+        reportItemService.updateByReportItemId(reportItem);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        return response;
     }
 
     /**
-     * 根据指定的reportItemId删除模板信息
+     * 根据指定的reportItemId删除检查大项信息
      *
      * @param reportItemId the reportItem id
      * @return the integer
      */
     @RequestMapping(value = "/reportItems/{reportItemId}", method = RequestMethod.DELETE)
-    public Integer deleteReportItem(@PathVariable("reportItemId") Integer reportItemId) {
-        return reportItemService.deleteByReportItemId(reportItemId);
+    public BaseResponse deleteReportItem(@PathVariable("reportItemId") Integer reportItemId) {
+        reportItemService.deleteByReportItemId(reportItemId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(200);
+        response.setMsg("成功!");
+        return response;
     }
 
 }
