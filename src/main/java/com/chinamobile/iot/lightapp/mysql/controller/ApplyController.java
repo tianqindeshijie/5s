@@ -12,6 +12,9 @@ import com.chinamobile.iot.lightapp.mysql.service.ApplyService;
 import com.chinamobile.iot.lightapp.mysql.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -55,6 +58,14 @@ public class ApplyController {
      * @param pageSize  the page size
      * @return the applys
      */
+    @ApiOperation(value = "查询命令状态列表", notes = "查询命令状态列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "commandName", value = "命令名称", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "deviceId", value = "设备ID", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "deviceName", value = "设备名称", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "status", value = "命令状态", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/applys", method = RequestMethod.GET)
     public BaseResponse getApplys(@RequestParam(value = "applyUser", required = false) Integer applyUser,
                                      @RequestParam(value = "inviter", required = false) Integer inviter,

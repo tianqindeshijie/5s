@@ -16,16 +16,27 @@
 package com.chinamobile.iot.lightapp.mysql.config;
 
 import com.chinamobile.iot.security.JsonAuthenticationSuccessHandler;
+import com.chinamobile.iot.security.RestAuthenticationFailureHandler;
+import com.chinamobile.iot.security.RestAuthenticationSuccessHandler;
+import com.chinamobile.iot.security.RestUnauthorizedEntryPoint;
 import io.github.jhipster.security.AjaxAuthenticationFailureHandler;
 import io.github.jhipster.security.AjaxLogoutSuccessHandler;
 import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.SecurityConfigurer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author jitendra on 3/3/16.
@@ -35,25 +46,58 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
+    @Autowired
+    private RestAuthenticationFailureHandler restAuthenticationFailureHandler;
+    @Autowired
+    private RestUnauthorizedEntryPoint restUnauthorizedEntryPoint;
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers(HttpMethod.OPTIONS, "*")
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/webjars/springfox-swagger-ui/**")
+                .antMatchers("/swagger-resources/**")
+                .antMatchers("/v2/api-docs/**")
+                .antMatchers("/management/**");
+    }
 
     // @formatter:off
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(restUnauthorizedEntryPoint)
+                .and()
+                .sessionManagement().maximumSessions(2).and()
+                .and()
                 .authorizeRequests()
+                .antMatchers("/management/**").permitAll()
+                .antMatchers("/swagger-resources/configuration/ui").permitAll()
+                .antMatchers("/webjars/springfox-swagger-ui/*").permitAll()
                 .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
-                .successHandler(jsonAuthenticationSuccessHandler())
-                .failureHandler(ajaxAuthenticationFailureHandler())
-                .usernameParameter("username")
+                .successHandler(restAuthenticationSuccessHandler)
+                .failureHandler(restAuthenticationFailureHandler)
+                .usernameParameter("phone")
                 .passwordParameter("password")
                 .permitAll()
                 .and()
                 .logout().permitAll();
+       /* http.addFilterAt(usernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);*/
     }
+
+/*    @Bean
+    public UsernamePasswordAuthenticationFilter usernamePasswordAuthenticationFilter1() {
+        UsernamePasswordAuthenticationFilter usernamePasswordAuthenticationFilter = new UsernamePasswordAuthenticationFilter();
+        usernamePasswordAuthenticationFilter.setPostOnly(false);
+        return usernamePasswordAuthenticationFilter;
+    }*/
     // @formatter:on
 
     // @formatter:off
@@ -68,24 +112,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     // @formatter:on
 
-
-    @Bean
-    public JsonAuthenticationSuccessHandler jsonAuthenticationSuccessHandler() {
-        return new JsonAuthenticationSuccessHandler();
-    }
-
-    @Bean
-    public AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
-        return new AjaxAuthenticationFailureHandler();
-    }
-
     @Bean
     public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
         return new AjaxLogoutSuccessHandler();
     }
 
-    @Bean
-    public Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint() {
-        return new Http401UnauthorizedEntryPoint();
-    }
 }

@@ -1,11 +1,13 @@
 server:
   port: 8083
+  session:
+    timeout: 10
 #配置数据源
 spring:
   datasource:
     name: platform
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://172.19.3.129:3306/lightapp?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://172.19.3.129:3306/mydb?characterEncoding=utf8&useSSL=false
     username: root
     password: Iot#10086
     driverClassName: com.mysql.jdbc.Driver

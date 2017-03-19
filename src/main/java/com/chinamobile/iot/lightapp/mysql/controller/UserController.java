@@ -11,10 +11,14 @@ import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.UserService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,12 +37,27 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 根据指定userId查询用户信息
+     * 用户登录
+     * HTTP method：GET
+     * example:http://<host>:<port>/v1.0/login?loginName=<xxx>&password=<xxx>
      *
+     * @param phone    电话
+     * @param password 密码
+     */
+    @ApiOperation(value = "用户登录", notes = "用户登录")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "phone", value = "电话", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "password", value = "密码", dataType = "String")})
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public void login(@RequestParam(value = "phone", required = false) String phone,
+                      @RequestParam(value = "password", required = false) String password) {
+    }
+
+    /**
+     * 根据指定userId查询用户信息
      */
     @RequestMapping(path = "/users/{userId}", method = RequestMethod.GET)
     public BaseResponse getUserByUserId(@PathVariable("userId") Integer userId) {
-       // Integer userId = SecurityUtils.getCurrentUserId();
+        // Integer userId = SecurityUtils.getCurrentUserId();
         User user = userService.findUserByUserId(userId);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
@@ -60,11 +79,11 @@ public class UserController {
      */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public BaseResponse getUsers(@RequestParam(value = "nickName", required = false) String nickName,
-                                   @RequestParam(value = "phone", required = false) String phone,
-                                   @RequestParam(value = "email", required = false) String email,
-                                   @RequestParam(value = "department", required = false) String department,
-                                   @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                   @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
+                                 @RequestParam(value = "phone", required = false) String phone,
+                                 @RequestParam(value = "email", required = false) String email,
+                                 @RequestParam(value = "department", required = false) String department,
+                                 @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                 @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         User user = new User();
         user.setNickName(nickName);
         user.setPhone(phone);
@@ -75,7 +94,7 @@ public class UserController {
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
         response.setData(pageInfo);
-        return  response;
+        return response;
     }
 
     /**
@@ -93,7 +112,7 @@ public class UserController {
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
-        return  response;
+        return response;
     }
 
     /**
@@ -111,7 +130,7 @@ public class UserController {
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
-        return  response;
+        return response;
     }
 
     /**
@@ -126,21 +145,7 @@ public class UserController {
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
-        return  response;
-    }
-
-    /**
-     * 登录
-     *
-     * @param userName the user name
-     * @param password the password
-     * @return the users
-     */
-    @RequestMapping(value = "/users/login", method = RequestMethod.GET)
-    public void login(@RequestParam(value = "userName", required = false) String userName,
-                                   @RequestParam(value = "password", required = false) String password) {
-
-
+        return response;
     }
 
     /**
@@ -155,10 +160,10 @@ public class UserController {
         String oldPassword = updatePasswordRequest.getOldPassword();
         String newPassword = updatePasswordRequest.getNewPassword();
         // TODO: 2017/2/15 从Session中取得
-        userService.updatePassword(userId,oldPassword,newPassword);
+        userService.updatePassword(userId, oldPassword, newPassword);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
-        return  response;
+        return response;
     }
 }
