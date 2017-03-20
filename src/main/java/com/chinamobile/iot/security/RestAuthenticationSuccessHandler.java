@@ -1,6 +1,7 @@
 package com.chinamobile.iot.security;
 
 import com.alibaba.fastjson.JSON;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -31,13 +32,10 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
     }
 
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-
-        session.getId();
         Integer userId = SecurityUtils.getCurrentUser().getUserId();
         Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put(Constant.USER_ID, userId);
         response.getWriter().write(JSON.toJSONString(map));
         response.setStatus(HttpServletResponse.SC_OK);
-
     }
 }

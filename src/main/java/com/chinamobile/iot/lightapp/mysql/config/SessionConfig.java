@@ -27,26 +27,36 @@ import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHtt
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
 import org.springframework.transaction.PlatformTransactionManager;
+import redis.clients.jedis.Protocol;
+import redis.embedded.RedisServer;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+
+import javax.annotation.PreDestroy;
+import java.io.IOException;
 
 /**
  * @author jitendra on 3/3/16.
  */
-@EnableJdbcHttpSession
+@EnableRedisHttpSession
 public class SessionConfig {
+
+    private static RedisServer redisServer;
+
     @Bean
-    public EmbeddedDatabase dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("org/springframework/session/jdbc/schema-h2.sql").build();
+    public JedisConnectionFactory connectionFactory() throws IOException {
+        redisServer = new RedisServer(Protocol.DEFAULT_PORT);
+        redisServer.start();
+        return new JedisConnectionFactory();
     }
-    @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
+
+    @PreDestroy
+    public void destroy() {
+        redisServer.stop();
     }
 
     @Bean
     public HttpSessionStrategy httpSessionStrategy() {
-        HeaderHttpSessionStrategy headerHttpSessionStrategy =  new HeaderHttpSessionStrategy();
+        HeaderHttpSessionStrategy headerHttpSessionStrategy = new HeaderHttpSessionStrategy();
         headerHttpSessionStrategy.setHeaderName(Constant.SESSION_NAME);
         return headerHttpSessionStrategy;
     }

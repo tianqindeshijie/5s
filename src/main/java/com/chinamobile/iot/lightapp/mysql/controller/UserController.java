@@ -55,6 +55,9 @@ public class UserController {
     /**
      * 根据指定userId查询用户信息
      */
+    @ApiOperation(value = "查询用户信息", notes = "查询用户信息")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "userId", value = "用户ID", required = true, dataType = "integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/users/{userId}", method = RequestMethod.GET)
     public BaseResponse getUserByUserId(@PathVariable("userId") Integer userId) {
         // Integer userId = SecurityUtils.getCurrentUserId();

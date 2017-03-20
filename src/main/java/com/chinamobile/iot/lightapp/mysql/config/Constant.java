@@ -7,7 +7,12 @@ public class Constant {
     /**
      * The constant SESSION_NAME.
      */
-    public static final String SESSION_NAME = "sessiontoken";
+    public static final String SESSION_NAME = "session-token";
+
+    /**
+     * The constant USER_ID.
+     */
+    public static final String USER_ID = "userId";
 
 
 //------------------实体类状态静态变量-----------------------
