@@ -55,7 +55,7 @@ public class RegionServiceImpl implements RegionService {
         RegionExample.Criteria criteria1 = regionExample.createCriteria();
         String regionName = region.getRegionName();
         if (regionName != null && regionName.trim().length() > 0) {
-            criteria1.andRegionNameLike(regionName);
+            criteria1.andRegionNameLike("%" + regionName);
         }
         criteria1.andCycleIdIn(workCycleList);
         PageHelper.startPage(pageNum, pageSize, true, false);

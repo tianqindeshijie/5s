@@ -31,7 +31,7 @@ public class ReportServiceImpl implements ReportService {
         ReportExample.Criteria criteria = reportExample.createCriteria();
         String reportName = report.getReportName();
         if (reportName != null && reportName.trim().length() > 0) {
-            criteria.andReportNameLike(reportName);
+            criteria.andReportNameLike("%" + reportName);
         }
         Integer cycleId = report.getCycleId();
         if (cycleId != null) {

@@ -9,6 +9,9 @@ import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.ReportService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -23,25 +26,28 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mysql")
-@Api("模板管理")
+@Api("报告管理")
 public class ReportController {
     private static Logger logger = LoggerFactory.getLogger(ReportController.class);
     @Autowired
     private ReportService reportService;
 
     /**
-     * 根据指定reportId查询模板信息
+     * 根据指定reportId查询报告信息
      *
      * @param reportId the report id
      * @return the report by report id
      */
+    @ApiOperation(value = "查询报告", notes = "查询报告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "reportId", required = true, value = "报告ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/reports/{reportId}", method = RequestMethod.GET)
     public Report getReportByReportId(@PathVariable("reportId") Integer reportId) {
         return reportService.findReportByReportId(reportId);
     }
 
     /**
-     * 根据指定参数查询模板信息列表
+     * 根据指定参数查询报告信息列表
      *
      * @param reportName the report name
      * @param cycleId    the cycle id
@@ -51,6 +57,14 @@ public class ReportController {
      * @param pageSize   the page size
      * @return the reports
      */
+    @ApiOperation(value = "查询报告列表", notes = "查询报告列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportName", value = "报告名称", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "regionId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "periodId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reports", method = RequestMethod.GET)
     public PageInfo<Report> getReports(@RequestParam(value = "reportName", required = false) String reportName,
                                        @RequestParam(value = "cycleId", required = false) Integer cycleId,
@@ -67,11 +81,13 @@ public class ReportController {
     }
 
     /**
-     * 新增模板信息.
+     * 新增报告信息.
      *
      * @param addReportRequest the add report request
      * @return the integer
      */
+    @ApiOperation(value = "新增报告", notes = "新增报告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reports", method = RequestMethod.POST)
     public BaseResponse addReport(@RequestBody AddReportRequest addReportRequest) {
         Report report = new Report();
@@ -85,11 +101,13 @@ public class ReportController {
     }
 
     /**
-     * 更新模板信息.
+     * 更新报告信息.
      *
      * @param updateApplyRequest the update apply request
      * @return the integer
      */
+    @ApiOperation(value = "更新报告", notes = "更新报告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reports", method = RequestMethod.PUT)
     public BaseResponse updateReport(@RequestBody UpdateApplyRequest updateApplyRequest) {
         Report report = new Report();
@@ -101,11 +119,14 @@ public class ReportController {
     }
 
     /**
-     * 根据指定的reportId删除模板信息
+     * 根据指定的reportId删除报告信息
      *
      * @param reportId the report id
      * @return the integer
      */
+    @ApiOperation(value = "删除报告", notes = "删除报告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "reportId", required = true, value = "报告ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reports/{reportId}", method = RequestMethod.DELETE)
     public BaseResponse deleteReport(@PathVariable("reportId") Integer reportId) {
         reportService.deleteByReportId(reportId);

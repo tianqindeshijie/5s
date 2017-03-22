@@ -80,6 +80,14 @@ public class UserController {
      * @param pageSize   the page size
      * @return the users
      */
+    @ApiOperation(value = "查询用户列表", notes = "查询用户列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "nickName", value = "昵称", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "phone", value = "电话", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "email", value = "email", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "department", value = "部门", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public BaseResponse getUsers(@RequestParam(value = "nickName", required = false) String nickName,
                                  @RequestParam(value = "phone", required = false) String phone,
@@ -106,6 +114,7 @@ public class UserController {
      * @param addUserRequest the add user request
      * @return the base response
      */
+    @ApiOperation(value = "注册用户", notes = "注册用户")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public BaseResponse registerAccount(@Valid @RequestBody AddUserRequest addUserRequest) {
         User user = new User();
@@ -124,6 +133,8 @@ public class UserController {
      * @param updateUserRequest the update user request
      * @return the integer
      */
+    @ApiOperation(value = "更新用户", notes = "更新用户")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/users", method = RequestMethod.PUT)
     public BaseResponse updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
         User user = new User();
@@ -142,6 +153,9 @@ public class UserController {
      * @param userId the user id
      * @return the integer
      */
+    @ApiOperation(value = "删除用户", notes = "删除用户")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "userId", value = "用户ID", required = true, dataType = "integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.DELETE)
     public BaseResponse deleteUser(@PathVariable("userId") Integer userId) {
         userService.deleteByUserId(userId);
@@ -157,6 +171,7 @@ public class UserController {
      * @param updatePasswordRequest the update password request
      * @return the users
      */
+    @ApiOperation(value = "更改密码", notes = "更改密码")
     @RequestMapping(value = "/users/updatePassword", method = RequestMethod.GET)
     public BaseResponse updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
         Integer userId = SecurityUtils.getCurrentUserId();

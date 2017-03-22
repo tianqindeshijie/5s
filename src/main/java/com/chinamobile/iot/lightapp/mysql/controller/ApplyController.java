@@ -43,6 +43,9 @@ public class ApplyController {
      * @param applyId the apply id
      * @return the apply by apply id
      */
+    @ApiOperation(value = "查询申请", notes = "查询申请")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "applyId", required = true, value = "申请ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/applys/{applyId}", method = RequestMethod.GET)
     public Apply getApplyByApplyId(@PathVariable("applyId") Integer applyId) {
         return applyService.findApplyByApplyId(applyId);
@@ -58,11 +61,10 @@ public class ApplyController {
      * @param pageSize  the page size
      * @return the applys
      */
-    @ApiOperation(value = "查询命令状态列表", notes = "查询命令状态列表")
-    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "commandName", value = "命令名称", dataType = "String"),
-            @ApiImplicitParam(paramType = "query", name = "deviceId", value = "设备ID", dataType = "String"),
-            @ApiImplicitParam(paramType = "query", name = "deviceName", value = "设备名称", dataType = "String"),
-            @ApiImplicitParam(paramType = "query", name = "status", value = "命令状态", dataType = "Integer"),
+    @ApiOperation(value = "查询申请列表", notes = "查询申请列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "applyUser", value = "申请人ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "inviter", value = "邀请人ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
@@ -91,6 +93,8 @@ public class ApplyController {
      * @param addApplyRequest the add apply request
      * @return the integer
      */
+    @ApiOperation(value = "新增申请列表", notes = "新增申请列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/applys", method = RequestMethod.POST)
     public BaseResponse addApply(@RequestBody AddApplyRequest addApplyRequest) {
         BaseResponse response = new BaseResponse();
@@ -103,11 +107,13 @@ public class ApplyController {
     }
 
     /**
-     * 更新申请信息.
+     * 处理申请信息.
      *
      * @param updateApplyRequest the update apply request
      * @return the integer
      */
+    @ApiOperation(value = "处理申请", notes = "处理申请")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/applys", method = RequestMethod.PUT)
     public Integer updateApply(@RequestBody UpdateApplyRequest updateApplyRequest) {
         Apply apply = new Apply();

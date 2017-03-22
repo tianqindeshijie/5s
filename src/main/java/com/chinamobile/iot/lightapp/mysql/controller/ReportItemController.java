@@ -6,6 +6,9 @@ import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.ReportItemService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,9 @@ public class ReportItemController {
      * @param reportItemId the reportItem id
      * @return the reportItem by reportItem id
      */
+    @ApiOperation(value = "查询检查大项", notes = "查询检查大项")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "reportItemId", required = true, value = "检查大项ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/reportItems/{reportItemId}", method = RequestMethod.GET)
     public ReportItem getReportItemByReportItemId(@PathVariable("reportItemId") Integer reportItemId) {
         return reportItemService.findReportItemByReportItemId(reportItemId);
@@ -43,7 +49,11 @@ public class ReportItemController {
      * @param pageSize the page size
      * @return the reportItems
      */
-
+    @ApiOperation(value = "查询检查大项列表", notes = "查询检查大项列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reportItems", method = RequestMethod.GET)
     public BaseResponse getReportItems(@RequestParam(value = "cycleId", required = true) Integer cycleId,
                                        @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
@@ -64,6 +74,8 @@ public class ReportItemController {
      * @param reportItem the add reportItem request
      * @return the integer
      */
+    @ApiOperation(value = "新增检查大项", notes = "新增检查大项")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reportItems", method = RequestMethod.POST)
     public BaseResponse addReportItem(@RequestBody ReportItem reportItem) {
         reportItemService.insert(reportItem);
@@ -79,6 +91,8 @@ public class ReportItemController {
      * @param reportItem the update reportItem request
      * @return the integer
      */
+    @ApiOperation(value = "更新检查大项", notes = "更新检查大项")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reportItems", method = RequestMethod.PUT)
     public BaseResponse updateReportItem(@RequestBody ReportItem reportItem) {
         reportItemService.updateByReportItemId(reportItem);
@@ -94,6 +108,9 @@ public class ReportItemController {
      * @param reportItemId the reportItem id
      * @return the integer
      */
+    @ApiOperation(value = "删除检查大项", notes = "删除检查大项")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "reportItemId", required = true, value = "检查大项ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reportItems/{reportItemId}", method = RequestMethod.DELETE)
     public BaseResponse deleteReportItem(@PathVariable("reportItemId") Integer reportItemId) {
         reportItemService.deleteByReportItemId(reportItemId);

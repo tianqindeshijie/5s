@@ -9,6 +9,9 @@ import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.WorkCycleService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,9 @@ public class WorkCycleController {
      * @param workCycleId the workCycle id
      * @return the workCycle by workCycle id
      */
+    @ApiOperation(value = "查询工作圈", notes = "查询工作圈")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "workCycleId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/workCycles/{workCycleId}", method = RequestMethod.GET)
     public WorkCycle getWorkCycleByWorkCycleId(@PathVariable("workCycleId") Integer workCycleId) {
         return workCycleService.findWorkCycleByWorkCycleId(workCycleId);
@@ -50,10 +56,13 @@ public class WorkCycleController {
      * @param pageSize      the page size
      * @return the workCycles
      */
+    @ApiOperation(value = "查询工作圈列表", notes = "查询工作圈列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "workCycleName", value = "工作圈名称", dataType = "String"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/workCycles", method = RequestMethod.GET)
     public PageInfo<WorkCycle> getWorkCycles(@RequestParam(value = "workCycleName", required = true) String workCycleName,
-                                           @RequestParam(value = "pageNum", required = false,defaultValue = "1") Integer pageNum,
-                                           @RequestParam(value = "pageSize", required = false,defaultValue = "0") Integer pageSize) {
+                                             @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                             @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         WorkCycle workCycle = new WorkCycle();
         workCycle.setWorkCycleName(workCycleName);
         return workCycleService.findWorkCycles(workCycle, pageNum, pageSize);
@@ -65,19 +74,21 @@ public class WorkCycleController {
      * @param addWorkCycleRequest the add work cycle request
      * @return the integer
      */
+    @ApiOperation(value = "新增工作圈", notes = "新增工作圈")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/workCycles", method = RequestMethod.POST)
     public BaseResponse addWorkCycle(@RequestBody AddWorkCycleRequest addWorkCycleRequest) {
         WorkCycle workCycle = new WorkCycle();
         workCycle.setWorkCycleName(addWorkCycleRequest.getWorkCycleName());
         Integer userId = SecurityUtils.getCurrentUserId();
-        Integer workCycleId = workCycleService.insert(userId,workCycle,addWorkCycleRequest.getRegionList());
+        Integer workCycleId = workCycleService.insert(userId, workCycle, addWorkCycleRequest.getRegionList());
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
-        Map map = new HashMap<String,Integer>();
+        Map map = new HashMap<String, Integer>();
         map.put("workCycleId", workCycleId);
         response.setData(response);
-        return  response;
+        return response;
     }
 
     /**
@@ -86,6 +97,8 @@ public class WorkCycleController {
      * @param workCycle the update workCycle request
      * @return the integer
      */
+    @ApiOperation(value = "更新工作圈", notes = "更新工作圈")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/workCycles", method = RequestMethod.PUT)
     public BaseResponse updateWorkCycle(@RequestBody WorkCycle workCycle) {
         Integer userId = SecurityUtils.getCurrentUserId();
@@ -93,7 +106,7 @@ public class WorkCycleController {
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
-        return  response;
+        return response;
     }
 
     /**
@@ -102,15 +115,18 @@ public class WorkCycleController {
      * @param workCycleId the workCycle id
      * @return the integer
      */
+    @ApiOperation(value = "删除工作圈", notes = "删除工作圈")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "workCycleId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/workCycles/{workCycleId}", method = RequestMethod.DELETE)
     public BaseResponse deleteWorkCycle(@PathVariable("workCycleId") Integer workCycleId) {
         // TODO: 2017/2/16 判断操作人是否有权限删除
         Integer userId = SecurityUtils.getCurrentUserId();
-        workCycleService.deleteByWorkCycleId(userId,workCycleId);
+        workCycleService.deleteByWorkCycleId(userId, workCycleId);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg("成功");
-        return  response;
+        return response;
     }
 
 }

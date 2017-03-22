@@ -9,6 +9,9 @@ import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.NoticeService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ public class NoticeController {
      * @param noticeId the notice id
      * @return the notice by notice id
      */
+    @ApiOperation(value = "查询公告", notes = "查询公告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "noticeId", required = true, value = "公告ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/notices/{noticeId}", method = RequestMethod.GET)
     public Notice getNoticeByNoticeId(@PathVariable("noticeId") Integer noticeId) {
         return noticeService.findNoticeByNoticeId(noticeId);
@@ -42,16 +48,15 @@ public class NoticeController {
     /**
      * 根据指定参数查询公告信息列表
      *
-     * @param pageNum  the page num
-     * @param pageSize the page size
      * @return the notices
      */
+    @ApiOperation(value = "查询公告列表", notes = "查询公告列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/notices", method = RequestMethod.GET)
-    public PageInfo<NoticeDTO> getNotices(@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                          @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
+    public PageInfo<NoticeDTO> getNotices() {
         Notice notice = new Notice();
         Integer userId = SecurityUtils.getCurrentUserId();
-        return noticeService.findNotices(notice,userId, pageNum, pageSize);
+        return noticeService.findNotices(notice, userId, 1, 0);
     }
 
     /**
@@ -60,6 +65,8 @@ public class NoticeController {
      * @param notice the add notice request
      * @return the integer
      */
+    @ApiOperation(value = "新增公告", notes = "新增公告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/notices", method = RequestMethod.POST)
     public BaseResponse addNotice(@RequestBody Notice notice) {
         noticeService.insert(notice);
@@ -75,6 +82,8 @@ public class NoticeController {
      * @param notice the update notice request
      * @return the integer
      */
+    @ApiOperation(value = "更新公告", notes = "更新公告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/notices", method = RequestMethod.PUT)
     public BaseResponse updateNotice(@RequestBody Notice notice) {
         noticeService.updateByNoticeId(notice);
@@ -90,6 +99,9 @@ public class NoticeController {
      * @param noticeId the notice id
      * @return the integer
      */
+    @ApiOperation(value = "删除公告", notes = "删除公告")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "noticeId", required = true, value = "公告ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/notices/{noticeId}", method = RequestMethod.DELETE)
     public BaseResponse deleteNotice(@PathVariable("noticeId") Integer noticeId) {
         noticeService.deleteByNoticeId(noticeId);

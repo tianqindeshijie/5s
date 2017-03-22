@@ -9,6 +9,9 @@ import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.PeriodService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ public class PeriodController {
      * @param periodId the period id
      * @return the period by period id
      */
+    @ApiOperation(value = "查询时间段", notes = "查询时间段")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "periodId", required = true, value = "时间段ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/periods/{periodId}", method = RequestMethod.GET)
     public Period getPeriodByPeriodId(@PathVariable("periodId") Integer periodId) {
         return periodService.findPeriodByPeriodId(periodId);
@@ -48,11 +54,17 @@ public class PeriodController {
      * @param pageSize   the page size
      * @return the periods
      */
+    @ApiOperation(value = "查询时间段列表", notes = "查询时间段列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "periodName", value = "时间段名称", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/periods", method = RequestMethod.GET)
     public BaseResponse getPeriods(@RequestParam(value = "periodName", required = false) String periodName,
-                                          @RequestParam(value = "cycleId", required = false) Integer cycleId,
-                                          @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                          @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
+                                   @RequestParam(value = "cycleId", required = false) Integer cycleId,
+                                   @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Integer userId = SecurityUtils.getCurrentUserId();
         Period period = new Period();
         period.setPeriodName(periodName);
@@ -71,6 +83,8 @@ public class PeriodController {
      * @param period the add period request
      * @return the integer
      */
+    @ApiOperation(value = "新增时间段", notes = "新增时间段")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/periods", method = RequestMethod.POST)
     public BaseResponse addPeriod(@RequestBody Period period) {
         periodService.insert(period);
@@ -86,6 +100,8 @@ public class PeriodController {
      * @param period the update period request
      * @return the integer
      */
+    @ApiOperation(value = "更新时间段", notes = "更新时间段")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/periods", method = RequestMethod.PUT)
     public BaseResponse updatePeriod(@RequestBody Period period) {
         periodService.updateByPeriodId(period);
@@ -101,6 +117,9 @@ public class PeriodController {
      * @param periodId the period id
      * @return the integer
      */
+    @ApiOperation(value = "删除时间段", notes = "删除时间段")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "periodId", required = true, value = "时间段ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/periods/{periodId}", method = RequestMethod.DELETE)
     public BaseResponse deletePeriod(@PathVariable("periodId") Integer periodId) {
         periodService.deleteByPeriodId(periodId);

@@ -8,6 +8,9 @@ import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.RegionService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,9 @@ public class RegionController {
      * @param regionId the region id
      * @return the region by region id
      */
+    @ApiOperation(value = "查询区域", notes = "查询区域")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "regionId", required = true, value = "区域ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/regions/{regionId}", method = RequestMethod.GET)
     public Region getRegionByRegionId(@PathVariable("regionId") Integer regionId) {
         return regionService.findRegionByRegionId(regionId);
@@ -46,7 +52,11 @@ public class RegionController {
      * @param pageSize   the page size
      * @return the regions
      */
-
+    @ApiOperation(value = "查询区域列表", notes = "查询区域列表")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "regionName", value = "区域名称", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
     public PageInfo<RegionDTO> getRegions(@RequestParam(value = "regionName", required = false) String regionName,
                                           @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
@@ -54,7 +64,7 @@ public class RegionController {
         Region region = new Region();
         region.setRegionName(regionName);
         Integer userId = SecurityUtils.getCurrentUserId();
-        return regionService.findRegions(region,userId, pageNum, pageSize);
+        return regionService.findRegions(region, userId, pageNum, pageSize);
     }
 
     /**
@@ -63,6 +73,8 @@ public class RegionController {
      * @param region the add region request
      * @return the integer
      */
+    @ApiOperation(value = "新增区域", notes = "新增区域")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/regions", method = RequestMethod.POST)
     public BaseResponse addRegion(@RequestBody Region region) {
         regionService.insert(region);
@@ -77,6 +89,8 @@ public class RegionController {
      * @param region the update region request
      * @return the integer
      */
+    @ApiOperation(value = "更新区域", notes = "更新区域")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/regions", method = RequestMethod.PUT)
     public BaseResponse updateRegion(@RequestBody Region region) {
         regionService.updateByRegionId(region);
@@ -91,6 +105,9 @@ public class RegionController {
      * @param regionId the region id
      * @return the integer
      */
+    @ApiOperation(value = "删除区域", notes = "删除区域")
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "regionId", required = true, value = "区域ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/regions/{regionId}", method = RequestMethod.DELETE)
     public BaseResponse deleteRegion(@PathVariable("regionId") Integer regionId) {
         regionService.deleteByRegionId(regionId);

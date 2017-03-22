@@ -54,7 +54,7 @@ public class PeriodServiceImpl implements PeriodService {
         PeriodExample.Criteria criteria1 = periodExample.createCriteria();
         String periodName = period.getPeriodName();
         if (periodName != null && periodName.trim().length() > 0) {
-            criteria1.andPeriodNameLike(periodName);
+            criteria1.andPeriodNameLike("%" + periodName);
         }
         Integer cycleId = period.getCycleId();
         if (cycleId != null) {
