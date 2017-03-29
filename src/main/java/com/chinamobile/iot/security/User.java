@@ -14,19 +14,34 @@ public class User implements UserDetails, Serializable {
 
     private Integer userId;
 
-    private String phone;
-
     private String nickName;
 
-    private String password;
+    private String phone;
 
+    private String email;
+
+    private String imgAddr;
+
+    private Integer gender;
+
+    private String company;
+
+    private String post;
+
+    private String department;
+
+    private Date joinTime;
+
+    private String signature;
+
+    private String password;
 
     /**
      * Instantiates a new User.
      *
-     * @param phone       the phone
-     * @param password    the password
-     * @param userId      the user id
+     * @param phone    the phone
+     * @param password the password
+     * @param userId   the user id
      */
     public User(String phone, String password, Integer userId) {
         this.phone = phone;
@@ -177,5 +192,147 @@ public class User implements UserDetails, Serializable {
         return true;
     }
 
+    /**
+     * Gets signature.
+     *
+     * @return the signature
+     */
+    public String getSignature() {
+        return signature;
+    }
 
+    /**
+     * Sets signature.
+     *
+     * @param signature the signature
+     */
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Gets img addr.
+     *
+     * @return the img addr
+     */
+    public String getImgAddr() {
+        return imgAddr;
+    }
+
+    /**
+     * Sets img addr.
+     *
+     * @param imgAddr the img addr
+     */
+    public void setImgAddr(String imgAddr) {
+        this.imgAddr = imgAddr;
+    }
+
+    /**
+     * Gets gender.
+     *
+     * @return the gender
+     */
+    public Integer getGender() {
+        return gender;
+    }
+
+    /**
+     * Sets gender.
+     *
+     * @param gender the gender
+     */
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * Gets company.
+     *
+     * @return the company
+     */
+    public String getCompany() {
+        return company;
+    }
+
+    /**
+     * Sets company.
+     *
+     * @param company the company
+     */
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    /**
+     * Gets post.
+     *
+     * @return the post
+     */
+    public String getPost() {
+        return post;
+    }
+
+    /**
+     * Sets post.
+     *
+     * @param post the post
+     */
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    /**
+     * Gets department.
+     *
+     * @return the department
+     */
+    public String getDepartment() {
+        return department;
+    }
+
+    /**
+     * Sets department.
+     *
+     * @param department the department
+     */
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    /**
+     * Gets join time.
+     *
+     * @return the join time
+     */
+    public Date getJoinTime() {
+        return joinTime;
+    }
+
+    /**
+     * Sets join time.
+     *
+     * @param joinTime the join time
+     */
+    public void setJoinTime(Date joinTime) {
+        this.joinTime = joinTime;
+    }
 }
