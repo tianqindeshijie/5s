@@ -1,7 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.security.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResult;
 import com.chinamobile.iot.lightapp.mysql.model.Apply;
 import com.chinamobile.iot.lightapp.mysql.request.AddApplyRequest;
@@ -10,6 +10,7 @@ import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.ApplyService;
 import com.chinamobile.iot.lightapp.mysql.service.UserService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -47,8 +48,13 @@ public class ApplyController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "applyId", required = true, value = "申请ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/applys/{applyId}", method = RequestMethod.GET)
-    public Apply getApplyByApplyId(@PathVariable("applyId") Integer applyId) {
-        return applyService.findApplyByApplyId(applyId);
+    public BaseResponse getApplyByApplyId(@PathVariable("applyId") Integer applyId) {
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        Apply apply = applyService.findApplyByApplyId(applyId);
+        response.setData(apply);
+        return response;
     }
 
     /**
@@ -70,19 +76,20 @@ public class ApplyController {
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/applys", method = RequestMethod.GET)
     public BaseResponse getApplys(@RequestParam(value = "applyUser", required = false) Integer applyUser,
-                                     @RequestParam(value = "inviter", required = false) Integer inviter,
-                                     @RequestParam(value = "cycleId", required = false) Integer cycleId,
-                                     @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                     @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
+                                  @RequestParam(value = "inviter", required = false) Integer inviter,
+                                  @RequestParam(value = "cycleId", required = false) Integer cycleId,
+                                  @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                  @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
 
         Integer userId = SecurityUtils.getCurrentUserId();
         Apply apply = new Apply();
         apply.setApplyUser(applyUser);
         apply.setInviter(inviter);
         apply.setCycleId(cycleId);
-        PageInfo<Apply> pageInfo = applyService.findApplys(apply,userId, pageNum, pageSize);
+        PageInfo<Apply> pageInfo = applyService.findApplys(apply, userId, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(pageInfo);
         return response;
     }
@@ -101,7 +108,7 @@ public class ApplyController {
         //拷贝属性
         ApplyResult applyResult = applyService.insert(addApplyRequest.getApplyList());
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(applyResult);
         return response;
     }
@@ -115,11 +122,15 @@ public class ApplyController {
     @ApiOperation(value = "处理申请", notes = "处理申请")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/applys", method = RequestMethod.PUT)
-    public Integer updateApply(@RequestBody UpdateApplyRequest updateApplyRequest) {
+    public BaseResponse updateApply(@RequestBody UpdateApplyRequest updateApplyRequest) {
         Apply apply = new Apply();
         //拷贝属性
         BeanUtils.copyProperties(updateApplyRequest, apply);
-        return applyService.updateByApplyId(apply);
+        applyService.updateByApplyId(apply);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        return response;
     }
 
 }
