@@ -1,5 +1,7 @@
 package com.chinamobile.iot.security;
 
+import com.alibaba.fastjson.JSON;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,12 +24,16 @@ public class RestAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
     }
 
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(HttpServletResponse.SC_UNAUTHORIZED);
         if (exception instanceof BadCredentialsException) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Incorrect password!");
+            baseResponse.setMsg("Incorrect password!");
         } else if (exception instanceof UsernameNotFoundException) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "User not found!");
+            baseResponse.setMsg("User not found!");
         } else {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
+            baseResponse.setMsg("Authentication failed");
         }
+        response.getWriter().write(JSON.toJSONString(baseResponse));
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
 }
