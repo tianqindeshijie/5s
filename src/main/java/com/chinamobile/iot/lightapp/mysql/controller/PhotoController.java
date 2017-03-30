@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("模板管理")
 public class PhotoController {
     private static Logger logger = LoggerFactory.getLogger(PhotoController.class);

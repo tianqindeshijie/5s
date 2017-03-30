@@ -6,13 +6,13 @@ import com.chinamobile.iot.lightapp.mysql.dao.RegionMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
 import com.chinamobile.iot.lightapp.mysql.model.*;
-import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;
 import com.chinamobile.iot.lightapp.mysql.service.WorkCycleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,6 +96,33 @@ public class WorkCycleServiceImpl implements WorkCycleService {
         userWorkcycle.setIsManager(Constant.CYCLE_CREATER);
         userWorkcycleMapper.insert(userWorkcycle);
         return workCycleId;
+    }
+
+    /**
+     * Find work cycle by user id work cycle.
+     *
+     * @param userId the user id
+     * @return the work cycle
+     */
+    @Override
+    public PageInfo<WorkCycle> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize) {
+        UserWorkcycleExample userWorkcycleExample = new UserWorkcycleExample();
+        UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+        List<Integer> workCycleIdList = new ArrayList<Integer>();
+        for (UserWorkcycle temp : list) {
+            workCycleIdList.add(temp.getWorkCycleId());
+        }
+        WorkCycleExample workCycleExample = new WorkCycleExample();
+        WorkCycleExample.Criteria criteria1 = workCycleExample.createCriteria();
+        criteria1.andWorkCycleIdIn(workCycleIdList);
+        PageHelper.startPage(pageNum, pageSize, true, false);
+        List<WorkCycle> workCycleList = workCycleMapper.selectByExample(workCycleExample);
+        return new PageInfo<WorkCycle>(workCycleList);
     }
 
 }

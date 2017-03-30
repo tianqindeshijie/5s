@@ -1,6 +1,9 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
+import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
+import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.security.SecurityUtils;
 import com.chinamobile.iot.lightapp.mysql.model.User;
 import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
@@ -22,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("用户工作圈关系管理")
 public class UserWorkcycleController {
     private static Logger logger = LoggerFactory.getLogger(UserWorkcycleController.class);
@@ -38,8 +41,12 @@ public class UserWorkcycleController {
     @ApiOperation(value = "新增用户工作圈关系", notes = "新增用户工作圈关系")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/userWorkcycles", method = RequestMethod.POST)
-    public Integer addUserWorkcycle(@RequestBody UserWorkcycle userWorkcycle) {
-        return userWorkcycleService.insert(userWorkcycle);
+    public BaseResponse addUserWorkcycle(@RequestBody UserWorkcycle userWorkcycle) {
+        userWorkcycleService.insert(userWorkcycle);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg(Constant.SUCCESS_MSG);
+        return response;
     }
 
     /**
@@ -52,8 +59,13 @@ public class UserWorkcycleController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "userWorkcycleId", required = true, value = "用户工作圈关系ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/userWorkcycles/{userWorkcycleId}", method = RequestMethod.GET)
-    public UserWorkcycle getUserWorkcycleByUserWorkcycleId(@PathVariable("userWorkcycleId") Integer userWorkcycleId) {
-        return userWorkcycleService.findUserWorkcycleByUserWorkcycleId(userWorkcycleId);
+    public BaseResponse getUserWorkcycleByUserWorkcycleId(@PathVariable("userWorkcycleId") Integer userWorkcycleId) {
+        UserWorkcycle userWorkcycle = userWorkcycleService.findUserWorkcycleByUserWorkcycleId(userWorkcycleId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(userWorkcycle);
+        return response;
     }
 
     /**
@@ -70,11 +82,16 @@ public class UserWorkcycleController {
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/userWorkcycles", method = RequestMethod.GET)
-    public PageInfo<User> getUserWorkcycles(@RequestParam(value = "workCycleId", required = true) Integer workCycleId,
+    public BaseResponse getUserWorkcycles(@RequestParam(value = "workCycleId", required = true) Integer workCycleId,
                                             @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                             @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Integer userId = SecurityUtils.getCurrentUserId();
-        return userWorkcycleService.findUserWorkcycles(userId, workCycleId, pageNum, pageSize);
+        PageInfo<User> pageInfo = userWorkcycleService.findUserWorkcycles(userId, workCycleId, pageNum, pageSize);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(pageInfo);
+        return response;
     }
 
 
@@ -87,8 +104,12 @@ public class UserWorkcycleController {
     @ApiOperation(value = "更新用户工作圈关系", notes = "更新用户工作圈关系")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/userWorkcycles", method = RequestMethod.PUT)
-    public Integer updateUserWorkcycle(@RequestBody UserWorkcycle userWorkcycle) {
-        return userWorkcycleService.updateByUserWorkcycleId(userWorkcycle);
+    public BaseResponse updateUserWorkcycle(@RequestBody UserWorkcycle userWorkcycle) {
+        userWorkcycleService.updateByUserWorkcycleId(userWorkcycle);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg(Constant.SUCCESS_MSG);
+        return response;
     }
 
     /**
@@ -103,10 +124,14 @@ public class UserWorkcycleController {
             @ApiImplicitParam(paramType = "query", name = "userId", value = "用户ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/userWorkcycles/removeMember", method = RequestMethod.DELETE)
-    public Integer removeMember(@RequestParam(value = "workCycleId", required = true) Integer workCycleId,
+    public BaseResponse removeMember(@RequestParam(value = "workCycleId", required = true) Integer workCycleId,
                                 @RequestParam(value = "userId", required = true) Integer deleteUserId) {
         Integer userId = SecurityUtils.getCurrentUserId();
-        return userWorkcycleService.deleteByUserWorkcycleId(userId, deleteUserId, workCycleId);
+        userWorkcycleService.deleteByUserWorkcycleId(userId, deleteUserId, workCycleId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg(Constant.SUCCESS_MSG);
+        return response;
     }
 
 }

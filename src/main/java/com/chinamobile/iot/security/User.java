@@ -1,11 +1,15 @@
 package com.chinamobile.iot.security;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by xuetao on 2017/1/9.
@@ -33,9 +37,15 @@ public class User implements UserDetails, Serializable {
     private Date joinTime;
 
     private String signature;
-
+    @JSONField(serialize = false)
     private String password;
 
+    /**
+     * Instantiates a new User.
+     *
+     */
+    public User() {
+    }
     /**
      * Instantiates a new User.
      *
@@ -121,6 +131,7 @@ public class User implements UserDetails, Serializable {
      * @return the authorities, sorted by natural key (never <code>null</code>)
      */
     @Override
+    @JSONField(serialize = false)
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
         grantedAuthorities.add(new SimpleGrantedAuthority("admin"));
@@ -133,6 +144,7 @@ public class User implements UserDetails, Serializable {
      * @return the password
      */
     @Override
+    @JSONField(serialize = false)
     public String getPassword() {
         return password;
     }
@@ -156,6 +168,7 @@ public class User implements UserDetails, Serializable {
      * <code>false</code> 如果账户无效(即过期)
      */
     @Override
+    @JSONField(serialize = false)
     public boolean isAccountNonExpired() {
         return true;
     }
@@ -166,6 +179,7 @@ public class User implements UserDetails, Serializable {
      * @return <code>true</code> 如果用户没有被锁定 <code>false</code> 其它
      */
     @Override
+    @JSONField(serialize = false)
     public boolean isAccountNonLocked() {
         return true;
     }
@@ -177,6 +191,7 @@ public class User implements UserDetails, Serializable {
      * <code>false</code>无效(过期)(ie expired)
      */
     @Override
+    @JSONField(serialize = false)
     public boolean isCredentialsNonExpired() {
         return true;
     }
@@ -188,6 +203,7 @@ public class User implements UserDetails, Serializable {
      * @return <code>true</code> if the user is enabled, <code>false</code> otherwise
      */
     @Override
+    @JSONField(serialize = false)
     public boolean isEnabled() {
         return true;
     }

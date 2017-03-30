@@ -4,6 +4,7 @@ import com.chinamobile.iot.lightapp.mysql.service.UserService;
 import com.chinamobile.iot.lightapp.mysql.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,6 +30,8 @@ public class DomainUserDetailsService implements UserDetailsService {
         if(user == null) {
             throw new UsernameNotFoundException("User " + phone + " was not found in the " + "database");
         }
-        return new com.chinamobile.iot.security.User(phone, user.getPassword(),user.getUserId());
+         com.chinamobile.iot.security.User user1 = new com.chinamobile.iot.security.User();
+        BeanUtils.copyProperties(user,user1);
+        return user1;
     }
 }

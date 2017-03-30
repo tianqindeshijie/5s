@@ -1,8 +1,10 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItem;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
+import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.ReportItemService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("检查大项管理")
 public class ReportItemController {
     private static Logger logger = LoggerFactory.getLogger(ReportItemController.class);
@@ -38,8 +40,13 @@ public class ReportItemController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "reportItemId", required = true, value = "检查大项ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/reportItems/{reportItemId}", method = RequestMethod.GET)
-    public ReportItem getReportItemByReportItemId(@PathVariable("reportItemId") Integer reportItemId) {
-        return reportItemService.findReportItemByReportItemId(reportItemId);
+    public BaseResponse getReportItemByReportItemId(@PathVariable("reportItemId") Integer reportItemId) {
+        ReportItem reportItem = reportItemService.findReportItemByReportItemId(reportItemId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(reportItem);
+        return response;
     }
 
     /**
@@ -62,8 +69,8 @@ public class ReportItemController {
         reportItem.setCycleId(cycleId);
         PageInfo<ReportItem> pageInfo = reportItemService.findReportItems(reportItem, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(pageInfo);
         return response;
     }
@@ -80,8 +87,8 @@ public class ReportItemController {
     public BaseResponse addReportItem(@RequestBody ReportItem reportItem) {
         reportItemService.insert(reportItem);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -97,8 +104,8 @@ public class ReportItemController {
     public BaseResponse updateReportItem(@RequestBody ReportItem reportItem) {
         reportItemService.updateByReportItemId(reportItem);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -115,8 +122,8 @@ public class ReportItemController {
     public BaseResponse deleteReportItem(@PathVariable("reportItemId") Integer reportItemId) {
         reportItemService.deleteByReportItemId(reportItemId);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 

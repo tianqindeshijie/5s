@@ -1,8 +1,10 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItemScore;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
+import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.ReportItemScoreService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("检查大项评分管理")
 public class ReportItemScoreController {
     private static Logger logger = LoggerFactory.getLogger(ReportItemScoreController.class);
@@ -38,8 +40,13 @@ public class ReportItemScoreController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "reportItemScoreId", required = true, value = "检查大项评分ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/reportItemScores/{reportItemScoreId}", method = RequestMethod.GET)
-    public ReportItemScore getReportItemScoreByReportItemScoreId(@PathVariable("reportItemScoreId") Integer reportItemScoreId) {
-        return reportItemScoreService.findReportItemScoreByReportItemScoreId(reportItemScoreId);
+    public BaseResponse getReportItemScoreByReportItemScoreId(@PathVariable("reportItemScoreId") Integer reportItemScoreId) {
+        ReportItemScore reportItemScore = reportItemScoreService.findReportItemScoreByReportItemScoreId(reportItemScoreId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(ResponseCode.SUCCESS);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(reportItemScore);
+        return response;
     }
 
     /**
@@ -62,8 +69,8 @@ public class ReportItemScoreController {
         reportItemScore.setReportId(reportId);
         PageInfo<ReportItemScore> pageInfo = reportItemScoreService.findReportItemScores(reportItemScore, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(pageInfo);
         return response;
     }
@@ -80,8 +87,8 @@ public class ReportItemScoreController {
     public BaseResponse addReportItemScore(@RequestBody ReportItemScore reportItemScore) {
         reportItemScoreService.insert(reportItemScore);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -97,8 +104,8 @@ public class ReportItemScoreController {
     public BaseResponse updateReportItemScore(@RequestBody ReportItemScore reportItemScore) {
         reportItemScoreService.updateByReportItemScoreId(reportItemScore);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -115,8 +122,8 @@ public class ReportItemScoreController {
     public BaseResponse deleteReportItemScore(@PathVariable("reportItemScoreId") Integer reportItemScoreId) {
         reportItemScoreService.deleteByReportItemScoreId(reportItemScoreId);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 

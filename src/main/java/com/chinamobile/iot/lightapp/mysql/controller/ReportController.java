@@ -1,12 +1,13 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.security.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.AddReportRequest;
 import com.chinamobile.iot.lightapp.mysql.model.Report;
 import com.chinamobile.iot.lightapp.mysql.request.UpdateApplyRequest;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.ReportService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("报告管理")
 public class ReportController {
     private static Logger logger = LoggerFactory.getLogger(ReportController.class);
@@ -42,8 +43,13 @@ public class ReportController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "reportId", required = true, value = "报告ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/reports/{reportId}", method = RequestMethod.GET)
-    public Report getReportByReportId(@PathVariable("reportId") Integer reportId) {
-        return reportService.findReportByReportId(reportId);
+    public BaseResponse getReportByReportId(@PathVariable("reportId") Integer reportId) {
+        Report report = reportService.findReportByReportId(reportId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(report);
+        return response;
     }
 
     /**
@@ -66,18 +72,23 @@ public class ReportController {
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reports", method = RequestMethod.GET)
-    public PageInfo<Report> getReports(@RequestParam(value = "reportName", required = false) String reportName,
-                                       @RequestParam(value = "cycleId", required = false) Integer cycleId,
-                                       @RequestParam(value = "regionId", required = false) Integer regionId,
-                                       @RequestParam(value = "periodId", required = false) Integer periodId,
-                                       @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                       @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
+    public BaseResponse getReports(@RequestParam(value = "reportName", required = false) String reportName,
+                                   @RequestParam(value = "cycleId", required = false) Integer cycleId,
+                                   @RequestParam(value = "regionId", required = false) Integer regionId,
+                                   @RequestParam(value = "periodId", required = false) Integer periodId,
+                                   @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Report report = new Report();
         report.setReportName(reportName);
         report.setCycleId(cycleId);
         report.setRegionId(regionId);
         report.setPeriodId(periodId);
-        return reportService.findReports(report, pageNum, pageSize);
+        PageInfo<Report> pageInfo = reportService.findReports(report, pageNum, pageSize);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(pageInfo);
+        return response;
     }
 
     /**
@@ -96,7 +107,8 @@ public class ReportController {
         report.setUserId(userId);
         reportService.insert(report);
         BaseResponse response = new BaseResponse();
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -114,7 +126,8 @@ public class ReportController {
         BeanUtils.copyProperties(updateApplyRequest, report);
         reportService.updateByReportId(report);
         BaseResponse response = new BaseResponse();
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -131,7 +144,8 @@ public class ReportController {
     public BaseResponse deleteReport(@PathVariable("reportId") Integer reportId) {
         reportService.deleteByReportId(reportId);
         BaseResponse response = new BaseResponse();
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 

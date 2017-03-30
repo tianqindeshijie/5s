@@ -1,11 +1,12 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.security.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.RegionDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Region;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.RegionService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("区域管理")
 public class RegionController {
     private static Logger logger = LoggerFactory.getLogger(RegionController.class);
@@ -40,8 +41,13 @@ public class RegionController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "regionId", required = true, value = "区域ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/regions/{regionId}", method = RequestMethod.GET)
-    public Region getRegionByRegionId(@PathVariable("regionId") Integer regionId) {
-        return regionService.findRegionByRegionId(regionId);
+    public BaseResponse getRegionByRegionId(@PathVariable("regionId") Integer regionId) {
+        Region region = regionService.findRegionByRegionId(regionId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(region);
+        return response;
     }
 
     /**
@@ -58,13 +64,18 @@ public class RegionController {
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
-    public PageInfo<RegionDTO> getRegions(@RequestParam(value = "regionName", required = false) String regionName,
+    public BaseResponse getRegions(@RequestParam(value = "regionName", required = false) String regionName,
                                           @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                           @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Region region = new Region();
         region.setRegionName(regionName);
         Integer userId = SecurityUtils.getCurrentUserId();
-        return regionService.findRegions(region, userId, pageNum, pageSize);
+        PageInfo<RegionDTO> pageInfo = regionService.findRegions(region, userId, pageNum, pageSize);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(pageInfo);
+        return response;
     }
 
     /**
@@ -79,7 +90,8 @@ public class RegionController {
     public BaseResponse addRegion(@RequestBody Region region) {
         regionService.insert(region);
         BaseResponse response = new BaseResponse();
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -95,7 +107,8 @@ public class RegionController {
     public BaseResponse updateRegion(@RequestBody Region region) {
         regionService.updateByRegionId(region);
         BaseResponse response = new BaseResponse();
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -112,8 +125,8 @@ public class RegionController {
     public BaseResponse deleteRegion(@PathVariable("regionId") Integer regionId) {
         regionService.deleteByRegionId(regionId);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 

@@ -1,7 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.security.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.model.User;
 import com.chinamobile.iot.lightapp.mysql.request.AddUserRequest;
 import com.chinamobile.iot.lightapp.mysql.request.UpdatePasswordRequest;
@@ -9,6 +9,7 @@ import com.chinamobile.iot.lightapp.mysql.request.UpdateUserRequest;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.UserService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -18,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -64,7 +64,7 @@ public class UserController {
         User user = userService.findUserByUserId(userId);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功");
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(user);
         return response;
     }
@@ -103,7 +103,7 @@ public class UserController {
         PageInfo<User> pageInfo = userService.findUsers(user, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功");
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(pageInfo);
         return response;
     }
@@ -123,7 +123,7 @@ public class UserController {
         userService.insert(user);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -143,7 +143,7 @@ public class UserController {
         userService.updateByUserId(user);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -161,7 +161,7 @@ public class UserController {
         userService.deleteByUserId(userId);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -172,7 +172,7 @@ public class UserController {
      * @return the users
      */
     @ApiOperation(value = "更改密码", notes = "更改密码")
-    @RequestMapping(value = "/users/updatePassword", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/updatePassword", method = RequestMethod.PUT)
     public BaseResponse updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
         Integer userId = SecurityUtils.getCurrentUserId();
         String oldPassword = updatePasswordRequest.getOldPassword();
@@ -181,7 +181,7 @@ public class UserController {
         userService.updatePassword(userId, oldPassword, newPassword);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 }

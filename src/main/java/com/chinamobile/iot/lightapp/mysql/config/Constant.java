@@ -4,6 +4,17 @@ package com.chinamobile.iot.lightapp.mysql.config;
  * Created by xuetao on 2017/2/24.
  */
 public class Constant {
+
+    /**
+     * The constant SUCCESS_CODE.
+     */
+    public static final int SUCCESS_CODE = 200;
+
+    /**
+     * The constant SUCCESS_MSG.
+     */
+    public static final String SUCCESS_MSG = "success";
+
     /**
      * The constant SESSION_NAME.
      */

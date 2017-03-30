@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("申请管理")
 public class ApplyController {
     private static Logger logger = LoggerFactory.getLogger(ApplyController.class);

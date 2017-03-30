@@ -1,12 +1,13 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.security.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.NoticeDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Notice;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.NoticeService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("公告管理")
 public class NoticeController {
     private static Logger logger = LoggerFactory.getLogger(NoticeController.class);
@@ -41,8 +42,13 @@ public class NoticeController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "noticeId", required = true, value = "公告ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/notices/{noticeId}", method = RequestMethod.GET)
-    public Notice getNoticeByNoticeId(@PathVariable("noticeId") Integer noticeId) {
-        return noticeService.findNoticeByNoticeId(noticeId);
+    public BaseResponse getNoticeByNoticeId(@PathVariable("noticeId") Integer noticeId) {
+        Notice notice = noticeService.findNoticeByNoticeId(noticeId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(notice);
+        return response;
     }
 
     /**
@@ -53,10 +59,15 @@ public class NoticeController {
     @ApiOperation(value = "查询公告列表", notes = "查询公告列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/notices", method = RequestMethod.GET)
-    public PageInfo<NoticeDTO> getNotices() {
+    public BaseResponse getNotices() {
         Notice notice = new Notice();
         Integer userId = SecurityUtils.getCurrentUserId();
-        return noticeService.findNotices(notice, userId, 1, 0);
+        PageInfo<NoticeDTO> pageInfo = noticeService.findNotices(notice, userId, 1, 0);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(pageInfo);
+        return response;
     }
 
     /**
@@ -72,7 +83,7 @@ public class NoticeController {
         noticeService.insert(notice);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -89,7 +100,7 @@ public class NoticeController {
         noticeService.updateByNoticeId(notice);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -107,7 +118,7 @@ public class NoticeController {
         noticeService.deleteByNoticeId(noticeId);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 

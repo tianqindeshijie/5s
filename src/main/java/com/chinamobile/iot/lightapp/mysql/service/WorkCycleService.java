@@ -74,4 +74,14 @@ public interface WorkCycleService {
      */
     @Transactional
     int insert(Integer userId, WorkCycle workCycle, List<Region> regionList);
+
+    /**
+     * Find work cycle by user id work cycle.
+     *
+     * @param userId   the user id
+     * @param pageNum  the page num
+     * @param pageSize the page size
+     * @return the work cycle
+     */
+    public PageInfo<WorkCycle> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize);
 }

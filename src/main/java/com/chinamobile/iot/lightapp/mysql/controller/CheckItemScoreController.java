@@ -1,6 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.model.CheckItemScore;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.CheckItemScoreService;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("检查小项评分管理")
 public class CheckItemScoreController {
     private static Logger logger = LoggerFactory.getLogger(CheckItemScoreController.class);
@@ -38,8 +39,13 @@ public class CheckItemScoreController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "checkItemScoreId", required = true, value = "检查小项评分ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/checkItemScores/{checkItemScoreId}", method = RequestMethod.GET)
-    public CheckItemScore getCheckItemScoreByCheckItemScoreId(@PathVariable("checkItemScoreId") Integer checkItemScoreId) {
-        return checkItemScoreService.findCheckItemScoreByCheckItemScoreId(checkItemScoreId);
+    public BaseResponse getCheckItemScoreByCheckItemScoreId(@PathVariable("checkItemScoreId") Integer checkItemScoreId) {
+        CheckItemScore checkItemScore = checkItemScoreService.findCheckItemScoreByCheckItemScoreId(checkItemScoreId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(checkItemScore);
+        return response;
     }
 
     /**
@@ -63,8 +69,8 @@ public class CheckItemScoreController {
         checkItemScore.setReportItemScoreId(reportItemScoreId);
         PageInfo<CheckItemScore> pageInfo = checkItemScoreService.findCheckItemScores(checkItemScore, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(pageInfo);
         return response;
     }
@@ -81,8 +87,8 @@ public class CheckItemScoreController {
     public BaseResponse addCheckItemScore(@RequestBody CheckItemScore checkItemScore) {
         checkItemScoreService.insert(checkItemScore);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -98,8 +104,8 @@ public class CheckItemScoreController {
     public BaseResponse updateCheckItemScore(@RequestBody CheckItemScore checkItemScore) {
         checkItemScoreService.updateByCheckItemScoreId(checkItemScore);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -116,8 +122,8 @@ public class CheckItemScoreController {
     public BaseResponse deleteCheckItemScore(@PathVariable("checkItemScoreId") Integer checkItemScoreId) {
         checkItemScoreService.deleteByCheckItemScoreId(checkItemScoreId);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 

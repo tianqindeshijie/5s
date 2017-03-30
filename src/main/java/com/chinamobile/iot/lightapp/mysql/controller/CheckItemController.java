@@ -1,6 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.model.CheckItem;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.CheckItemService;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("检查小项管理")
 public class CheckItemController {
     private static Logger logger = LoggerFactory.getLogger(CheckItemController.class);
@@ -38,8 +39,13 @@ public class CheckItemController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", name = "checkItemId", required = true, value = "检查小项项ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/checkItems/{checkItemId}", method = RequestMethod.GET)
-    public CheckItem getCheckItemByCheckItemId(@PathVariable("checkItemId") Integer checkItemId) {
-        return checkItemService.findCheckItemByCheckItemId(checkItemId);
+    public BaseResponse getCheckItemByCheckItemId(@PathVariable("checkItemId") Integer checkItemId) {
+        CheckItem checkItem = checkItemService.findCheckItemByCheckItemId(checkItemId);
+        BaseResponse response = new BaseResponse();
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(checkItem);
+        return response;
     }
 
     /**
@@ -63,8 +69,8 @@ public class CheckItemController {
         checkItem.setItemId(itemId);
         PageInfo<CheckItem> pageInfo = checkItemService.findCheckItems(checkItem, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(pageInfo);
         return response;
     }
@@ -81,8 +87,8 @@ public class CheckItemController {
     public BaseResponse addCheckItem(@RequestBody CheckItem checkItem) {
         checkItemService.insert(checkItem);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -98,8 +104,8 @@ public class CheckItemController {
     public BaseResponse updateCheckItem(@RequestBody CheckItem checkItem) {
         checkItemService.updateByCheckItemId(checkItem);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -116,8 +122,8 @@ public class CheckItemController {
     public BaseResponse deleteCheckItem(@PathVariable("checkItemId") Integer checkItemId) {
         checkItemService.deleteByCheckItemId(checkItemId);
         BaseResponse response = new BaseResponse();
-        response.setCode(200);
-        response.setMsg("成功!");
+        response.setCode(Constant.SUCCESS_CODE);
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 

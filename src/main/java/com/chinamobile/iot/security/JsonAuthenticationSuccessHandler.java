@@ -24,6 +24,6 @@ public class JsonAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
         Map<String,String> map = new HashMap<String,String>();
         map.put(Constant.SESSION_NAME,session.getId());
         response.getWriter().write(JSON.toJSONString(map));
-        response.setStatus(200);
+        response.setStatus(Constant.SUCCESS_CODE);
     }
 }

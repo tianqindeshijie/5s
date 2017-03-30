@@ -1,12 +1,13 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 
-import com.chinamobile.iot.security.SecurityUtils;
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.PeriodDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Period;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.PeriodService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2016.10.25
  */
 @RestController
-@RequestMapping("/mysql")
+
 @Api("时间段管理")
 public class PeriodController {
     private static Logger logger = LoggerFactory.getLogger(PeriodController.class);
@@ -72,7 +73,7 @@ public class PeriodController {
         PageInfo<PeriodDTO> pageInfo = periodService.findPeriods(period, userId, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         response.setData(pageInfo);
         return response;
     }
@@ -90,7 +91,7 @@ public class PeriodController {
         periodService.insert(period);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -107,7 +108,7 @@ public class PeriodController {
         periodService.updateByPeriodId(period);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
@@ -125,7 +126,7 @@ public class PeriodController {
         periodService.deleteByPeriodId(periodId);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
-        response.setMsg("成功!");
+        response.setMsg(Constant.SUCCESS_MSG);
         return response;
     }
 
