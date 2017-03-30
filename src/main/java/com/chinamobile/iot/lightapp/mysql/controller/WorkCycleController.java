@@ -123,7 +123,7 @@ public class WorkCycleController {
         response.setMsg(Constant.SUCCESS_MSG);
         Map map = new HashMap<String, Integer>();
         map.put("workCycleId", workCycleId);
-        response.setData(response);
+        response.setData(map);
         return response;
     }
 
