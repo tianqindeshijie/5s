@@ -5,6 +5,8 @@ import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dao.RegionMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
+import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapperExt;
+import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleDTO;
 import com.chinamobile.iot.lightapp.mysql.model.*;
 import com.chinamobile.iot.lightapp.mysql.service.WorkCycleService;
 import com.github.pagehelper.PageHelper;
@@ -27,6 +29,9 @@ public class WorkCycleServiceImpl implements WorkCycleService {
 
     @Autowired
     private WorkCycleMapper workCycleMapper;
+
+    @Autowired
+    private WorkCycleMapperExt workCycleMapperExt;
     @Autowired
     private RegionMapper regionMapper;
     @Autowired
@@ -36,7 +41,7 @@ public class WorkCycleServiceImpl implements WorkCycleService {
     public PageInfo<WorkCycle> findWorkCycles(WorkCycle workCycle, Integer pageNum, Integer pageSize) {
         WorkCycleExample workCycleExample = new WorkCycleExample();
         WorkCycleExample.Criteria criteria = workCycleExample.createCriteria();
-        criteria.andWorkCycleNameEqualTo(workCycle.getWorkCycleName());
+        criteria.andWorkCycleNameLike("%" + workCycle.getWorkCycleName());
         PageHelper.startPage(pageNum, pageSize, true, false);
         List<WorkCycle> list = workCycleMapper.selectByExample(workCycleExample);
         return new PageInfo<WorkCycle>(list);
@@ -105,7 +110,7 @@ public class WorkCycleServiceImpl implements WorkCycleService {
      * @return the work cycle
      */
     @Override
-    public PageInfo<WorkCycle> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize) {
+    public PageInfo<WorkCycleDTO> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize) {
         UserWorkcycleExample userWorkcycleExample = new UserWorkcycleExample();
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
         criteria.andUserIdEqualTo(userId);
@@ -121,8 +126,8 @@ public class WorkCycleServiceImpl implements WorkCycleService {
         WorkCycleExample.Criteria criteria1 = workCycleExample.createCriteria();
         criteria1.andWorkCycleIdIn(workCycleIdList);
         PageHelper.startPage(pageNum, pageSize, true, false);
-        List<WorkCycle> workCycleList = workCycleMapper.selectByExample(workCycleExample);
-        return new PageInfo<WorkCycle>(workCycleList);
+        List<WorkCycleDTO> workCycleList = workCycleMapperExt.selectByExample(workCycleExample);
+        return new PageInfo<WorkCycleDTO>(workCycleList);
     }
 
 }

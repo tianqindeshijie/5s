@@ -15,24 +15,10 @@
  */
 package com.chinamobile.iot.lightapp.mysql.config;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
-import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 import org.springframework.session.web.http.HeaderHttpSessionStrategy;
 import org.springframework.session.web.http.HttpSessionStrategy;
-import org.springframework.transaction.PlatformTransactionManager;
-import redis.clients.jedis.Protocol;
-import redis.embedded.RedisServer;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-
-import javax.annotation.PreDestroy;
-import java.io.IOException;
 
 /**
  * @author jitendra on 3/3/16.
@@ -40,7 +26,7 @@ import java.io.IOException;
 @EnableRedisHttpSession
 public class SessionConfig {
 
-    private static RedisServer redisServer;
+/*    private static RedisServer redisServer;
 
     @Bean
     public JedisConnectionFactory connectionFactory() throws IOException {
@@ -52,7 +38,7 @@ public class SessionConfig {
     @PreDestroy
     public void destroy() {
         redisServer.stop();
-    }
+    }*/
 
     @Bean
     public HttpSessionStrategy httpSessionStrategy() {
