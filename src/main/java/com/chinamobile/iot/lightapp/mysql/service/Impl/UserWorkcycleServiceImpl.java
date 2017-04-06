@@ -5,13 +5,16 @@ import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dao.UserMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
-import com.chinamobile.iot.lightapp.mysql.model.*;
-import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
+import com.chinamobile.iot.lightapp.mysql.exception.AccessDeniedException;
+import com.chinamobile.iot.lightapp.mysql.model.User;
+import com.chinamobile.iot.lightapp.mysql.model.UserExample;
+import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
+import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycleExample;
 import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,11 +53,11 @@ public class UserWorkcycleServiceImpl implements UserWorkcycleService {
         criteria.andWorkCycleIdEqualTo(workCycleId);
         list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
 
-        for(UserWorkcycle temp: list) {
+        for (UserWorkcycle temp : list) {
             userIdList.add(temp.getUserId());
         }
         UserExample userExample = new UserExample();
-        UserExample.Criteria criteria1 =userExample.createCriteria();
+        UserExample.Criteria criteria1 = userExample.createCriteria();
         criteria1.andUserIdIn(userIdList);
         List<User> userList = userMapper.selectByExample(userExample);
         return new PageInfo<User>(userList);
@@ -72,13 +75,15 @@ public class UserWorkcycleServiceImpl implements UserWorkcycleService {
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
         criteria.andWorkCycleIdEqualTo(workCycleId).andUserIdEqualTo(userId);
         List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
-        if (list == null || list.size() == 0) {
-            return ResponseCode.AUTHORIZE_FAILED;
+        if (!CollectionUtils.isEmpty(list)) {
+            UserWorkcycle userWorkcycle = list.get(0);
+            if (userWorkcycle.getIsManager() == Constant.CYCLE_MEMBER) {
+                throw new AccessDeniedException("You have no right to operate this work cycle!");
+            }
+        } else {
+            throw new AccessDeniedException("You have no right to operate this work cycle!");
         }
         UserWorkcycle userWorkcycle = list.get(0);
-        if (userWorkcycle.getIsManager() == Constant.CYCLE_MEMBER) {
-            return ResponseCode.AUTHORIZE_FAILED;
-        }
         //删除用户和工作圈的关系
         userWorkcycleExample.clear();
         criteria = userWorkcycleExample.createCriteria();
