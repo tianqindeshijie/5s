@@ -59,10 +59,13 @@ public class NoticeController {
     @ApiOperation(value = "查询公告列表", notes = "查询公告列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/notices", method = RequestMethod.GET)
-    public BaseResponse getNotices() {
+    public BaseResponse getNotices(@RequestParam(value = "cycleId", required = false) Integer cycleId,
+                                   @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Notice notice = new Notice();
+        notice.setCycleId(cycleId);
         Integer userId = SecurityUtils.getCurrentUserId();
-        PageInfo<NoticeDTO> pageInfo = noticeService.findNotices(notice, userId, 1, 0);
+        PageInfo<NoticeDTO> pageInfo = noticeService.findNotices(notice, userId, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
