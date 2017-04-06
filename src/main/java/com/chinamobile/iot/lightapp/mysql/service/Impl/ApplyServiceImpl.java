@@ -10,14 +10,12 @@ import com.chinamobile.iot.lightapp.mysql.dto.ApplyDTO;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResult;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResultDTO;
 import com.chinamobile.iot.lightapp.mysql.model.*;
-import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.ApplyService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +106,9 @@ public class ApplyServiceImpl implements ApplyService {
                 applyResultDTO.setApplyUserPhone(temp.getApplyUserPhone());
                 int result = addApply(temp);
                 applyResultDTO.setResult(result);
+                list.add(applyResultDTO);
             }
+            applyResult.setResultList(list);
         }
         return applyResult;
     }

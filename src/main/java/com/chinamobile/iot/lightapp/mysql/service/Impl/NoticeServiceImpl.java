@@ -34,6 +34,7 @@ public class NoticeServiceImpl implements NoticeService {
     private NoticeMapperExt noticeMapperExt;
     @Autowired
     private UserWorkcycleMapper userWorkcycleMapper;
+
     @Override
     public PageInfo<NoticeDTO> findNotices(Notice notice, Integer userId, Integer pageNum, Integer pageSize) {
         //查询用户所有的工作圈
@@ -46,11 +47,17 @@ public class NoticeServiceImpl implements NoticeService {
             for (UserWorkcycle temp : list) {
                 workCycleList.add(temp.getWorkCycleId());
             }
+        } else {
+            return null;
         }
 
         //查看所在工作圈的所有公告
         NoticeExample noticeExample = new NoticeExample();
         NoticeExample.Criteria criteria1 = noticeExample.createCriteria();
+        Integer cycleId = notice.getCycleId();
+        if (cycleId != null) {
+            criteria1.andCycleIdEqualTo(cycleId);
+        }
         criteria1.andCycleIdIn(workCycleList);
 
         PageHelper.startPage(pageNum, pageSize, true, false);
