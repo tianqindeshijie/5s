@@ -1,8 +1,5 @@
 package com.chinamobile.iot.lightapp.mysql.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -113,7 +110,6 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
-    @JsonIgnoreProperties
     private String password;
 
     /**
@@ -396,7 +392,6 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
-    @JsonIgnore
     public String getPassword() {
         return password;
     }

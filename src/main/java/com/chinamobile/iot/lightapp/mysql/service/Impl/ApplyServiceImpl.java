@@ -2,13 +2,11 @@ package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
-import com.chinamobile.iot.lightapp.mysql.dao.ApplyMapper;
-import com.chinamobile.iot.lightapp.mysql.dao.UserMapper;
-import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
-import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
+import com.chinamobile.iot.lightapp.mysql.dao.*;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyDTO;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResult;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResultDTO;
+import com.chinamobile.iot.lightapp.mysql.dto.ApplyUserDTO;
 import com.chinamobile.iot.lightapp.mysql.model.*;
 import com.chinamobile.iot.lightapp.mysql.service.ApplyService;
 import com.github.pagehelper.PageHelper;
@@ -18,8 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * The devices Service Impl.
@@ -33,6 +29,9 @@ public class ApplyServiceImpl implements ApplyService {
 
     @Autowired
     private ApplyMapper applyMapper;
+
+    @Autowired
+    private ApplyMapperExt applyMapperExt;
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -42,7 +41,7 @@ public class ApplyServiceImpl implements ApplyService {
     private WorkCycleMapper workCycleMapper;
 
     @Override
-    public PageInfo<Apply> findApplys(Apply apply,Integer userId, Integer pageNum, Integer pageSize) {
+    public PageInfo<ApplyUserDTO> findApplys(Apply apply,Integer userId, Integer pageNum, Integer pageSize) {
         //查询用户所有的工作圈
         UserWorkcycleExample userWorkcycleExample = new UserWorkcycleExample();
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
@@ -54,20 +53,15 @@ public class ApplyServiceImpl implements ApplyService {
                 workCycleList.add(temp.getWorkCycleId());
             }
         }
-        //查询工作圈信息(主要是名称)
-        WorkCycleExample workCycleExample = new WorkCycleExample();
-        WorkCycleExample.Criteria criteria1 = workCycleExample.createCriteria();
-        criteria1.andWorkCycleIdIn(workCycleList);
-        List<WorkCycle> workCycles = workCycleMapper.selectByExample(workCycleExample);
-        Map<Integer, String> workCycleMap = workCycles.stream().collect(Collectors.toMap(WorkCycle::getWorkCycleId,WorkCycle::getWorkCycleName));
 
         //查询申请列表
         ApplyExample applyExample = new ApplyExample();
         ApplyExample.Criteria criteria2 = applyExample.createCriteria();
         criteria2.andCycleIdIn(workCycleList);
         PageHelper.startPage(pageNum, pageSize, true, false);
-        List<Apply>applyList = applyMapper.selectByExample(applyExample);
-        return new PageInfo<Apply>(applyList);
+        List<ApplyUserDTO>applyList = applyMapperExt.selectByExample(applyExample);
+        return new PageInfo<ApplyUserDTO>(applyList);
+
     }
 
     @Override

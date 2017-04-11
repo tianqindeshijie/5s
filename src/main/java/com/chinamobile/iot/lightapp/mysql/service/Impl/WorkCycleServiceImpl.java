@@ -2,11 +2,8 @@ package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
-import com.chinamobile.iot.lightapp.mysql.dao.RegionMapper;
-import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
-import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
-import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapperExt;
-import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleDTO;
+import com.chinamobile.iot.lightapp.mysql.dao.*;
+import com.chinamobile.iot.lightapp.mysql.dto.UserWorkcycleDTO;
 import com.chinamobile.iot.lightapp.mysql.model.*;
 import com.chinamobile.iot.lightapp.mysql.service.WorkCycleService;
 import com.github.pagehelper.PageHelper;
@@ -14,7 +11,6 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +32,9 @@ public class WorkCycleServiceImpl implements WorkCycleService {
     private RegionMapper regionMapper;
     @Autowired
     private UserWorkcycleMapper userWorkcycleMapper;
+
+    @Autowired
+    private UserWorkcycleMapperExt userWorkcycleMapperExt;
 
     @Override
     public PageInfo<WorkCycle> findWorkCycles(WorkCycle workCycle, Integer pageNum, Integer pageSize) {
@@ -110,24 +109,13 @@ public class WorkCycleServiceImpl implements WorkCycleService {
      * @return the work cycle
      */
     @Override
-    public PageInfo<WorkCycleDTO> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize) {
+    public PageInfo<UserWorkcycleDTO> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize) {
         UserWorkcycleExample userWorkcycleExample = new UserWorkcycleExample();
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
         criteria.andUserIdEqualTo(userId);
-        List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
-        if (list == null || list.size() == 0) {
-            return null;
-        }
-        List<Integer> workCycleIdList = new ArrayList<Integer>();
-        for (UserWorkcycle temp : list) {
-            workCycleIdList.add(temp.getWorkCycleId());
-        }
-        WorkCycleExample workCycleExample = new WorkCycleExample();
-        WorkCycleExample.Criteria criteria1 = workCycleExample.createCriteria();
-        criteria1.andWorkCycleIdIn(workCycleIdList);
         PageHelper.startPage(pageNum, pageSize, true, false);
-        List<WorkCycleDTO> workCycleList = workCycleMapperExt.selectByExample(workCycleExample);
-        return new PageInfo<WorkCycleDTO>(workCycleList);
+        List<UserWorkcycleDTO> list = userWorkcycleMapperExt.selectByExample(userWorkcycleExample);
+        return new PageInfo<UserWorkcycleDTO>(list);
     }
 
 }

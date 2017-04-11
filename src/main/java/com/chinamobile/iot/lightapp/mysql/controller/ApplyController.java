@@ -3,6 +3,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResult;
+import com.chinamobile.iot.lightapp.mysql.dto.ApplyUserDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Apply;
 import com.chinamobile.iot.lightapp.mysql.request.AddApplyRequest;
 import com.chinamobile.iot.lightapp.mysql.request.UpdateApplyRequest;
@@ -86,7 +87,7 @@ public class ApplyController {
         apply.setApplyUser(applyUser);
         apply.setInviter(inviter);
         apply.setCycleId(cycleId);
-        PageInfo<Apply> pageInfo = applyService.findApplys(apply, userId, pageNum, pageSize);
+        PageInfo<ApplyUserDTO> pageInfo = applyService.findApplys(apply, userId, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);

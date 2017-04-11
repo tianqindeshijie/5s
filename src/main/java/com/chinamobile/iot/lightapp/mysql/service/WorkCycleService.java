@@ -1,6 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
-import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleDTO;
+import com.chinamobile.iot.lightapp.mysql.dto.UserWorkcycleDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Region;
 import com.chinamobile.iot.lightapp.mysql.model.WorkCycle;
 import com.github.pagehelper.PageInfo;
@@ -84,5 +84,5 @@ public interface WorkCycleService {
      * @param pageSize the page size
      * @return the work cycle
      */
-    public PageInfo<WorkCycleDTO> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize);
+    public PageInfo<UserWorkcycleDTO> findWorkCycleByUserId(Integer userId, Integer pageNum, Integer pageSize);
 }

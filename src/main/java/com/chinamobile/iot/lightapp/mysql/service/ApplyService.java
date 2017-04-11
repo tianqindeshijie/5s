@@ -2,6 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.service;
 
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyDTO;
 import com.chinamobile.iot.lightapp.mysql.dto.ApplyResult;
+import com.chinamobile.iot.lightapp.mysql.dto.ApplyUserDTO;
 import com.chinamobile.iot.lightapp.mysql.model.Apply;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public interface ApplyService {
      * @param pageSize the page size
      * @return the applys
      */
-    public PageInfo<Apply> findApplys(Apply apply,Integer userId, Integer pageNum, Integer pageSize);
+    public PageInfo<ApplyUserDTO> findApplys(Apply apply, Integer userId, Integer pageNum, Integer pageSize);
 
     /**
      * find apply by apply id.
