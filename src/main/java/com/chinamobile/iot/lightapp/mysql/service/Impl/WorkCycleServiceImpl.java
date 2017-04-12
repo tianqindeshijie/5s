@@ -60,9 +60,14 @@ public class WorkCycleServiceImpl implements WorkCycleService {
         criteria.andIsManagerEqualTo(Constant.CYCLE_CREATER);
         List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
         if (list == null && list.size() == 0) {
-            return NO_PERMISSION;
+            throw new RuntimeException("no rights to operate the work cycle!");
         }
         workCycleMapper.deleteByPrimaryKey(workCycleId);
+        //删除用户和工作圈的关系
+        userWorkcycleExample.clear();
+        criteria = userWorkcycleExample.createCriteria();
+        criteria.andWorkCycleIdEqualTo(workCycleId);
+        userWorkcycleMapper.deleteByExample(userWorkcycleExample);
         return SUCCESS;
     }
 

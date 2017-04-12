@@ -5,7 +5,7 @@ package com.chinamobile.iot.lightapp.mysql.request;
  */
 public class UpdateApplyRequest {
     private Integer applyId;
-    private Integer result;
+    private Integer result;//0代表拒绝申请，1代表同意申请。
 
     public Integer getApplyId() {
         return applyId;

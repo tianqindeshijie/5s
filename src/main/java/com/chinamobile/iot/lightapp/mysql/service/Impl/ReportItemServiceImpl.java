@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -52,8 +53,14 @@ public class ReportItemServiceImpl implements ReportItemService {
     }
 
     @Override
-    public int insert(ReportItem reportItem) {
-        return reportItemMapper.insertSelective(reportItem);
+    public int insert(List<ReportItem> reportItemList) {
+        if (CollectionUtils.isEmpty(reportItemList)) {
+            throw new RuntimeException("no report item to add!");
+        }
+        for (ReportItem reportItem : reportItemList) {
+            reportItemMapper.insertSelective(reportItem);
+        }
+        return 0;
     }
 
 }

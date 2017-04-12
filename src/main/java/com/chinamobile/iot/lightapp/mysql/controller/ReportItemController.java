@@ -3,6 +3,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItem;
+import com.chinamobile.iot.lightapp.mysql.request.AddReportItemRequest;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.ReportItemService;
@@ -52,6 +53,7 @@ public class ReportItemController {
     /**
      * 根据指定参数查询检查大项信息列表
      *
+     * @param cycleId  the cycle id
      * @param pageNum  the page num
      * @param pageSize the page size
      * @return the reportItems
@@ -78,14 +80,14 @@ public class ReportItemController {
     /**
      * 新增检查大项信息.
      *
-     * @param reportItem the add reportItem request
+     * @param addReportItemRequest the add report item request
      * @return the integer
      */
     @ApiOperation(value = "新增检查大项", notes = "新增检查大项")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reportItems", method = RequestMethod.POST)
-    public BaseResponse addReportItem(@RequestBody ReportItem reportItem) {
-        reportItemService.insert(reportItem);
+    public BaseResponse addReportItem(@RequestBody AddReportItemRequest addReportItemRequest) {
+        reportItemService.insert(addReportItemRequest.getReportItemList());
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);

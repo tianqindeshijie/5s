@@ -5,6 +5,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * The devices service.
  *
@@ -18,9 +20,9 @@ public interface CheckItemService {
     /**
      * find checkItems.
      *
-     * @param checkItem     the checkItem
-     * @param pageNum  the page num
-     * @param pageSize the page size
+     * @param checkItem the checkItem
+     * @param pageNum   the page num
+     * @param pageSize  the page size
      * @return the checkItems
      */
     public PageInfo<CheckItem> findCheckItems(CheckItem checkItem, Integer pageNum, Integer pageSize);
@@ -54,9 +56,9 @@ public interface CheckItemService {
     /**
      * Insert int.
      *
-     * @param checkItem the checkItem
+     * @param checkItemList the check item list
      * @return the int
      */
     @Transactional
-    public int insert(CheckItem checkItem);
+    public int insert(List<CheckItem> checkItemList);
 }

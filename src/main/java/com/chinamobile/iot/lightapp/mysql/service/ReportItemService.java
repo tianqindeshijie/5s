@@ -5,6 +5,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * The devices service.
  *
@@ -18,9 +20,9 @@ public interface ReportItemService {
     /**
      * find reportItems.
      *
-     * @param reportItem     the reportItem
-     * @param pageNum  the page num
-     * @param pageSize the page size
+     * @param reportItem the reportItem
+     * @param pageNum    the page num
+     * @param pageSize   the page size
      * @return the reportItems
      */
     public PageInfo<ReportItem> findReportItems(ReportItem reportItem, Integer pageNum, Integer pageSize);
@@ -54,9 +56,9 @@ public interface ReportItemService {
     /**
      * Insert int.
      *
-     * @param reportItem the reportItem
+     * @param reportItemList the report item list
      * @return the int
      */
     @Transactional
-    public int insert(ReportItem reportItem);
+    public int insert(List<ReportItem> reportItemList);
 }

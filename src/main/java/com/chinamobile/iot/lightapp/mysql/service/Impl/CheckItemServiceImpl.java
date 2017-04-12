@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -52,8 +53,14 @@ public class CheckItemServiceImpl implements CheckItemService {
     }
 
     @Override
-    public int insert(CheckItem checkItem) {
-        return checkItemMapper.insertSelective(checkItem);
+    public int insert(List<CheckItem> checkItemList) {
+        if (CollectionUtils.isEmpty(checkItemList)) {
+            throw new RuntimeException("no check item to add!");
+        }
+        for (CheckItem checkItem : checkItemList) {
+            checkItemMapper.insertSelective(checkItem);
+        }
+        return 0;
     }
 
 }
