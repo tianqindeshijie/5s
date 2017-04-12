@@ -103,7 +103,7 @@ public class ApplyServiceImpl implements ApplyService {
             userWorkcycle.setIsManager(Constant.CYCLE_MEMBER);
             userWorkcycleMapper.insert(userWorkcycle);
         }
-        applyMapper.updateByPrimaryKeySelective(apply);
+        applyMapper.deleteByPrimaryKey(oldApply.getApplyId());
         return 0;
     }
 
