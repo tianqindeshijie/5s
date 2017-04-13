@@ -60,15 +60,18 @@ public class RegionController {
      */
     @ApiOperation(value = "查询区域列表", notes = "查询区域列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "regionName", value = "区域名称", dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/regions", method = RequestMethod.GET)
     public BaseResponse getRegions(@RequestParam(value = "regionName", required = false) String regionName,
-                                          @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                          @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
+                                   @RequestParam(value = "cycleId", required = false) Integer cycleId,
+                                   @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                   @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Region region = new Region();
         region.setRegionName(regionName);
+        region.setCycleId(cycleId);
         Integer userId = SecurityUtils.getCurrentUserId();
         PageInfo<RegionDTO> pageInfo = regionService.findRegions(region, userId, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
