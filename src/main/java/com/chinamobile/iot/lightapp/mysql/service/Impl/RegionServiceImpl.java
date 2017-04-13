@@ -57,6 +57,10 @@ public class RegionServiceImpl implements RegionService {
         if (regionName != null && regionName.trim().length() > 0) {
             criteria1.andRegionNameLike("%" + regionName);
         }
+        Integer cycleId = region.getCycleId();
+        if (cycleId != null) {
+            criteria1.andCycleIdEqualTo(cycleId);
+        }
         criteria1.andCycleIdIn(workCycleList);
         PageHelper.startPage(pageNum, pageSize, true, false);
         List<RegionDTO> regionList = regionMapperExt.selectByExample(regionExample);
