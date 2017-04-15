@@ -18,6 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
 /**
  * The devices controller.
  *
@@ -88,10 +90,11 @@ public class PeriodController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/periods", method = RequestMethod.POST)
     public BaseResponse addPeriod(@RequestBody Period period) {
-        periodService.insert(period);
+        Integer periodId = periodService.insert(period);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(Collections.singletonMap("periodId", periodId));
         return response;
     }
 
