@@ -83,7 +83,8 @@ public class PeriodServiceImpl implements PeriodService {
 
     @Override
     public int insert(Period period) {
-        return periodMapper.insertSelective(period);
+        periodMapper.insertSelective(period);
+        return period.getPeriodId();
     }
 
 }
