@@ -52,8 +52,9 @@ public class ApplyServiceImpl implements ApplyService {
             for (UserWorkcycle temp : list) {
                 workCycleList.add(temp.getWorkCycleId());
             }
+        } else {
+            throw new RuntimeException("User not join any Work Cycle!");
         }
-
         //查询申请列表
         ApplyExample applyExample = new ApplyExample();
         ApplyExample.Criteria criteria2 = applyExample.createCriteria();
