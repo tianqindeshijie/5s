@@ -18,12 +18,13 @@ public interface CheckItemScoreService {
     /**
      * find checkItemScores.
      *
-     * @param checkItemScore the checkItemScore
-     * @param pageNum        the page num
-     * @param pageSize       the page size
+     * @param reportItemId the report item id
+     * @param reportId     the report id
+     * @param pageNum      the page num
+     * @param pageSize     the page size
      * @return the checkItemScores
      */
-    public PageInfo<CheckItemScore> findCheckItemScores(CheckItemScore checkItemScore, Integer pageNum, Integer pageSize);
+    public PageInfo<CheckItemScore> findCheckItemScores(Integer reportItemId, Integer reportId,  Integer pageNum, Integer pageSize);
 
     /**
      * find checkItemScore by checkItemScore id.

@@ -47,31 +47,36 @@ public class ApplyServiceImpl implements ApplyService {
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
         criteria.andUserIdEqualTo(userId);
         List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
-        List<Integer> workCycleList = new ArrayList<Integer>();
-        if (list != null && list.size() > 0) {
-            for (UserWorkcycle temp : list) {
-                workCycleList.add(temp.getWorkCycleId());
-            }
-        } else {
-            throw new RuntimeException("User not join any Work Cycle!");
-        }
         //查询申请列表
         ApplyExample applyExample = new ApplyExample();
         ApplyExample.Criteria criteria2 = applyExample.createCriteria();
-        Integer applyUser = apply.getApplyUser();
-        if(applyUser != null) {
-            criteria2.andApplyUserEqualTo(applyUser);
-        }
+
         Integer inviter = apply.getInviter();
-        if(inviter != null) {
+        if (inviter != null) {
             criteria2.andInviterEqualTo(inviter);
         }
-
         Integer cycleId = apply.getCycleId();
-        if(cycleId != null) {
+        if (cycleId != null) {
             criteria2.andCycleIdEqualTo(cycleId);
         }
-        criteria2.andCycleIdIn(workCycleList);
+        List<Integer> workCycleList = new ArrayList<Integer>();
+        if (list != null && list.size() > 0) {
+            Integer applyUser = apply.getApplyUser();
+            if (applyUser != null) {
+                criteria2.andApplyUserEqualTo(applyUser);
+            }
+            for (UserWorkcycle temp : list) {
+                workCycleList.add(temp.getWorkCycleId());
+            }
+            criteria2.andCycleIdIn(workCycleList);
+        } else {
+            Integer applyUser = apply.getApplyUser();
+            if (applyUser != null) {
+                criteria2.andApplyUserEqualTo(applyUser);
+            } else {
+                return null;
+            }
+        }
         PageHelper.startPage(pageNum, pageSize, true, false);
         List<ApplyUserDTO> applyList = applyMapperExt.selectByExample(applyExample);
         return new PageInfo<ApplyUserDTO>(applyList);
