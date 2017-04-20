@@ -51,23 +51,25 @@ public class CheckItemScoreController {
     /**
      * 根据指定参数查询检查小项评分信息列表
      *
-     * @param reportItemScoreId the report item score id
-     * @param pageNum           the page num
-     * @param pageSize          the page size
+     * @param reportItemId the report item id
+     * @param reportId     the report id
+     * @param pageNum      the page num
+     * @param pageSize     the page size
      * @return the checkItemScores
      */
     @ApiOperation(value = "查询检查小项评分列表", notes = "查询检查小项评分列表")
-    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportItemScoreId", required = true, value = "检查大项评分ID", dataType = "Integer"),
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportItemId", required = true, value = "检查大项ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "reportId", value = "报告ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/checkItemScores", method = RequestMethod.GET)
-    public BaseResponse getCheckItemScores(@RequestParam(value = "reportItemScoreId", required = true) Integer reportItemScoreId,
+    public BaseResponse getCheckItemScores(@RequestParam(value = "reportItemId", required = true) Integer reportItemId,
+                                           @RequestParam(value = "reportId", required = true) Integer reportId,
                                            @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                            @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
-        CheckItemScore checkItemScore = new CheckItemScore();
-        checkItemScore.setReportItemScoreId(reportItemScoreId);
-        PageInfo<CheckItemScore> pageInfo = checkItemScoreService.findCheckItemScores(checkItemScore, pageNum, pageSize);
+
+        PageInfo<CheckItemScore> pageInfo = checkItemScoreService.findCheckItemScores(reportItemId,reportId,pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
