@@ -67,7 +67,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public int insert(Report report) {
-        return reportMapper.insertSelective(report);
+         reportMapper.insertSelective(report);
+        return report.getReportId();
     }
 
 }
