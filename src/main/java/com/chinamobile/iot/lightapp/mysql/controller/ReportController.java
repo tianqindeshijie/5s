@@ -19,6 +19,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
 /**
  * The devices controller.
  *
@@ -105,10 +107,11 @@ public class ReportController {
         BeanUtils.copyProperties(addReportRequest, report);
         Integer userId = SecurityUtils.getCurrentUserId();
         report.setUserId(userId);
-        reportService.insert(report);
+        Integer reportId = reportService.insert(report);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
+        response.setData(Collections.singletonMap("reportId", reportId));
         return response;
     }
 
