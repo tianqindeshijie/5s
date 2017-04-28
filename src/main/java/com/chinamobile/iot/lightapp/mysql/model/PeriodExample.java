@@ -223,312 +223,312 @@ public class PeriodExample {
         }
 
         public Criteria andPeriodIdIsNull() {
-            addCriterion("period.period_id is null");
+            addCriterion("period_id is null");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdIsNotNull() {
-            addCriterion("period.period_id is not null");
+            addCriterion("period_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdEqualTo(Integer value) {
-            addCriterion("period.period_id =", value, "periodId");
+            addCriterion("period_id =", value, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdNotEqualTo(Integer value) {
-            addCriterion("period.period_id <>", value, "periodId");
+            addCriterion("period_id <>", value, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdGreaterThan(Integer value) {
-            addCriterion("period.period_id >", value, "periodId");
+            addCriterion("period_id >", value, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("period.period_id >=", value, "periodId");
+            addCriterion("period_id >=", value, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdLessThan(Integer value) {
-            addCriterion("period.period_id <", value, "periodId");
+            addCriterion("period_id <", value, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdLessThanOrEqualTo(Integer value) {
-            addCriterion("period.period_id <=", value, "periodId");
+            addCriterion("period_id <=", value, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdIn(List<Integer> values) {
-            addCriterion("period.period_id in", values, "periodId");
+            addCriterion("period_id in", values, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdNotIn(List<Integer> values) {
-            addCriterion("period.period_id not in", values, "periodId");
+            addCriterion("period_id not in", values, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdBetween(Integer value1, Integer value2) {
-            addCriterion("period.period_id between", value1, value2, "periodId");
+            addCriterion("period_id between", value1, value2, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("period.period_id not between", value1, value2, "periodId");
+            addCriterion("period_id not between", value1, value2, "periodId");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameIsNull() {
-            addCriterion("period.period_name is null");
+            addCriterion("period_name is null");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameIsNotNull() {
-            addCriterion("period.period_name is not null");
+            addCriterion("period_name is not null");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameEqualTo(String value) {
-            addCriterion("period.period_name =", value, "periodName");
+            addCriterion("period_name =", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameNotEqualTo(String value) {
-            addCriterion("period.period_name <>", value, "periodName");
+            addCriterion("period_name <>", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameGreaterThan(String value) {
-            addCriterion("period.period_name >", value, "periodName");
+            addCriterion("period_name >", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameGreaterThanOrEqualTo(String value) {
-            addCriterion("period.period_name >=", value, "periodName");
+            addCriterion("period_name >=", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameLessThan(String value) {
-            addCriterion("period.period_name <", value, "periodName");
+            addCriterion("period_name <", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameLessThanOrEqualTo(String value) {
-            addCriterion("period.period_name <=", value, "periodName");
+            addCriterion("period_name <=", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameLike(String value) {
-            addCriterion("period.period_name like", value, "periodName");
+            addCriterion("period_name like", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameNotLike(String value) {
-            addCriterion("period.period_name not like", value, "periodName");
+            addCriterion("period_name not like", value, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameIn(List<String> values) {
-            addCriterion("period.period_name in", values, "periodName");
+            addCriterion("period_name in", values, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameNotIn(List<String> values) {
-            addCriterion("period.period_name not in", values, "periodName");
+            addCriterion("period_name not in", values, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameBetween(String value1, String value2) {
-            addCriterion("period.period_name between", value1, value2, "periodName");
+            addCriterion("period_name between", value1, value2, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andPeriodNameNotBetween(String value1, String value2) {
-            addCriterion("period.period_name not between", value1, value2, "periodName");
+            addCriterion("period_name not between", value1, value2, "periodName");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeIsNull() {
-            addCriterion("period.start_time is null");
+            addCriterion("start_time is null");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeIsNotNull() {
-            addCriterion("period.start_time is not null");
+            addCriterion("start_time is not null");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeEqualTo(Date value) {
-            addCriterionForJDBCTime("period.start_time =", value, "startTime");
+            addCriterionForJDBCTime("start_time =", value, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeNotEqualTo(Date value) {
-            addCriterionForJDBCTime("period.start_time <>", value, "startTime");
+            addCriterionForJDBCTime("start_time <>", value, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeGreaterThan(Date value) {
-            addCriterionForJDBCTime("period.start_time >", value, "startTime");
+            addCriterionForJDBCTime("start_time >", value, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCTime("period.start_time >=", value, "startTime");
+            addCriterionForJDBCTime("start_time >=", value, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeLessThan(Date value) {
-            addCriterionForJDBCTime("period.start_time <", value, "startTime");
+            addCriterionForJDBCTime("start_time <", value, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCTime("period.start_time <=", value, "startTime");
+            addCriterionForJDBCTime("start_time <=", value, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeIn(List<Date> values) {
-            addCriterionForJDBCTime("period.start_time in", values, "startTime");
+            addCriterionForJDBCTime("start_time in", values, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeNotIn(List<Date> values) {
-            addCriterionForJDBCTime("period.start_time not in", values, "startTime");
+            addCriterionForJDBCTime("start_time not in", values, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCTime("period.start_time between", value1, value2, "startTime");
+            addCriterionForJDBCTime("start_time between", value1, value2, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andStartTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCTime("period.start_time not between", value1, value2, "startTime");
+            addCriterionForJDBCTime("start_time not between", value1, value2, "startTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeIsNull() {
-            addCriterion("period.end_time is null");
+            addCriterion("end_time is null");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeIsNotNull() {
-            addCriterion("period.end_time is not null");
+            addCriterion("end_time is not null");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeEqualTo(Date value) {
-            addCriterionForJDBCTime("period.end_time =", value, "endTime");
+            addCriterionForJDBCTime("end_time =", value, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeNotEqualTo(Date value) {
-            addCriterionForJDBCTime("period.end_time <>", value, "endTime");
+            addCriterionForJDBCTime("end_time <>", value, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeGreaterThan(Date value) {
-            addCriterionForJDBCTime("period.end_time >", value, "endTime");
+            addCriterionForJDBCTime("end_time >", value, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCTime("period.end_time >=", value, "endTime");
+            addCriterionForJDBCTime("end_time >=", value, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeLessThan(Date value) {
-            addCriterionForJDBCTime("period.end_time <", value, "endTime");
+            addCriterionForJDBCTime("end_time <", value, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCTime("period.end_time <=", value, "endTime");
+            addCriterionForJDBCTime("end_time <=", value, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeIn(List<Date> values) {
-            addCriterionForJDBCTime("period.end_time in", values, "endTime");
+            addCriterionForJDBCTime("end_time in", values, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeNotIn(List<Date> values) {
-            addCriterionForJDBCTime("period.end_time not in", values, "endTime");
+            addCriterionForJDBCTime("end_time not in", values, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCTime("period.end_time between", value1, value2, "endTime");
+            addCriterionForJDBCTime("end_time between", value1, value2, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andEndTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCTime("period.end_time not between", value1, value2, "endTime");
+            addCriterionForJDBCTime("end_time not between", value1, value2, "endTime");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIsNull() {
-            addCriterion("period.cycle_id is null");
+            addCriterion("cycle_id is null");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIsNotNull() {
-            addCriterion("period.cycle_id is not null");
+            addCriterion("cycle_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdEqualTo(Integer value) {
-            addCriterion("period.cycle_id =", value, "cycleId");
+            addCriterion("cycle_id =", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotEqualTo(Integer value) {
-            addCriterion("period.cycle_id <>", value, "cycleId");
+            addCriterion("cycle_id <>", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdGreaterThan(Integer value) {
-            addCriterion("period.cycle_id >", value, "cycleId");
+            addCriterion("cycle_id >", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("period.cycle_id >=", value, "cycleId");
+            addCriterion("cycle_id >=", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdLessThan(Integer value) {
-            addCriterion("period.cycle_id <", value, "cycleId");
+            addCriterion("cycle_id <", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("period.cycle_id <=", value, "cycleId");
+            addCriterion("cycle_id <=", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIn(List<Integer> values) {
-            addCriterion("period.cycle_id in", values, "cycleId");
+            addCriterion("cycle_id in", values, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotIn(List<Integer> values) {
-            addCriterion("period.cycle_id not in", values, "cycleId");
+            addCriterion("cycle_id not in", values, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdBetween(Integer value1, Integer value2) {
-            addCriterion("period.cycle_id between", value1, value2, "cycleId");
+            addCriterion("cycle_id between", value1, value2, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("period.cycle_id not between", value1, value2, "cycleId");
+            addCriterion("cycle_id not between", value1, value2, "cycleId");
             return (Criteria) this;
         }
     }

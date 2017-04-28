@@ -195,312 +195,312 @@ public class ReportItemScoreExample {
         }
 
         public Criteria andReportItemScoreIdIsNull() {
-            addCriterion("report_item_score.report_item_score_id is null");
+            addCriterion("report_item_score_id is null");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdIsNotNull() {
-            addCriterion("report_item_score.report_item_score_id is not null");
+            addCriterion("report_item_score_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_score_id =", value, "reportItemScoreId");
+            addCriterion("report_item_score_id =", value, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdNotEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_score_id <>", value, "reportItemScoreId");
+            addCriterion("report_item_score_id <>", value, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdGreaterThan(Integer value) {
-            addCriterion("report_item_score.report_item_score_id >", value, "reportItemScoreId");
+            addCriterion("report_item_score_id >", value, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_score_id >=", value, "reportItemScoreId");
+            addCriterion("report_item_score_id >=", value, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdLessThan(Integer value) {
-            addCriterion("report_item_score.report_item_score_id <", value, "reportItemScoreId");
+            addCriterion("report_item_score_id <", value, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdLessThanOrEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_score_id <=", value, "reportItemScoreId");
+            addCriterion("report_item_score_id <=", value, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdIn(List<Integer> values) {
-            addCriterion("report_item_score.report_item_score_id in", values, "reportItemScoreId");
+            addCriterion("report_item_score_id in", values, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdNotIn(List<Integer> values) {
-            addCriterion("report_item_score.report_item_score_id not in", values, "reportItemScoreId");
+            addCriterion("report_item_score_id not in", values, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdBetween(Integer value1, Integer value2) {
-            addCriterion("report_item_score.report_item_score_id between", value1, value2, "reportItemScoreId");
+            addCriterion("report_item_score_id between", value1, value2, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemScoreIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("report_item_score.report_item_score_id not between", value1, value2, "reportItemScoreId");
+            addCriterion("report_item_score_id not between", value1, value2, "reportItemScoreId");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentIsNull() {
-            addCriterion("report_item_score.remark_content is null");
+            addCriterion("remark_content is null");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentIsNotNull() {
-            addCriterion("report_item_score.remark_content is not null");
+            addCriterion("remark_content is not null");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentEqualTo(String value) {
-            addCriterion("report_item_score.remark_content =", value, "remarkContent");
+            addCriterion("remark_content =", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentNotEqualTo(String value) {
-            addCriterion("report_item_score.remark_content <>", value, "remarkContent");
+            addCriterion("remark_content <>", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentGreaterThan(String value) {
-            addCriterion("report_item_score.remark_content >", value, "remarkContent");
+            addCriterion("remark_content >", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentGreaterThanOrEqualTo(String value) {
-            addCriterion("report_item_score.remark_content >=", value, "remarkContent");
+            addCriterion("remark_content >=", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentLessThan(String value) {
-            addCriterion("report_item_score.remark_content <", value, "remarkContent");
+            addCriterion("remark_content <", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentLessThanOrEqualTo(String value) {
-            addCriterion("report_item_score.remark_content <=", value, "remarkContent");
+            addCriterion("remark_content <=", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentLike(String value) {
-            addCriterion("report_item_score.remark_content like", value, "remarkContent");
+            addCriterion("remark_content like", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentNotLike(String value) {
-            addCriterion("report_item_score.remark_content not like", value, "remarkContent");
+            addCriterion("remark_content not like", value, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentIn(List<String> values) {
-            addCriterion("report_item_score.remark_content in", values, "remarkContent");
+            addCriterion("remark_content in", values, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentNotIn(List<String> values) {
-            addCriterion("report_item_score.remark_content not in", values, "remarkContent");
+            addCriterion("remark_content not in", values, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentBetween(String value1, String value2) {
-            addCriterion("report_item_score.remark_content between", value1, value2, "remarkContent");
+            addCriterion("remark_content between", value1, value2, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andRemarkContentNotBetween(String value1, String value2) {
-            addCriterion("report_item_score.remark_content not between", value1, value2, "remarkContent");
+            addCriterion("remark_content not between", value1, value2, "remarkContent");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdIsNull() {
-            addCriterion("report_item_score.report_item_id is null");
+            addCriterion("report_item_id is null");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdIsNotNull() {
-            addCriterion("report_item_score.report_item_id is not null");
+            addCriterion("report_item_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_id =", value, "reportItemId");
+            addCriterion("report_item_id =", value, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdNotEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_id <>", value, "reportItemId");
+            addCriterion("report_item_id <>", value, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdGreaterThan(Integer value) {
-            addCriterion("report_item_score.report_item_id >", value, "reportItemId");
+            addCriterion("report_item_id >", value, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_id >=", value, "reportItemId");
+            addCriterion("report_item_id >=", value, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdLessThan(Integer value) {
-            addCriterion("report_item_score.report_item_id <", value, "reportItemId");
+            addCriterion("report_item_id <", value, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdLessThanOrEqualTo(Integer value) {
-            addCriterion("report_item_score.report_item_id <=", value, "reportItemId");
+            addCriterion("report_item_id <=", value, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdIn(List<Integer> values) {
-            addCriterion("report_item_score.report_item_id in", values, "reportItemId");
+            addCriterion("report_item_id in", values, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdNotIn(List<Integer> values) {
-            addCriterion("report_item_score.report_item_id not in", values, "reportItemId");
+            addCriterion("report_item_id not in", values, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdBetween(Integer value1, Integer value2) {
-            addCriterion("report_item_score.report_item_id between", value1, value2, "reportItemId");
+            addCriterion("report_item_id between", value1, value2, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andReportItemIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("report_item_score.report_item_id not between", value1, value2, "reportItemId");
+            addCriterion("report_item_id not between", value1, value2, "reportItemId");
             return (Criteria) this;
         }
 
         public Criteria andScoreIsNull() {
-            addCriterion("report_item_score.score is null");
+            addCriterion("score is null");
             return (Criteria) this;
         }
 
         public Criteria andScoreIsNotNull() {
-            addCriterion("report_item_score.score is not null");
+            addCriterion("score is not null");
             return (Criteria) this;
         }
 
         public Criteria andScoreEqualTo(Float value) {
-            addCriterion("report_item_score.score =", value, "score");
+            addCriterion("score =", value, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreNotEqualTo(Float value) {
-            addCriterion("report_item_score.score <>", value, "score");
+            addCriterion("score <>", value, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreGreaterThan(Float value) {
-            addCriterion("report_item_score.score >", value, "score");
+            addCriterion("score >", value, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreGreaterThanOrEqualTo(Float value) {
-            addCriterion("report_item_score.score >=", value, "score");
+            addCriterion("score >=", value, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreLessThan(Float value) {
-            addCriterion("report_item_score.score <", value, "score");
+            addCriterion("score <", value, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreLessThanOrEqualTo(Float value) {
-            addCriterion("report_item_score.score <=", value, "score");
+            addCriterion("score <=", value, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreIn(List<Float> values) {
-            addCriterion("report_item_score.score in", values, "score");
+            addCriterion("score in", values, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreNotIn(List<Float> values) {
-            addCriterion("report_item_score.score not in", values, "score");
+            addCriterion("score not in", values, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreBetween(Float value1, Float value2) {
-            addCriterion("report_item_score.score between", value1, value2, "score");
+            addCriterion("score between", value1, value2, "score");
             return (Criteria) this;
         }
 
         public Criteria andScoreNotBetween(Float value1, Float value2) {
-            addCriterion("report_item_score.score not between", value1, value2, "score");
+            addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
 
         public Criteria andReportIdIsNull() {
-            addCriterion("report_item_score.report_id is null");
+            addCriterion("report_id is null");
             return (Criteria) this;
         }
 
         public Criteria andReportIdIsNotNull() {
-            addCriterion("report_item_score.report_id is not null");
+            addCriterion("report_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andReportIdEqualTo(Integer value) {
-            addCriterion("report_item_score.report_id =", value, "reportId");
+            addCriterion("report_id =", value, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdNotEqualTo(Integer value) {
-            addCriterion("report_item_score.report_id <>", value, "reportId");
+            addCriterion("report_id <>", value, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdGreaterThan(Integer value) {
-            addCriterion("report_item_score.report_id >", value, "reportId");
+            addCriterion("report_id >", value, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("report_item_score.report_id >=", value, "reportId");
+            addCriterion("report_id >=", value, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdLessThan(Integer value) {
-            addCriterion("report_item_score.report_id <", value, "reportId");
+            addCriterion("report_id <", value, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdLessThanOrEqualTo(Integer value) {
-            addCriterion("report_item_score.report_id <=", value, "reportId");
+            addCriterion("report_id <=", value, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdIn(List<Integer> values) {
-            addCriterion("report_item_score.report_id in", values, "reportId");
+            addCriterion("report_id in", values, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdNotIn(List<Integer> values) {
-            addCriterion("report_item_score.report_id not in", values, "reportId");
+            addCriterion("report_id not in", values, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdBetween(Integer value1, Integer value2) {
-            addCriterion("report_item_score.report_id between", value1, value2, "reportId");
+            addCriterion("report_id between", value1, value2, "reportId");
             return (Criteria) this;
         }
 
         public Criteria andReportIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("report_item_score.report_id not between", value1, value2, "reportId");
+            addCriterion("report_id not between", value1, value2, "reportId");
             return (Criteria) this;
         }
     }

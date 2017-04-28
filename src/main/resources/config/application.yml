@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 9860
   session:
     timeout: 10
 #配置数据源
@@ -20,6 +20,12 @@ spring:
     testWhileIdle: true
     testOnBorrow: false
     testOnReturn: false
+  redis:
+    cluster:
+      nodes:
+        - 172.19.3.135:6379
+        - 172.19.3.136:6379
+        - 172.19.3.137:6379
 mybatis:
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: com.chinamobile.iot.lightapp.mysql.model

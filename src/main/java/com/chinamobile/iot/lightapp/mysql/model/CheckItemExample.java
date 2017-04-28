@@ -195,262 +195,262 @@ public class CheckItemExample {
         }
 
         public Criteria andCheckItemIdIsNull() {
-            addCriterion("check_item.check_item_id is null");
+            addCriterion("check_item_id is null");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdIsNotNull() {
-            addCriterion("check_item.check_item_id is not null");
+            addCriterion("check_item_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdEqualTo(Integer value) {
-            addCriterion("check_item.check_item_id =", value, "checkItemId");
+            addCriterion("check_item_id =", value, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdNotEqualTo(Integer value) {
-            addCriterion("check_item.check_item_id <>", value, "checkItemId");
+            addCriterion("check_item_id <>", value, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdGreaterThan(Integer value) {
-            addCriterion("check_item.check_item_id >", value, "checkItemId");
+            addCriterion("check_item_id >", value, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("check_item.check_item_id >=", value, "checkItemId");
+            addCriterion("check_item_id >=", value, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdLessThan(Integer value) {
-            addCriterion("check_item.check_item_id <", value, "checkItemId");
+            addCriterion("check_item_id <", value, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdLessThanOrEqualTo(Integer value) {
-            addCriterion("check_item.check_item_id <=", value, "checkItemId");
+            addCriterion("check_item_id <=", value, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdIn(List<Integer> values) {
-            addCriterion("check_item.check_item_id in", values, "checkItemId");
+            addCriterion("check_item_id in", values, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdNotIn(List<Integer> values) {
-            addCriterion("check_item.check_item_id not in", values, "checkItemId");
+            addCriterion("check_item_id not in", values, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdBetween(Integer value1, Integer value2) {
-            addCriterion("check_item.check_item_id between", value1, value2, "checkItemId");
+            addCriterion("check_item_id between", value1, value2, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("check_item.check_item_id not between", value1, value2, "checkItemId");
+            addCriterion("check_item_id not between", value1, value2, "checkItemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameIsNull() {
-            addCriterion("check_item.check_item_name is null");
+            addCriterion("check_item_name is null");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameIsNotNull() {
-            addCriterion("check_item.check_item_name is not null");
+            addCriterion("check_item_name is not null");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameEqualTo(String value) {
-            addCriterion("check_item.check_item_name =", value, "checkItemName");
+            addCriterion("check_item_name =", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameNotEqualTo(String value) {
-            addCriterion("check_item.check_item_name <>", value, "checkItemName");
+            addCriterion("check_item_name <>", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameGreaterThan(String value) {
-            addCriterion("check_item.check_item_name >", value, "checkItemName");
+            addCriterion("check_item_name >", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameGreaterThanOrEqualTo(String value) {
-            addCriterion("check_item.check_item_name >=", value, "checkItemName");
+            addCriterion("check_item_name >=", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameLessThan(String value) {
-            addCriterion("check_item.check_item_name <", value, "checkItemName");
+            addCriterion("check_item_name <", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameLessThanOrEqualTo(String value) {
-            addCriterion("check_item.check_item_name <=", value, "checkItemName");
+            addCriterion("check_item_name <=", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameLike(String value) {
-            addCriterion("check_item.check_item_name like", value, "checkItemName");
+            addCriterion("check_item_name like", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameNotLike(String value) {
-            addCriterion("check_item.check_item_name not like", value, "checkItemName");
+            addCriterion("check_item_name not like", value, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameIn(List<String> values) {
-            addCriterion("check_item.check_item_name in", values, "checkItemName");
+            addCriterion("check_item_name in", values, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameNotIn(List<String> values) {
-            addCriterion("check_item.check_item_name not in", values, "checkItemName");
+            addCriterion("check_item_name not in", values, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameBetween(String value1, String value2) {
-            addCriterion("check_item.check_item_name between", value1, value2, "checkItemName");
+            addCriterion("check_item_name between", value1, value2, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemNameNotBetween(String value1, String value2) {
-            addCriterion("check_item.check_item_name not between", value1, value2, "checkItemName");
+            addCriterion("check_item_name not between", value1, value2, "checkItemName");
             return (Criteria) this;
         }
 
         public Criteria andItemIdIsNull() {
-            addCriterion("check_item.item_id is null");
+            addCriterion("item_id is null");
             return (Criteria) this;
         }
 
         public Criteria andItemIdIsNotNull() {
-            addCriterion("check_item.item_id is not null");
+            addCriterion("item_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andItemIdEqualTo(Integer value) {
-            addCriterion("check_item.item_id =", value, "itemId");
+            addCriterion("item_id =", value, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdNotEqualTo(Integer value) {
-            addCriterion("check_item.item_id <>", value, "itemId");
+            addCriterion("item_id <>", value, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdGreaterThan(Integer value) {
-            addCriterion("check_item.item_id >", value, "itemId");
+            addCriterion("item_id >", value, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("check_item.item_id >=", value, "itemId");
+            addCriterion("item_id >=", value, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdLessThan(Integer value) {
-            addCriterion("check_item.item_id <", value, "itemId");
+            addCriterion("item_id <", value, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdLessThanOrEqualTo(Integer value) {
-            addCriterion("check_item.item_id <=", value, "itemId");
+            addCriterion("item_id <=", value, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdIn(List<Integer> values) {
-            addCriterion("check_item.item_id in", values, "itemId");
+            addCriterion("item_id in", values, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdNotIn(List<Integer> values) {
-            addCriterion("check_item.item_id not in", values, "itemId");
+            addCriterion("item_id not in", values, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdBetween(Integer value1, Integer value2) {
-            addCriterion("check_item.item_id between", value1, value2, "itemId");
+            addCriterion("item_id between", value1, value2, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andItemIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("check_item.item_id not between", value1, value2, "itemId");
+            addCriterion("item_id not between", value1, value2, "itemId");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentIsNull() {
-            addCriterion("check_item.check_item_content is null");
+            addCriterion("check_item_content is null");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentIsNotNull() {
-            addCriterion("check_item.check_item_content is not null");
+            addCriterion("check_item_content is not null");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentEqualTo(String value) {
-            addCriterion("check_item.check_item_content =", value, "checkItemContent");
+            addCriterion("check_item_content =", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentNotEqualTo(String value) {
-            addCriterion("check_item.check_item_content <>", value, "checkItemContent");
+            addCriterion("check_item_content <>", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentGreaterThan(String value) {
-            addCriterion("check_item.check_item_content >", value, "checkItemContent");
+            addCriterion("check_item_content >", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentGreaterThanOrEqualTo(String value) {
-            addCriterion("check_item.check_item_content >=", value, "checkItemContent");
+            addCriterion("check_item_content >=", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentLessThan(String value) {
-            addCriterion("check_item.check_item_content <", value, "checkItemContent");
+            addCriterion("check_item_content <", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentLessThanOrEqualTo(String value) {
-            addCriterion("check_item.check_item_content <=", value, "checkItemContent");
+            addCriterion("check_item_content <=", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentLike(String value) {
-            addCriterion("check_item.check_item_content like", value, "checkItemContent");
+            addCriterion("check_item_content like", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentNotLike(String value) {
-            addCriterion("check_item.check_item_content not like", value, "checkItemContent");
+            addCriterion("check_item_content not like", value, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentIn(List<String> values) {
-            addCriterion("check_item.check_item_content in", values, "checkItemContent");
+            addCriterion("check_item_content in", values, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentNotIn(List<String> values) {
-            addCriterion("check_item.check_item_content not in", values, "checkItemContent");
+            addCriterion("check_item_content not in", values, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentBetween(String value1, String value2) {
-            addCriterion("check_item.check_item_content between", value1, value2, "checkItemContent");
+            addCriterion("check_item_content between", value1, value2, "checkItemContent");
             return (Criteria) this;
         }
 
         public Criteria andCheckItemContentNotBetween(String value1, String value2) {
-            addCriterion("check_item.check_item_content not between", value1, value2, "checkItemContent");
+            addCriterion("check_item_content not between", value1, value2, "checkItemContent");
             return (Criteria) this;
         }
     }

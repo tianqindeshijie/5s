@@ -196,422 +196,422 @@ public class ApplyExample {
         }
 
         public Criteria andApplyIdIsNull() {
-            addCriterion("apply.apply_id is null");
+            addCriterion("apply_id is null");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdIsNotNull() {
-            addCriterion("apply.apply_id is not null");
+            addCriterion("apply_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdEqualTo(Integer value) {
-            addCriterion("apply.apply_id =", value, "applyId");
+            addCriterion("apply_id =", value, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdNotEqualTo(Integer value) {
-            addCriterion("apply.apply_id <>", value, "applyId");
+            addCriterion("apply_id <>", value, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdGreaterThan(Integer value) {
-            addCriterion("apply.apply_id >", value, "applyId");
+            addCriterion("apply_id >", value, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("apply.apply_id >=", value, "applyId");
+            addCriterion("apply_id >=", value, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdLessThan(Integer value) {
-            addCriterion("apply.apply_id <", value, "applyId");
+            addCriterion("apply_id <", value, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdLessThanOrEqualTo(Integer value) {
-            addCriterion("apply.apply_id <=", value, "applyId");
+            addCriterion("apply_id <=", value, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdIn(List<Integer> values) {
-            addCriterion("apply.apply_id in", values, "applyId");
+            addCriterion("apply_id in", values, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdNotIn(List<Integer> values) {
-            addCriterion("apply.apply_id not in", values, "applyId");
+            addCriterion("apply_id not in", values, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdBetween(Integer value1, Integer value2) {
-            addCriterion("apply.apply_id between", value1, value2, "applyId");
+            addCriterion("apply_id between", value1, value2, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("apply.apply_id not between", value1, value2, "applyId");
+            addCriterion("apply_id not between", value1, value2, "applyId");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserIsNull() {
-            addCriterion("apply.apply_user is null");
+            addCriterion("apply_user is null");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserIsNotNull() {
-            addCriterion("apply.apply_user is not null");
+            addCriterion("apply_user is not null");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserEqualTo(Integer value) {
-            addCriterion("apply.apply_user =", value, "applyUser");
+            addCriterion("apply_user =", value, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserNotEqualTo(Integer value) {
-            addCriterion("apply.apply_user <>", value, "applyUser");
+            addCriterion("apply_user <>", value, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserGreaterThan(Integer value) {
-            addCriterion("apply.apply_user >", value, "applyUser");
+            addCriterion("apply_user >", value, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserGreaterThanOrEqualTo(Integer value) {
-            addCriterion("apply.apply_user >=", value, "applyUser");
+            addCriterion("apply_user >=", value, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserLessThan(Integer value) {
-            addCriterion("apply.apply_user <", value, "applyUser");
+            addCriterion("apply_user <", value, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserLessThanOrEqualTo(Integer value) {
-            addCriterion("apply.apply_user <=", value, "applyUser");
+            addCriterion("apply_user <=", value, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserIn(List<Integer> values) {
-            addCriterion("apply.apply_user in", values, "applyUser");
+            addCriterion("apply_user in", values, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserNotIn(List<Integer> values) {
-            addCriterion("apply.apply_user not in", values, "applyUser");
+            addCriterion("apply_user not in", values, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserBetween(Integer value1, Integer value2) {
-            addCriterion("apply.apply_user between", value1, value2, "applyUser");
+            addCriterion("apply_user between", value1, value2, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andApplyUserNotBetween(Integer value1, Integer value2) {
-            addCriterion("apply.apply_user not between", value1, value2, "applyUser");
+            addCriterion("apply_user not between", value1, value2, "applyUser");
             return (Criteria) this;
         }
 
         public Criteria andInviterIsNull() {
-            addCriterion("apply.inviter is null");
+            addCriterion("inviter is null");
             return (Criteria) this;
         }
 
         public Criteria andInviterIsNotNull() {
-            addCriterion("apply.inviter is not null");
+            addCriterion("inviter is not null");
             return (Criteria) this;
         }
 
         public Criteria andInviterEqualTo(Integer value) {
-            addCriterion("apply.inviter =", value, "inviter");
+            addCriterion("inviter =", value, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterNotEqualTo(Integer value) {
-            addCriterion("apply.inviter <>", value, "inviter");
+            addCriterion("inviter <>", value, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterGreaterThan(Integer value) {
-            addCriterion("apply.inviter >", value, "inviter");
+            addCriterion("inviter >", value, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterGreaterThanOrEqualTo(Integer value) {
-            addCriterion("apply.inviter >=", value, "inviter");
+            addCriterion("inviter >=", value, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterLessThan(Integer value) {
-            addCriterion("apply.inviter <", value, "inviter");
+            addCriterion("inviter <", value, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterLessThanOrEqualTo(Integer value) {
-            addCriterion("apply.inviter <=", value, "inviter");
+            addCriterion("inviter <=", value, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterIn(List<Integer> values) {
-            addCriterion("apply.inviter in", values, "inviter");
+            addCriterion("inviter in", values, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterNotIn(List<Integer> values) {
-            addCriterion("apply.inviter not in", values, "inviter");
+            addCriterion("inviter not in", values, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterBetween(Integer value1, Integer value2) {
-            addCriterion("apply.inviter between", value1, value2, "inviter");
+            addCriterion("inviter between", value1, value2, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andInviterNotBetween(Integer value1, Integer value2) {
-            addCriterion("apply.inviter not between", value1, value2, "inviter");
+            addCriterion("inviter not between", value1, value2, "inviter");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIsNull() {
-            addCriterion("apply.cycle_id is null");
+            addCriterion("cycle_id is null");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIsNotNull() {
-            addCriterion("apply.cycle_id is not null");
+            addCriterion("cycle_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdEqualTo(Integer value) {
-            addCriterion("apply.cycle_id =", value, "cycleId");
+            addCriterion("cycle_id =", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotEqualTo(Integer value) {
-            addCriterion("apply.cycle_id <>", value, "cycleId");
+            addCriterion("cycle_id <>", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdGreaterThan(Integer value) {
-            addCriterion("apply.cycle_id >", value, "cycleId");
+            addCriterion("cycle_id >", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("apply.cycle_id >=", value, "cycleId");
+            addCriterion("cycle_id >=", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdLessThan(Integer value) {
-            addCriterion("apply.cycle_id <", value, "cycleId");
+            addCriterion("cycle_id <", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("apply.cycle_id <=", value, "cycleId");
+            addCriterion("cycle_id <=", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIn(List<Integer> values) {
-            addCriterion("apply.cycle_id in", values, "cycleId");
+            addCriterion("cycle_id in", values, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotIn(List<Integer> values) {
-            addCriterion("apply.cycle_id not in", values, "cycleId");
+            addCriterion("cycle_id not in", values, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdBetween(Integer value1, Integer value2) {
-            addCriterion("apply.cycle_id between", value1, value2, "cycleId");
+            addCriterion("cycle_id between", value1, value2, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("apply.cycle_id not between", value1, value2, "cycleId");
+            addCriterion("cycle_id not between", value1, value2, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeIsNull() {
-            addCriterion("apply.apply_type is null");
+            addCriterion("apply_type is null");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeIsNotNull() {
-            addCriterion("apply.apply_type is not null");
+            addCriterion("apply_type is not null");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeEqualTo(Integer value) {
-            addCriterion("apply.apply_type =", value, "applyType");
+            addCriterion("apply_type =", value, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeNotEqualTo(Integer value) {
-            addCriterion("apply.apply_type <>", value, "applyType");
+            addCriterion("apply_type <>", value, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeGreaterThan(Integer value) {
-            addCriterion("apply.apply_type >", value, "applyType");
+            addCriterion("apply_type >", value, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("apply.apply_type >=", value, "applyType");
+            addCriterion("apply_type >=", value, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeLessThan(Integer value) {
-            addCriterion("apply.apply_type <", value, "applyType");
+            addCriterion("apply_type <", value, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("apply.apply_type <=", value, "applyType");
+            addCriterion("apply_type <=", value, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeIn(List<Integer> values) {
-            addCriterion("apply.apply_type in", values, "applyType");
+            addCriterion("apply_type in", values, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeNotIn(List<Integer> values) {
-            addCriterion("apply.apply_type not in", values, "applyType");
+            addCriterion("apply_type not in", values, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeBetween(Integer value1, Integer value2) {
-            addCriterion("apply.apply_type between", value1, value2, "applyType");
+            addCriterion("apply_type between", value1, value2, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andApplyTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("apply.apply_type not between", value1, value2, "applyType");
+            addCriterion("apply_type not between", value1, value2, "applyType");
             return (Criteria) this;
         }
 
         public Criteria andResultIsNull() {
-            addCriterion("apply.`result` is null");
+            addCriterion("`result` is null");
             return (Criteria) this;
         }
 
         public Criteria andResultIsNotNull() {
-            addCriterion("apply.`result` is not null");
+            addCriterion("`result` is not null");
             return (Criteria) this;
         }
 
         public Criteria andResultEqualTo(Integer value) {
-            addCriterion("apply.`result` =", value, "result");
+            addCriterion("`result` =", value, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultNotEqualTo(Integer value) {
-            addCriterion("apply.`result` <>", value, "result");
+            addCriterion("`result` <>", value, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultGreaterThan(Integer value) {
-            addCriterion("apply.`result` >", value, "result");
+            addCriterion("`result` >", value, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultGreaterThanOrEqualTo(Integer value) {
-            addCriterion("apply.`result` >=", value, "result");
+            addCriterion("`result` >=", value, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultLessThan(Integer value) {
-            addCriterion("apply.`result` <", value, "result");
+            addCriterion("`result` <", value, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultLessThanOrEqualTo(Integer value) {
-            addCriterion("apply.`result` <=", value, "result");
+            addCriterion("`result` <=", value, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultIn(List<Integer> values) {
-            addCriterion("apply.`result` in", values, "result");
+            addCriterion("`result` in", values, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultNotIn(List<Integer> values) {
-            addCriterion("apply.`result` not in", values, "result");
+            addCriterion("`result` not in", values, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultBetween(Integer value1, Integer value2) {
-            addCriterion("apply.`result` between", value1, value2, "result");
+            addCriterion("`result` between", value1, value2, "result");
             return (Criteria) this;
         }
 
         public Criteria andResultNotBetween(Integer value1, Integer value2) {
-            addCriterion("apply.`result` not between", value1, value2, "result");
+            addCriterion("`result` not between", value1, value2, "result");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeIsNull() {
-            addCriterion("apply.apply_time is null");
+            addCriterion("apply_time is null");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeIsNotNull() {
-            addCriterion("apply.apply_time is not null");
+            addCriterion("apply_time is not null");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeEqualTo(Date value) {
-            addCriterion("apply.apply_time =", value, "applyTime");
+            addCriterion("apply_time =", value, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeNotEqualTo(Date value) {
-            addCriterion("apply.apply_time <>", value, "applyTime");
+            addCriterion("apply_time <>", value, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeGreaterThan(Date value) {
-            addCriterion("apply.apply_time >", value, "applyTime");
+            addCriterion("apply_time >", value, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("apply.apply_time >=", value, "applyTime");
+            addCriterion("apply_time >=", value, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeLessThan(Date value) {
-            addCriterion("apply.apply_time <", value, "applyTime");
+            addCriterion("apply_time <", value, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeLessThanOrEqualTo(Date value) {
-            addCriterion("apply.apply_time <=", value, "applyTime");
+            addCriterion("apply_time <=", value, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeIn(List<Date> values) {
-            addCriterion("apply.apply_time in", values, "applyTime");
+            addCriterion("apply_time in", values, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeNotIn(List<Date> values) {
-            addCriterion("apply.apply_time not in", values, "applyTime");
+            addCriterion("apply_time not in", values, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeBetween(Date value1, Date value2) {
-            addCriterion("apply.apply_time between", value1, value2, "applyTime");
+            addCriterion("apply_time between", value1, value2, "applyTime");
             return (Criteria) this;
         }
 
         public Criteria andApplyTimeNotBetween(Date value1, Date value2) {
-            addCriterion("apply.apply_time not between", value1, value2, "applyTime");
+            addCriterion("apply_time not between", value1, value2, "applyTime");
             return (Criteria) this;
         }
     }

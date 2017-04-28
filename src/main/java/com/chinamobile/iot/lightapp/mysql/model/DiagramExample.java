@@ -195,322 +195,322 @@ public class DiagramExample {
         }
 
         public Criteria andDiagramIdIsNull() {
-            addCriterion("diagram.diagram_id is null");
+            addCriterion("diagram_id is null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdIsNotNull() {
-            addCriterion("diagram.diagram_id is not null");
+            addCriterion("diagram_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdEqualTo(Integer value) {
-            addCriterion("diagram.diagram_id =", value, "diagramId");
+            addCriterion("diagram_id =", value, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdNotEqualTo(Integer value) {
-            addCriterion("diagram.diagram_id <>", value, "diagramId");
+            addCriterion("diagram_id <>", value, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdGreaterThan(Integer value) {
-            addCriterion("diagram.diagram_id >", value, "diagramId");
+            addCriterion("diagram_id >", value, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("diagram.diagram_id >=", value, "diagramId");
+            addCriterion("diagram_id >=", value, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdLessThan(Integer value) {
-            addCriterion("diagram.diagram_id <", value, "diagramId");
+            addCriterion("diagram_id <", value, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdLessThanOrEqualTo(Integer value) {
-            addCriterion("diagram.diagram_id <=", value, "diagramId");
+            addCriterion("diagram_id <=", value, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdIn(List<Integer> values) {
-            addCriterion("diagram.diagram_id in", values, "diagramId");
+            addCriterion("diagram_id in", values, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdNotIn(List<Integer> values) {
-            addCriterion("diagram.diagram_id not in", values, "diagramId");
+            addCriterion("diagram_id not in", values, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdBetween(Integer value1, Integer value2) {
-            addCriterion("diagram.diagram_id between", value1, value2, "diagramId");
+            addCriterion("diagram_id between", value1, value2, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("diagram.diagram_id not between", value1, value2, "diagramId");
+            addCriterion("diagram_id not between", value1, value2, "diagramId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameIsNull() {
-            addCriterion("diagram.diagram_name is null");
+            addCriterion("diagram_name is null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameIsNotNull() {
-            addCriterion("diagram.diagram_name is not null");
+            addCriterion("diagram_name is not null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameEqualTo(String value) {
-            addCriterion("diagram.diagram_name =", value, "diagramName");
+            addCriterion("diagram_name =", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameNotEqualTo(String value) {
-            addCriterion("diagram.diagram_name <>", value, "diagramName");
+            addCriterion("diagram_name <>", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameGreaterThan(String value) {
-            addCriterion("diagram.diagram_name >", value, "diagramName");
+            addCriterion("diagram_name >", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameGreaterThanOrEqualTo(String value) {
-            addCriterion("diagram.diagram_name >=", value, "diagramName");
+            addCriterion("diagram_name >=", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameLessThan(String value) {
-            addCriterion("diagram.diagram_name <", value, "diagramName");
+            addCriterion("diagram_name <", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameLessThanOrEqualTo(String value) {
-            addCriterion("diagram.diagram_name <=", value, "diagramName");
+            addCriterion("diagram_name <=", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameLike(String value) {
-            addCriterion("diagram.diagram_name like", value, "diagramName");
+            addCriterion("diagram_name like", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameNotLike(String value) {
-            addCriterion("diagram.diagram_name not like", value, "diagramName");
+            addCriterion("diagram_name not like", value, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameIn(List<String> values) {
-            addCriterion("diagram.diagram_name in", values, "diagramName");
+            addCriterion("diagram_name in", values, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameNotIn(List<String> values) {
-            addCriterion("diagram.diagram_name not in", values, "diagramName");
+            addCriterion("diagram_name not in", values, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameBetween(String value1, String value2) {
-            addCriterion("diagram.diagram_name between", value1, value2, "diagramName");
+            addCriterion("diagram_name between", value1, value2, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramNameNotBetween(String value1, String value2) {
-            addCriterion("diagram.diagram_name not between", value1, value2, "diagramName");
+            addCriterion("diagram_name not between", value1, value2, "diagramName");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentIsNull() {
-            addCriterion("diagram.diagram_content is null");
+            addCriterion("diagram_content is null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentIsNotNull() {
-            addCriterion("diagram.diagram_content is not null");
+            addCriterion("diagram_content is not null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentEqualTo(String value) {
-            addCriterion("diagram.diagram_content =", value, "diagramContent");
+            addCriterion("diagram_content =", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentNotEqualTo(String value) {
-            addCriterion("diagram.diagram_content <>", value, "diagramContent");
+            addCriterion("diagram_content <>", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentGreaterThan(String value) {
-            addCriterion("diagram.diagram_content >", value, "diagramContent");
+            addCriterion("diagram_content >", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentGreaterThanOrEqualTo(String value) {
-            addCriterion("diagram.diagram_content >=", value, "diagramContent");
+            addCriterion("diagram_content >=", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentLessThan(String value) {
-            addCriterion("diagram.diagram_content <", value, "diagramContent");
+            addCriterion("diagram_content <", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentLessThanOrEqualTo(String value) {
-            addCriterion("diagram.diagram_content <=", value, "diagramContent");
+            addCriterion("diagram_content <=", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentLike(String value) {
-            addCriterion("diagram.diagram_content like", value, "diagramContent");
+            addCriterion("diagram_content like", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentNotLike(String value) {
-            addCriterion("diagram.diagram_content not like", value, "diagramContent");
+            addCriterion("diagram_content not like", value, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentIn(List<String> values) {
-            addCriterion("diagram.diagram_content in", values, "diagramContent");
+            addCriterion("diagram_content in", values, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentNotIn(List<String> values) {
-            addCriterion("diagram.diagram_content not in", values, "diagramContent");
+            addCriterion("diagram_content not in", values, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentBetween(String value1, String value2) {
-            addCriterion("diagram.diagram_content between", value1, value2, "diagramContent");
+            addCriterion("diagram_content between", value1, value2, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andDiagramContentNotBetween(String value1, String value2) {
-            addCriterion("diagram.diagram_content not between", value1, value2, "diagramContent");
+            addCriterion("diagram_content not between", value1, value2, "diagramContent");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIsNull() {
-            addCriterion("diagram.cycle_id is null");
+            addCriterion("cycle_id is null");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIsNotNull() {
-            addCriterion("diagram.cycle_id is not null");
+            addCriterion("cycle_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdEqualTo(Integer value) {
-            addCriterion("diagram.cycle_id =", value, "cycleId");
+            addCriterion("cycle_id =", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotEqualTo(Integer value) {
-            addCriterion("diagram.cycle_id <>", value, "cycleId");
+            addCriterion("cycle_id <>", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdGreaterThan(Integer value) {
-            addCriterion("diagram.cycle_id >", value, "cycleId");
+            addCriterion("cycle_id >", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("diagram.cycle_id >=", value, "cycleId");
+            addCriterion("cycle_id >=", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdLessThan(Integer value) {
-            addCriterion("diagram.cycle_id <", value, "cycleId");
+            addCriterion("cycle_id <", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("diagram.cycle_id <=", value, "cycleId");
+            addCriterion("cycle_id <=", value, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdIn(List<Integer> values) {
-            addCriterion("diagram.cycle_id in", values, "cycleId");
+            addCriterion("cycle_id in", values, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotIn(List<Integer> values) {
-            addCriterion("diagram.cycle_id not in", values, "cycleId");
+            addCriterion("cycle_id not in", values, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdBetween(Integer value1, Integer value2) {
-            addCriterion("diagram.cycle_id between", value1, value2, "cycleId");
+            addCriterion("cycle_id between", value1, value2, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andCycleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("diagram.cycle_id not between", value1, value2, "cycleId");
+            addCriterion("cycle_id not between", value1, value2, "cycleId");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeIsNull() {
-            addCriterion("diagram.diagram_type is null");
+            addCriterion("diagram_type is null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeIsNotNull() {
-            addCriterion("diagram.diagram_type is not null");
+            addCriterion("diagram_type is not null");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeEqualTo(Integer value) {
-            addCriterion("diagram.diagram_type =", value, "diagramType");
+            addCriterion("diagram_type =", value, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeNotEqualTo(Integer value) {
-            addCriterion("diagram.diagram_type <>", value, "diagramType");
+            addCriterion("diagram_type <>", value, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeGreaterThan(Integer value) {
-            addCriterion("diagram.diagram_type >", value, "diagramType");
+            addCriterion("diagram_type >", value, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("diagram.diagram_type >=", value, "diagramType");
+            addCriterion("diagram_type >=", value, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeLessThan(Integer value) {
-            addCriterion("diagram.diagram_type <", value, "diagramType");
+            addCriterion("diagram_type <", value, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("diagram.diagram_type <=", value, "diagramType");
+            addCriterion("diagram_type <=", value, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeIn(List<Integer> values) {
-            addCriterion("diagram.diagram_type in", values, "diagramType");
+            addCriterion("diagram_type in", values, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeNotIn(List<Integer> values) {
-            addCriterion("diagram.diagram_type not in", values, "diagramType");
+            addCriterion("diagram_type not in", values, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeBetween(Integer value1, Integer value2) {
-            addCriterion("diagram.diagram_type between", value1, value2, "diagramType");
+            addCriterion("diagram_type between", value1, value2, "diagramType");
             return (Criteria) this;
         }
 
         public Criteria andDiagramTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("diagram.diagram_type not between", value1, value2, "diagramType");
+            addCriterion("diagram_type not between", value1, value2, "diagramType");
             return (Criteria) this;
         }
     }

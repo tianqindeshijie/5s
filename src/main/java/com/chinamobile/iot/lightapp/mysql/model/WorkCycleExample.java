@@ -195,202 +195,202 @@ public class WorkCycleExample {
         }
 
         public Criteria andWorkCycleIdIsNull() {
-            addCriterion("work_cycle.work_cycle_id is null");
+            addCriterion("work_cycle_id is null");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdIsNotNull() {
-            addCriterion("work_cycle.work_cycle_id is not null");
+            addCriterion("work_cycle_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdEqualTo(Integer value) {
-            addCriterion("work_cycle.work_cycle_id =", value, "workCycleId");
+            addCriterion("work_cycle_id =", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdNotEqualTo(Integer value) {
-            addCriterion("work_cycle.work_cycle_id <>", value, "workCycleId");
+            addCriterion("work_cycle_id <>", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdGreaterThan(Integer value) {
-            addCriterion("work_cycle.work_cycle_id >", value, "workCycleId");
+            addCriterion("work_cycle_id >", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("work_cycle.work_cycle_id >=", value, "workCycleId");
+            addCriterion("work_cycle_id >=", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdLessThan(Integer value) {
-            addCriterion("work_cycle.work_cycle_id <", value, "workCycleId");
+            addCriterion("work_cycle_id <", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("work_cycle.work_cycle_id <=", value, "workCycleId");
+            addCriterion("work_cycle_id <=", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdIn(List<Integer> values) {
-            addCriterion("work_cycle.work_cycle_id in", values, "workCycleId");
+            addCriterion("work_cycle_id in", values, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdNotIn(List<Integer> values) {
-            addCriterion("work_cycle.work_cycle_id not in", values, "workCycleId");
+            addCriterion("work_cycle_id not in", values, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdBetween(Integer value1, Integer value2) {
-            addCriterion("work_cycle.work_cycle_id between", value1, value2, "workCycleId");
+            addCriterion("work_cycle_id between", value1, value2, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("work_cycle.work_cycle_id not between", value1, value2, "workCycleId");
+            addCriterion("work_cycle_id not between", value1, value2, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameIsNull() {
-            addCriterion("work_cycle.work_cycle_name is null");
+            addCriterion("work_cycle_name is null");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameIsNotNull() {
-            addCriterion("work_cycle.work_cycle_name is not null");
+            addCriterion("work_cycle_name is not null");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameEqualTo(String value) {
-            addCriterion("work_cycle.work_cycle_name =", value, "workCycleName");
+            addCriterion("work_cycle_name =", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameNotEqualTo(String value) {
-            addCriterion("work_cycle.work_cycle_name <>", value, "workCycleName");
+            addCriterion("work_cycle_name <>", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameGreaterThan(String value) {
-            addCriterion("work_cycle.work_cycle_name >", value, "workCycleName");
+            addCriterion("work_cycle_name >", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameGreaterThanOrEqualTo(String value) {
-            addCriterion("work_cycle.work_cycle_name >=", value, "workCycleName");
+            addCriterion("work_cycle_name >=", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameLessThan(String value) {
-            addCriterion("work_cycle.work_cycle_name <", value, "workCycleName");
+            addCriterion("work_cycle_name <", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameLessThanOrEqualTo(String value) {
-            addCriterion("work_cycle.work_cycle_name <=", value, "workCycleName");
+            addCriterion("work_cycle_name <=", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameLike(String value) {
-            addCriterion("work_cycle.work_cycle_name like", value, "workCycleName");
+            addCriterion("work_cycle_name like", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameNotLike(String value) {
-            addCriterion("work_cycle.work_cycle_name not like", value, "workCycleName");
+            addCriterion("work_cycle_name not like", value, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameIn(List<String> values) {
-            addCriterion("work_cycle.work_cycle_name in", values, "workCycleName");
+            addCriterion("work_cycle_name in", values, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameNotIn(List<String> values) {
-            addCriterion("work_cycle.work_cycle_name not in", values, "workCycleName");
+            addCriterion("work_cycle_name not in", values, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameBetween(String value1, String value2) {
-            addCriterion("work_cycle.work_cycle_name between", value1, value2, "workCycleName");
+            addCriterion("work_cycle_name between", value1, value2, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleNameNotBetween(String value1, String value2) {
-            addCriterion("work_cycle.work_cycle_name not between", value1, value2, "workCycleName");
+            addCriterion("work_cycle_name not between", value1, value2, "workCycleName");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrIsNull() {
-            addCriterion("work_cycle.img_addr is null");
+            addCriterion("img_addr is null");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrIsNotNull() {
-            addCriterion("work_cycle.img_addr is not null");
+            addCriterion("img_addr is not null");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrEqualTo(String value) {
-            addCriterion("work_cycle.img_addr =", value, "imgAddr");
+            addCriterion("img_addr =", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrNotEqualTo(String value) {
-            addCriterion("work_cycle.img_addr <>", value, "imgAddr");
+            addCriterion("img_addr <>", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrGreaterThan(String value) {
-            addCriterion("work_cycle.img_addr >", value, "imgAddr");
+            addCriterion("img_addr >", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrGreaterThanOrEqualTo(String value) {
-            addCriterion("work_cycle.img_addr >=", value, "imgAddr");
+            addCriterion("img_addr >=", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrLessThan(String value) {
-            addCriterion("work_cycle.img_addr <", value, "imgAddr");
+            addCriterion("img_addr <", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrLessThanOrEqualTo(String value) {
-            addCriterion("work_cycle.img_addr <=", value, "imgAddr");
+            addCriterion("img_addr <=", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrLike(String value) {
-            addCriterion("work_cycle.img_addr like", value, "imgAddr");
+            addCriterion("img_addr like", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrNotLike(String value) {
-            addCriterion("work_cycle.img_addr not like", value, "imgAddr");
+            addCriterion("img_addr not like", value, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrIn(List<String> values) {
-            addCriterion("work_cycle.img_addr in", values, "imgAddr");
+            addCriterion("img_addr in", values, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrNotIn(List<String> values) {
-            addCriterion("work_cycle.img_addr not in", values, "imgAddr");
+            addCriterion("img_addr not in", values, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrBetween(String value1, String value2) {
-            addCriterion("work_cycle.img_addr between", value1, value2, "imgAddr");
+            addCriterion("img_addr between", value1, value2, "imgAddr");
             return (Criteria) this;
         }
 
         public Criteria andImgAddrNotBetween(String value1, String value2) {
-            addCriterion("work_cycle.img_addr not between", value1, value2, "imgAddr");
+            addCriterion("img_addr not between", value1, value2, "imgAddr");
             return (Criteria) this;
         }
     }

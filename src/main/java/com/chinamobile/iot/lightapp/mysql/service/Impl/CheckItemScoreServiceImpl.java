@@ -68,8 +68,15 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
     }
 
     @Override
-    public int insert(CheckItemScore checkItemScore) {
-        return checkItemScoreMapper.insertSelective(checkItemScore);
+    public int insert(List<CheckItemScore> checkItemScoreList) {
+        if(!CollectionUtils.isEmpty(checkItemScoreList)) {
+            for(CheckItemScore temp: checkItemScoreList) {
+                checkItemScoreMapper.insertSelective(temp);
+            }
+        } else {
+            throw new RuntimeException("no checkItemScore in the list!");
+        }
+        return 0;
     }
 
 }

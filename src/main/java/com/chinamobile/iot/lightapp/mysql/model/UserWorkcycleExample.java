@@ -195,242 +195,242 @@ public class UserWorkcycleExample {
         }
 
         public Criteria andRelationIdIsNull() {
-            addCriterion("user_workcycle.relation_id is null");
+            addCriterion("relation_id is null");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdIsNotNull() {
-            addCriterion("user_workcycle.relation_id is not null");
+            addCriterion("relation_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdEqualTo(Integer value) {
-            addCriterion("user_workcycle.relation_id =", value, "relationId");
+            addCriterion("relation_id =", value, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdNotEqualTo(Integer value) {
-            addCriterion("user_workcycle.relation_id <>", value, "relationId");
+            addCriterion("relation_id <>", value, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdGreaterThan(Integer value) {
-            addCriterion("user_workcycle.relation_id >", value, "relationId");
+            addCriterion("relation_id >", value, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.relation_id >=", value, "relationId");
+            addCriterion("relation_id >=", value, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdLessThan(Integer value) {
-            addCriterion("user_workcycle.relation_id <", value, "relationId");
+            addCriterion("relation_id <", value, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.relation_id <=", value, "relationId");
+            addCriterion("relation_id <=", value, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdIn(List<Integer> values) {
-            addCriterion("user_workcycle.relation_id in", values, "relationId");
+            addCriterion("relation_id in", values, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdNotIn(List<Integer> values) {
-            addCriterion("user_workcycle.relation_id not in", values, "relationId");
+            addCriterion("relation_id not in", values, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.relation_id between", value1, value2, "relationId");
+            addCriterion("relation_id between", value1, value2, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andRelationIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.relation_id not between", value1, value2, "relationId");
+            addCriterion("relation_id not between", value1, value2, "relationId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdIsNull() {
-            addCriterion("user_workcycle.work_cycle_id is null");
+            addCriterion("work_cycle_id is null");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdIsNotNull() {
-            addCriterion("user_workcycle.work_cycle_id is not null");
+            addCriterion("work_cycle_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdEqualTo(Integer value) {
-            addCriterion("user_workcycle.work_cycle_id =", value, "workCycleId");
+            addCriterion("work_cycle_id =", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdNotEqualTo(Integer value) {
-            addCriterion("user_workcycle.work_cycle_id <>", value, "workCycleId");
+            addCriterion("work_cycle_id <>", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdGreaterThan(Integer value) {
-            addCriterion("user_workcycle.work_cycle_id >", value, "workCycleId");
+            addCriterion("work_cycle_id >", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.work_cycle_id >=", value, "workCycleId");
+            addCriterion("work_cycle_id >=", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdLessThan(Integer value) {
-            addCriterion("user_workcycle.work_cycle_id <", value, "workCycleId");
+            addCriterion("work_cycle_id <", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.work_cycle_id <=", value, "workCycleId");
+            addCriterion("work_cycle_id <=", value, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdIn(List<Integer> values) {
-            addCriterion("user_workcycle.work_cycle_id in", values, "workCycleId");
+            addCriterion("work_cycle_id in", values, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdNotIn(List<Integer> values) {
-            addCriterion("user_workcycle.work_cycle_id not in", values, "workCycleId");
+            addCriterion("work_cycle_id not in", values, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.work_cycle_id between", value1, value2, "workCycleId");
+            addCriterion("work_cycle_id between", value1, value2, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andWorkCycleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.work_cycle_id not between", value1, value2, "workCycleId");
+            addCriterion("work_cycle_id not between", value1, value2, "workCycleId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdIsNull() {
-            addCriterion("user_workcycle.user_id is null");
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
         public Criteria andUserIdIsNotNull() {
-            addCriterion("user_workcycle.user_id is not null");
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andUserIdEqualTo(Integer value) {
-            addCriterion("user_workcycle.user_id =", value, "userId");
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdNotEqualTo(Integer value) {
-            addCriterion("user_workcycle.user_id <>", value, "userId");
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdGreaterThan(Integer value) {
-            addCriterion("user_workcycle.user_id >", value, "userId");
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.user_id >=", value, "userId");
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdLessThan(Integer value) {
-            addCriterion("user_workcycle.user_id <", value, "userId");
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.user_id <=", value, "userId");
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdIn(List<Integer> values) {
-            addCriterion("user_workcycle.user_id in", values, "userId");
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdNotIn(List<Integer> values) {
-            addCriterion("user_workcycle.user_id not in", values, "userId");
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.user_id between", value1, value2, "userId");
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
         public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.user_id not between", value1, value2, "userId");
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerIsNull() {
-            addCriterion("user_workcycle.is_manager is null");
+            addCriterion("is_manager is null");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerIsNotNull() {
-            addCriterion("user_workcycle.is_manager is not null");
+            addCriterion("is_manager is not null");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerEqualTo(Integer value) {
-            addCriterion("user_workcycle.is_manager =", value, "isManager");
+            addCriterion("is_manager =", value, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerNotEqualTo(Integer value) {
-            addCriterion("user_workcycle.is_manager <>", value, "isManager");
+            addCriterion("is_manager <>", value, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerGreaterThan(Integer value) {
-            addCriterion("user_workcycle.is_manager >", value, "isManager");
+            addCriterion("is_manager >", value, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.is_manager >=", value, "isManager");
+            addCriterion("is_manager >=", value, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerLessThan(Integer value) {
-            addCriterion("user_workcycle.is_manager <", value, "isManager");
+            addCriterion("is_manager <", value, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerLessThanOrEqualTo(Integer value) {
-            addCriterion("user_workcycle.is_manager <=", value, "isManager");
+            addCriterion("is_manager <=", value, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerIn(List<Integer> values) {
-            addCriterion("user_workcycle.is_manager in", values, "isManager");
+            addCriterion("is_manager in", values, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerNotIn(List<Integer> values) {
-            addCriterion("user_workcycle.is_manager not in", values, "isManager");
+            addCriterion("is_manager not in", values, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.is_manager between", value1, value2, "isManager");
+            addCriterion("is_manager between", value1, value2, "isManager");
             return (Criteria) this;
         }
 
         public Criteria andIsManagerNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_workcycle.is_manager not between", value1, value2, "isManager");
+            addCriterion("is_manager not between", value1, value2, "isManager");
             return (Criteria) this;
         }
     }

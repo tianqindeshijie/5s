@@ -5,6 +5,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * The devices service.
  *
@@ -55,9 +57,9 @@ public interface CheckItemScoreService {
     /**
      * Insert int.
      *
-     * @param checkItemScore the checkItemScore
+     * @param checkItemScoreList the check item score list
      * @return the int
      */
     @Transactional
-    public int insert(CheckItemScore checkItemScore);
+    public int insert(List<CheckItemScore> checkItemScoreList);
 }
