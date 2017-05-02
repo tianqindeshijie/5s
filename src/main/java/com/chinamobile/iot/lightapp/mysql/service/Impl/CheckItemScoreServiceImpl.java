@@ -1,6 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 
+import com.chinamobile.iot.lightapp.mysql.dao.CheckItemMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.CheckItemScoreMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.ReportItemScoreMapper;
 import com.chinamobile.iot.lightapp.mysql.model.*;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,6 +29,9 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
 
     @Autowired
     private CheckItemScoreMapper checkItemScoreMapper;
+
+    @Autowired
+    private CheckItemMapper checkItemMapper;
     @Autowired
     private ReportItemScoreMapper reportItemScoreMapper;
 
@@ -69,14 +75,89 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
 
     @Override
     public int insert(List<CheckItemScore> checkItemScoreList) {
-        if(!CollectionUtils.isEmpty(checkItemScoreList)) {
-            for(CheckItemScore temp: checkItemScoreList) {
+        int sumScore = 0;
+        Integer reportId = null;
+        Integer reportItemId = null;
+        List<ScoreBean> scoreBeanList = new ArrayList<ScoreBean>();
+        if (!CollectionUtils.isEmpty(checkItemScoreList)) {
+            for (CheckItemScore temp : checkItemScoreList) {
                 checkItemScoreMapper.insertSelective(temp);
+                CheckItem checkItem = checkItemMapper.selectByPrimaryKey(temp.getCheckItemId());
+                ScoreBean scoreBean = new ScoreBean();
+                scoreBean.setItemId(checkItem.getItemId());
+                scoreBean.setPriority(checkItem.getPriority());
+                scoreBean.setScore(temp.getScore());
+                scoreBeanList.add(scoreBean);
+                sumScore = sumScore + temp.getScore();
+                reportId = temp.getReportId();
+                reportItemId = checkItem.getItemId();
             }
         } else {
             throw new RuntimeException("no checkItemScore in the list!");
         }
+        int sScore = compute5SScore(scoreBeanList);
+        ReportItemScore reportItemScore = new ReportItemScore();
+        reportItemScore.setReportId(reportId);
+        reportItemScore.setReportItemId(reportItemId);
+        reportItemScore.setScore(sumScore);
+        reportItemScore.setsScore(sScore);
+        reportItemScoreMapper.insertSelective(reportItemScore);
         return 0;
+    }
+
+    private class ScoreBean {
+        private int priority;
+        private int score;
+        private int itemId;
+
+        public int getPriority() {
+            return priority;
+        }
+
+        public void setPriority(int priority) {
+            this.priority = priority;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
+        }
+
+        public int getItemId() {
+            return itemId;
+        }
+
+        public void setItemId(int itemId) {
+            this.itemId = itemId;
+        }
+    }
+
+    public int compute5SScore(List<ScoreBean> scorelist) {
+        int score = 0;
+        Collections.sort(scorelist, new Comparator<ScoreBean>() {
+            @Override
+            public int compare(ScoreBean lhs, ScoreBean rhs) {
+                if (lhs.priority < rhs.priority)
+                    return -1;
+                else if (lhs.priority > rhs.priority) {
+                    return 1;
+                } else
+                    return 0;
+            }
+        });
+
+        for (int i = 0; i < scorelist.size(); i++) {
+            int s = scorelist.get(i).getScore();
+            if (s < 5) {
+                break;
+            } else {
+                score++;
+            }
+        }
+        return score;
     }
 
 }
