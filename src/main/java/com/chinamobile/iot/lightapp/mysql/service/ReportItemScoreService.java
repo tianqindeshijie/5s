@@ -1,5 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.ReportItemScoreVO;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItemScore;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public interface ReportItemScoreService {
      * @param pageSize the page size
      * @return the reportItemScores
      */
-    public PageInfo<ReportItemScore> findReportItemScores(ReportItemScore reportItemScore, Integer pageNum, Integer pageSize);
+    public PageInfo<ReportItemScoreVO> findReportItemScores(ReportItemScore reportItemScore, Integer pageNum, Integer pageSize);
 
     /**
      * find reportItemScore by reportItemScore id.

@@ -2,6 +2,8 @@ package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 
 import com.chinamobile.iot.lightapp.mysql.dao.ReportItemScoreMapper;
+import com.chinamobile.iot.lightapp.mysql.dao.ReportItemScoreMapperExt;
+import com.chinamobile.iot.lightapp.mysql.dto.ReportItemScoreVO;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItemScore;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItemScoreExample;
 import com.chinamobile.iot.lightapp.mysql.service.ReportItemScoreService;
@@ -24,16 +26,17 @@ public class ReportItemScoreServiceImpl implements ReportItemScoreService {
 
     @Autowired
     private ReportItemScoreMapper reportItemScoreMapper;
-
+    @Autowired
+    private ReportItemScoreMapperExt reportItemScoreMapperExt;
     @Override
-    public PageInfo<ReportItemScore> findReportItemScores(ReportItemScore reportItemScore, Integer pageNum, Integer pageSize) {
+    public PageInfo<ReportItemScoreVO> findReportItemScores(ReportItemScore reportItemScore, Integer pageNum, Integer pageSize) {
         ReportItemScoreExample reportItemScoreExample = new ReportItemScoreExample();
         ReportItemScoreExample.Criteria criteria = reportItemScoreExample.createCriteria();
         Integer reportId = reportItemScore.getReportId();
         criteria.andReportIdEqualTo(reportId);
         PageHelper.startPage(pageNum, pageSize, true, false);
-        List<ReportItemScore> list = reportItemScoreMapper.selectByExample(reportItemScoreExample);
-        return new PageInfo<ReportItemScore>(list);
+        List<ReportItemScoreVO> list = reportItemScoreMapperExt.selectByExample(reportItemScoreExample);
+        return new PageInfo<ReportItemScoreVO>(list);
     }
 
     @Override

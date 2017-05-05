@@ -2,6 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
+import com.chinamobile.iot.lightapp.mysql.dto.ReportItemScoreVO;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItemScore;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
@@ -57,7 +58,7 @@ public class ReportItemScoreController {
      * @return the reportItemScores
      */
     @ApiOperation(value = "查询检查大项评分列表", notes = "查询检查大项评分列表")
-    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportId", value = "报告ID", dataType = "Integer"),
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportId", required = true, value = "报告ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
@@ -67,7 +68,7 @@ public class ReportItemScoreController {
                                             @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         ReportItemScore reportItemScore = new ReportItemScore();
         reportItemScore.setReportId(reportId);
-        PageInfo<ReportItemScore> pageInfo = reportItemScoreService.findReportItemScores(reportItemScore, pageNum, pageSize);
+        PageInfo<ReportItemScoreVO> pageInfo = reportItemScoreService.findReportItemScores(reportItemScore, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
