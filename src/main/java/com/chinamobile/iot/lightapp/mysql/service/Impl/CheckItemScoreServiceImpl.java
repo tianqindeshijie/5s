@@ -3,7 +3,9 @@ package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 import com.chinamobile.iot.lightapp.mysql.dao.CheckItemMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.CheckItemScoreMapper;
+import com.chinamobile.iot.lightapp.mysql.dao.CheckItemScoreMapperExt;
 import com.chinamobile.iot.lightapp.mysql.dao.ReportItemScoreMapper;
+import com.chinamobile.iot.lightapp.mysql.dto.CheckItemScoreDTO;
 import com.chinamobile.iot.lightapp.mysql.model.*;
 import com.chinamobile.iot.lightapp.mysql.service.CheckItemScoreService;
 import com.github.pagehelper.PageHelper;
@@ -29,14 +31,15 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
 
     @Autowired
     private CheckItemScoreMapper checkItemScoreMapper;
-
+    @Autowired
+    private CheckItemScoreMapperExt checkItemScoreMapperExt;
     @Autowired
     private CheckItemMapper checkItemMapper;
     @Autowired
     private ReportItemScoreMapper reportItemScoreMapper;
 
     @Override
-    public PageInfo<CheckItemScore> findCheckItemScores(Integer reportItemId, Integer reportId, Integer pageNum, Integer pageSize) {
+    public PageInfo<CheckItemScoreDTO> findCheckItemScores(Integer reportItemId, Integer reportId, Integer pageNum, Integer pageSize) {
         ReportItemScoreExample reportItemScoreExample = new ReportItemScoreExample();
         ReportItemScoreExample.Criteria criteria = reportItemScoreExample.createCriteria();
         criteria.andReportIdEqualTo(reportId);
@@ -54,8 +57,8 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
         CheckItemScoreExample.Criteria criteria1 = checkItemScoreExample.createCriteria();
         criteria1.andReportItemScoreIdIn(reportItemScoreIdList);
         PageHelper.startPage(pageNum, pageSize, true, false);
-        List<CheckItemScore> list = checkItemScoreMapper.selectByExample(checkItemScoreExample);
-        return new PageInfo<CheckItemScore>(list);
+        List<CheckItemScoreDTO> list = checkItemScoreMapperExt.selectByExample(checkItemScoreExample);
+        return new PageInfo<CheckItemScoreDTO>(list);
     }
 
     @Override
@@ -74,23 +77,21 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
     }
 
     @Override
-    public int insert(List<CheckItemScore> checkItemScoreList) {
+    public int insert(Integer reportId, Integer reportItemId, List<CheckItemScore> checkItemScoreList) {
         int sumScore = 0;
-        Integer reportId = null;
-        Integer reportItemId = null;
         List<ScoreBean> scoreBeanList = new ArrayList<ScoreBean>();
         if (!CollectionUtils.isEmpty(checkItemScoreList)) {
             for (CheckItemScore temp : checkItemScoreList) {
-                checkItemScoreMapper.insertSelective(temp);
                 CheckItem checkItem = checkItemMapper.selectByPrimaryKey(temp.getCheckItemId());
+                if(checkItem == null) {
+                    throw new RuntimeException("Can not find this checkItem!");
+                }
                 ScoreBean scoreBean = new ScoreBean();
                 scoreBean.setItemId(checkItem.getItemId());
                 scoreBean.setPriority(checkItem.getPriority());
                 scoreBean.setScore(temp.getScore());
                 scoreBeanList.add(scoreBean);
                 sumScore = sumScore + temp.getScore();
-                reportId = temp.getReportId();
-                reportItemId = checkItem.getItemId();
             }
         } else {
             throw new RuntimeException("no checkItemScore in the list!");
@@ -102,6 +103,14 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
         reportItemScore.setScore(sumScore);
         reportItemScore.setsScore(sScore);
         reportItemScoreMapper.insertSelective(reportItemScore);
+        Integer reportItemScoreId = reportItemScore.getReportItemScoreId();
+        if (!CollectionUtils.isEmpty(checkItemScoreList)) {
+            for (CheckItemScore temp : checkItemScoreList) {
+                temp.setReportId(reportId);
+                temp.setReportItemScoreId(reportItemScoreId);
+                checkItemScoreMapper.insertSelective(temp);
+            }
+        }
         return 0;
     }
 

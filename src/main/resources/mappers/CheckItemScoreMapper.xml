@@ -9,7 +9,7 @@
     <id column="check_item_score_id" jdbcType="INTEGER" property="checkItemScoreId" />
     <result column="check_item_id" jdbcType="INTEGER" property="checkItemId" />
     <result column="remark_content" jdbcType="VARCHAR" property="remarkContent" />
-    <result column="score" jdbcType="REAL" property="score" />
+    <result column="score" jdbcType="INTEGER" property="score" />
     <result column="report_item_score_id" jdbcType="INTEGER" property="reportItemScoreId" />
     <result column="report_id" jdbcType="INTEGER" property="reportId" />
   </resultMap>
@@ -144,7 +144,7 @@
     </selectKey>
     insert into check_item_score (check_item_id, remark_content, score, 
       report_item_score_id, report_id)
-    values (#{checkItemId,jdbcType=INTEGER}, #{remarkContent,jdbcType=VARCHAR}, #{score,jdbcType=REAL}, 
+    values (#{checkItemId,jdbcType=INTEGER}, #{remarkContent,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
       #{reportItemScoreId,jdbcType=INTEGER}, #{reportId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.chinamobile.iot.lightapp.mysql.model.CheckItemScore">
@@ -181,7 +181,7 @@
         #{remarkContent,jdbcType=VARCHAR},
       </if>
       <if test="score != null">
-        #{score,jdbcType=REAL},
+        #{score,jdbcType=INTEGER},
       </if>
       <if test="reportItemScoreId != null">
         #{reportItemScoreId,jdbcType=INTEGER},
@@ -218,7 +218,7 @@
         remark_content = #{record.remarkContent,jdbcType=VARCHAR},
       </if>
       <if test="record.score != null">
-        score = #{record.score,jdbcType=REAL},
+        score = #{record.score,jdbcType=INTEGER},
       </if>
       <if test="record.reportItemScoreId != null">
         report_item_score_id = #{record.reportItemScoreId,jdbcType=INTEGER},
@@ -240,7 +240,7 @@
     set check_item_score_id = #{record.checkItemScoreId,jdbcType=INTEGER},
       check_item_id = #{record.checkItemId,jdbcType=INTEGER},
       remark_content = #{record.remarkContent,jdbcType=VARCHAR},
-      score = #{record.score,jdbcType=REAL},
+      score = #{record.score,jdbcType=INTEGER},
       report_item_score_id = #{record.reportItemScoreId,jdbcType=INTEGER},
       report_id = #{record.reportId,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -261,7 +261,7 @@
         remark_content = #{remarkContent,jdbcType=VARCHAR},
       </if>
       <if test="score != null">
-        score = #{score,jdbcType=REAL},
+        score = #{score,jdbcType=INTEGER},
       </if>
       <if test="reportItemScoreId != null">
         report_item_score_id = #{reportItemScoreId,jdbcType=INTEGER},
@@ -280,7 +280,7 @@
     update check_item_score
     set check_item_id = #{checkItemId,jdbcType=INTEGER},
       remark_content = #{remarkContent,jdbcType=VARCHAR},
-      score = #{score,jdbcType=REAL},
+      score = #{score,jdbcType=INTEGER},
       report_item_score_id = #{reportItemScoreId,jdbcType=INTEGER},
       report_id = #{reportId,jdbcType=INTEGER}
     where check_item_score_id = #{checkItemScoreId,jdbcType=INTEGER}
