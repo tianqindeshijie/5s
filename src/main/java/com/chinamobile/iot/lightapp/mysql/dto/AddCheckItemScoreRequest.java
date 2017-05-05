@@ -1,7 +1,5 @@
 package com.chinamobile.iot.lightapp.mysql.dto;
 
-import com.chinamobile.iot.lightapp.mysql.model.CheckItemScore;
-
 import java.util.List;
 
 /**
@@ -11,23 +9,36 @@ public class AddCheckItemScoreRequest {
 
     private Integer reportItemId;
 
-    private List<CheckItemScore> checkItemScoreList;
+    private Integer reportId;
+
+    private List<CheckItemScoreVO> checkItemScoreList;
 
     /**
      * Gets check item score list.
      *
      * @return the check item score list
      */
-    public List<CheckItemScore> getCheckItemScoreList() {
+    public List<CheckItemScoreVO> getCheckItemScoreList() {
         return checkItemScoreList;
     }
 
-    /**
-     * Sets check item score list.
-     *
-     * @param checkItemScoreList the check item score list
-     */
-    public void setCheckItemScoreList(List<CheckItemScore> checkItemScoreList) {
+    public Integer getReportItemId() {
+        return reportItemId;
+    }
+
+    public void setReportItemId(Integer reportItemId) {
+        this.reportItemId = reportItemId;
+    }
+
+    public Integer getReportId() {
+        return reportId;
+    }
+
+    public void setReportId(Integer reportId) {
+        this.reportId = reportId;
+    }
+
+    public void setCheckItemScoreList(List<CheckItemScoreVO> checkItemScoreList) {
         this.checkItemScoreList = checkItemScoreList;
     }
 }
