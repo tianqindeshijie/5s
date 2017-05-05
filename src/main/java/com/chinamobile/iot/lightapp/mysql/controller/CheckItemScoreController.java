@@ -3,6 +3,8 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.AddCheckItemScoreRequest;
+import com.chinamobile.iot.lightapp.mysql.dto.CheckItemScoreDTO;
+import com.chinamobile.iot.lightapp.mysql.dto.CheckItemScoreVO;
 import com.chinamobile.iot.lightapp.mysql.model.CheckItemScore;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.CheckItemScoreService;
@@ -14,7 +16,11 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The devices controller.
@@ -60,7 +66,7 @@ public class CheckItemScoreController {
      */
     @ApiOperation(value = "查询检查小项评分列表", notes = "查询检查小项评分列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportItemId", required = true, value = "检查大项ID", dataType = "Integer"),
-            @ApiImplicitParam(paramType = "query", name = "reportId", value = "报告ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "reportId", required = true, value = "报告ID", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
@@ -70,7 +76,7 @@ public class CheckItemScoreController {
                                            @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                            @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
 
-        PageInfo<CheckItemScore> pageInfo = checkItemScoreService.findCheckItemScores(reportItemId,reportId,pageNum, pageSize);
+        PageInfo<CheckItemScoreDTO> pageInfo = checkItemScoreService.findCheckItemScores(reportItemId, reportId, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
@@ -88,7 +94,21 @@ public class CheckItemScoreController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/checkItemScores", method = RequestMethod.POST)
     public BaseResponse addCheckItemScore(@RequestBody AddCheckItemScoreRequest addCheckItemScoreRequest) {
-        checkItemScoreService.insert(addCheckItemScoreRequest.getCheckItemScoreList());
+        Integer reportItemId = addCheckItemScoreRequest.getReportItemId();
+        Integer reportId = addCheckItemScoreRequest.getReportId();
+        List<CheckItemScore> list = new ArrayList<CheckItemScore>();
+        if (!CollectionUtils.isEmpty(addCheckItemScoreRequest.getCheckItemScoreList())) {
+            for (CheckItemScoreVO temp : addCheckItemScoreRequest.getCheckItemScoreList()) {
+                CheckItemScore checkItemScore = new CheckItemScore();
+                checkItemScore.setRemarkContent(temp.getRemarkContent());
+                checkItemScore.setScore(temp.getScore());
+                checkItemScore.setCheckItemId(temp.getCheckItemId());
+                list.add(checkItemScore);
+            }
+        } else {
+            throw new RuntimeException("no checkItemScore in the list!");
+        }
+        checkItemScoreService.insert(reportId, reportItemId, list);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
