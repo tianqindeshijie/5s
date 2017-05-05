@@ -37,7 +37,7 @@ public class CheckItemScore implements Serializable {
      *
      * @mbg.generated
      */
-    private Float score;
+    private Integer score;
 
     /**
      *
@@ -145,7 +145,7 @@ public class CheckItemScore implements Serializable {
      *
      * @mbg.generated
      */
-    public Float getScore() {
+    public Integer getScore() {
         return score;
     }
 
@@ -157,7 +157,7 @@ public class CheckItemScore implements Serializable {
      *
      * @mbg.generated
      */
-    public void setScore(Float score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
