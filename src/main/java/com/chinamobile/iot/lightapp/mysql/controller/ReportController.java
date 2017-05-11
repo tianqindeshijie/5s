@@ -4,7 +4,6 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.AddReportRequest;
 import com.chinamobile.iot.lightapp.mysql.model.Report;
-import com.chinamobile.iot.lightapp.mysql.request.UpdateApplyRequest;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.ReportService;
 import com.chinamobile.iot.security.SecurityUtils;
@@ -118,15 +117,15 @@ public class ReportController {
     /**
      * 更新报告信息.
      *
-     * @param updateApplyRequest the update apply request
+     * @param Report the update apply request
      * @return the integer
      */
     @ApiOperation(value = "更新报告", notes = "更新报告")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reports", method = RequestMethod.PUT)
-    public BaseResponse updateReport(@RequestBody UpdateApplyRequest updateApplyRequest) {
+    public BaseResponse updateReport(@RequestBody Report Report) {
         Report report = new Report();
-        BeanUtils.copyProperties(updateApplyRequest, report);
+        BeanUtils.copyProperties(Report, report);
         reportService.updateByReportId(report);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
