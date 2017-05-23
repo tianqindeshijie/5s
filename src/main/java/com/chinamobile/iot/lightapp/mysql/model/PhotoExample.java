@@ -254,76 +254,6 @@ public class PhotoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhotoNameIsNull() {
-            addCriterion("photo.photo_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameIsNotNull() {
-            addCriterion("photo.photo_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameEqualTo(String value) {
-            addCriterion("photo.photo_name =", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameNotEqualTo(String value) {
-            addCriterion("photo.photo_name <>", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameGreaterThan(String value) {
-            addCriterion("photo.photo_name >", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameGreaterThanOrEqualTo(String value) {
-            addCriterion("photo.photo_name >=", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameLessThan(String value) {
-            addCriterion("photo.photo_name <", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameLessThanOrEqualTo(String value) {
-            addCriterion("photo.photo_name <=", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameLike(String value) {
-            addCriterion("photo.photo_name like", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameNotLike(String value) {
-            addCriterion("photo.photo_name not like", value, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameIn(List<String> values) {
-            addCriterion("photo.photo_name in", values, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameNotIn(List<String> values) {
-            addCriterion("photo.photo_name not in", values, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameBetween(String value1, String value2) {
-            addCriterion("photo.photo_name between", value1, value2, "photoName");
-            return (Criteria) this;
-        }
-
-        public Criteria andPhotoNameNotBetween(String value1, String value2) {
-            addCriterion("photo.photo_name not between", value1, value2, "photoName");
-            return (Criteria) this;
-        }
-
         public Criteria andPhotoAddrIsNull() {
             addCriterion("photo.photo_addr is null");
             return (Criteria) this;
@@ -394,63 +324,63 @@ public class PhotoExample {
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdIsNull() {
-            addCriterion("photo.check_item_id is null");
+        public Criteria andPhotoTypeIsNull() {
+            addCriterion("photo.photo_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdIsNotNull() {
-            addCriterion("photo.check_item_id is not null");
+        public Criteria andPhotoTypeIsNotNull() {
+            addCriterion("photo.photo_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdEqualTo(Integer value) {
-            addCriterion("photo.check_item_id =", value, "checkItemId");
+        public Criteria andPhotoTypeEqualTo(Integer value) {
+            addCriterion("photo.photo_type =", value, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdNotEqualTo(Integer value) {
-            addCriterion("photo.check_item_id <>", value, "checkItemId");
+        public Criteria andPhotoTypeNotEqualTo(Integer value) {
+            addCriterion("photo.photo_type <>", value, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdGreaterThan(Integer value) {
-            addCriterion("photo.check_item_id >", value, "checkItemId");
+        public Criteria andPhotoTypeGreaterThan(Integer value) {
+            addCriterion("photo.photo_type >", value, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("photo.check_item_id >=", value, "checkItemId");
+        public Criteria andPhotoTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("photo.photo_type >=", value, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdLessThan(Integer value) {
-            addCriterion("photo.check_item_id <", value, "checkItemId");
+        public Criteria andPhotoTypeLessThan(Integer value) {
+            addCriterion("photo.photo_type <", value, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdLessThanOrEqualTo(Integer value) {
-            addCriterion("photo.check_item_id <=", value, "checkItemId");
+        public Criteria andPhotoTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("photo.photo_type <=", value, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdIn(List<Integer> values) {
-            addCriterion("photo.check_item_id in", values, "checkItemId");
+        public Criteria andPhotoTypeIn(List<Integer> values) {
+            addCriterion("photo.photo_type in", values, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdNotIn(List<Integer> values) {
-            addCriterion("photo.check_item_id not in", values, "checkItemId");
+        public Criteria andPhotoTypeNotIn(List<Integer> values) {
+            addCriterion("photo.photo_type not in", values, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdBetween(Integer value1, Integer value2) {
-            addCriterion("photo.check_item_id between", value1, value2, "checkItemId");
+        public Criteria andPhotoTypeBetween(Integer value1, Integer value2) {
+            addCriterion("photo.photo_type between", value1, value2, "photoType");
             return (Criteria) this;
         }
 
-        public Criteria andCheckItemIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("photo.check_item_id not between", value1, value2, "checkItemId");
+        public Criteria andPhotoTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("photo.photo_type not between", value1, value2, "photoType");
             return (Criteria) this;
         }
     }
