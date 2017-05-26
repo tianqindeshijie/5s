@@ -1,5 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,16 @@ public class AddCheckItemScoreRequest {
     private Integer reportId;
 
     private List<CheckItemScoreVO> checkItemScoreList;
+
+    private MultipartFile[] files;
+
+    public MultipartFile[] getFiles() {
+        return files;
+    }
+
+    public void setFiles(MultipartFile[] files) {
+        this.files = files;
+    }
 
     /**
      * Gets check item score list.

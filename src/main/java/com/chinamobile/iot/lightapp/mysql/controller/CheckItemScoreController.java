@@ -108,7 +108,7 @@ public class CheckItemScoreController {
         } else {
             throw new RuntimeException("no checkItemScore in the list!");
         }
-        checkItemScoreService.insert(reportId, reportItemId, list);
+        checkItemScoreService.insert(reportId, reportItemId, list,addCheckItemScoreRequest.getFiles());
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);

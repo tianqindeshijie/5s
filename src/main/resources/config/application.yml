@@ -30,4 +30,6 @@ mybatis:
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: com.chinamobile.iot.lightapp.mysql.model
 
-
+5s:
+  file:
+    path: /home/app/test/5stest/photo

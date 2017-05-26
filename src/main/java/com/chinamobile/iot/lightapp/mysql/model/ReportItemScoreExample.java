@@ -563,6 +563,76 @@ public class ReportItemScoreExample {
             addCriterion("s_score not between", value1, value2, "sScore");
             return (Criteria) this;
         }
+
+        public Criteria andPhotoIdsIsNull() {
+            addCriterion("photo_ids is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsIsNotNull() {
+            addCriterion("photo_ids is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsEqualTo(String value) {
+            addCriterion("photo_ids =", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsNotEqualTo(String value) {
+            addCriterion("photo_ids <>", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsGreaterThan(String value) {
+            addCriterion("photo_ids >", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsGreaterThanOrEqualTo(String value) {
+            addCriterion("photo_ids >=", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsLessThan(String value) {
+            addCriterion("photo_ids <", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsLessThanOrEqualTo(String value) {
+            addCriterion("photo_ids <=", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsLike(String value) {
+            addCriterion("photo_ids like", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsNotLike(String value) {
+            addCriterion("photo_ids not like", value, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsIn(List<String> values) {
+            addCriterion("photo_ids in", values, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsNotIn(List<String> values) {
+            addCriterion("photo_ids not in", values, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsBetween(String value1, String value2) {
+            addCriterion("photo_ids between", value1, value2, "photoIds");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIdsNotBetween(String value1, String value2) {
+            addCriterion("photo_ids not between", value1, value2, "photoIds");
+            return (Criteria) this;
+        }
     }
 
     /**

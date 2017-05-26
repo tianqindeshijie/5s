@@ -14,12 +14,20 @@ public class ReportItemScoreVO implements Serializable {
     private Integer reportId;
 
     private Integer sScore;
-
+    private String photoIds;
     private String itemName;
 
     private String itemContent;
 
     private static final long serialVersionUID = 1L;
+
+    public String getPhotoIds() {
+        return photoIds;
+    }
+
+    public void setPhotoIds(String photoIds) {
+        this.photoIds = photoIds;
+    }
 
     public Integer getReportItemScoreId() {
         return reportItemScoreId;

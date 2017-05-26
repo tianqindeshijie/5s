@@ -324,73 +324,63 @@ public class WorkCycleExample {
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrIsNull() {
-            addCriterion("img_addr is null");
+        public Criteria andPhotoIdIsNull() {
+            addCriterion("photo_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrIsNotNull() {
-            addCriterion("img_addr is not null");
+        public Criteria andPhotoIdIsNotNull() {
+            addCriterion("photo_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrEqualTo(String value) {
-            addCriterion("img_addr =", value, "imgAddr");
+        public Criteria andPhotoIdEqualTo(Integer value) {
+            addCriterion("photo_id =", value, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrNotEqualTo(String value) {
-            addCriterion("img_addr <>", value, "imgAddr");
+        public Criteria andPhotoIdNotEqualTo(Integer value) {
+            addCriterion("photo_id <>", value, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrGreaterThan(String value) {
-            addCriterion("img_addr >", value, "imgAddr");
+        public Criteria andPhotoIdGreaterThan(Integer value) {
+            addCriterion("photo_id >", value, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrGreaterThanOrEqualTo(String value) {
-            addCriterion("img_addr >=", value, "imgAddr");
+        public Criteria andPhotoIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("photo_id >=", value, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrLessThan(String value) {
-            addCriterion("img_addr <", value, "imgAddr");
+        public Criteria andPhotoIdLessThan(Integer value) {
+            addCriterion("photo_id <", value, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrLessThanOrEqualTo(String value) {
-            addCriterion("img_addr <=", value, "imgAddr");
+        public Criteria andPhotoIdLessThanOrEqualTo(Integer value) {
+            addCriterion("photo_id <=", value, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrLike(String value) {
-            addCriterion("img_addr like", value, "imgAddr");
+        public Criteria andPhotoIdIn(List<Integer> values) {
+            addCriterion("photo_id in", values, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrNotLike(String value) {
-            addCriterion("img_addr not like", value, "imgAddr");
+        public Criteria andPhotoIdNotIn(List<Integer> values) {
+            addCriterion("photo_id not in", values, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrIn(List<String> values) {
-            addCriterion("img_addr in", values, "imgAddr");
+        public Criteria andPhotoIdBetween(Integer value1, Integer value2) {
+            addCriterion("photo_id between", value1, value2, "photoId");
             return (Criteria) this;
         }
 
-        public Criteria andImgAddrNotIn(List<String> values) {
-            addCriterion("img_addr not in", values, "imgAddr");
-            return (Criteria) this;
-        }
-
-        public Criteria andImgAddrBetween(String value1, String value2) {
-            addCriterion("img_addr between", value1, value2, "imgAddr");
-            return (Criteria) this;
-        }
-
-        public Criteria andImgAddrNotBetween(String value1, String value2) {
-            addCriterion("img_addr not between", value1, value2, "imgAddr");
+        public Criteria andPhotoIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("photo_id not between", value1, value2, "photoId");
             return (Criteria) this;
         }
     }

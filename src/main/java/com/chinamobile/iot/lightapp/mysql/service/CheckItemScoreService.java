@@ -5,6 +5,7 @@ import com.chinamobile.iot.lightapp.mysql.model.CheckItemScore;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -64,5 +65,5 @@ public interface CheckItemScoreService {
      * @return the int
      */
     @Transactional
-    public int insert(Integer reportId, Integer reportItemId, List<CheckItemScore> checkItemScoreList);
+    public int insert(Integer reportId, Integer reportItemId, List<CheckItemScore> checkItemScoreList,MultipartFile[] multipartFiles);
 }

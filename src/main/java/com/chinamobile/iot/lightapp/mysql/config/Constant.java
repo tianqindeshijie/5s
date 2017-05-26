@@ -44,10 +44,24 @@ public class Constant {
     /**
      * 申请类型:0 -- 用户申请.
      */
-    public static final int  APPLYTYPE_USER = 0;
+    public static final int APPLYTYPE_USER = 0;
 
     /**
      * 申请类型:1 -- 管理员邀请
      */
-    public static final int  APPLYTYPE_ADMIN = 1;
+    public static final int APPLYTYPE_ADMIN = 1;
+
+    /**
+     * 照片类型:0 -- 用户头像
+     */
+    public static final int PHOTO_TYPE_USER = 0;
+    /**
+     * 照片类型:1 -- 工作圈头像
+     */
+    public static final int PHOTO_TYPE_WORKCYCLE = 1;
+
+    /**
+     * 照片类型:2 -- 大项检查照片
+     */
+    public static final int PHOTO_TYPE_CHECK = 2;
 }
