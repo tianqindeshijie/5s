@@ -40,12 +40,22 @@ public class User implements UserDetails, Serializable {
     @JSONField(serialize = false)
     private String password;
 
+    private Integer photoId;
+
+    public Integer getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(Integer photoId) {
+        this.photoId = photoId;
+    }
+
     /**
      * Instantiates a new User.
-     *
      */
     public User() {
     }
+
     /**
      * Instantiates a new User.
      *
