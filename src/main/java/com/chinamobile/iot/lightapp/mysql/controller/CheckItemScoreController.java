@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,11 +94,13 @@ public class CheckItemScoreController {
     @ApiOperation(value = "新增检查小项评分", notes = "新增检查小项评分")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/checkItemScores", method = RequestMethod.POST)
-    public BaseResponse addCheckItemScore(@RequestBody AddCheckItemScoreRequest addCheckItemScoreRequest) {
+    public BaseResponse addCheckItemScore(@RequestBody AddCheckItemScoreRequest addCheckItemScoreRequest, @RequestParam("files") MultipartFile[] files) {
         Integer reportItemId = addCheckItemScoreRequest.getReportItemId();
         Integer reportId = addCheckItemScoreRequest.getReportId();
         List<CheckItemScore> list = new ArrayList<CheckItemScore>();
-        if (!CollectionUtils.isEmpty(addCheckItemScoreRequest.getCheckItemScoreList())) {
+        if (!CollectionUtils.isEmpty(addCheckItemScoreRequest.getCheckItemScoreList()))
+
+        {
             for (CheckItemScoreVO temp : addCheckItemScoreRequest.getCheckItemScoreList()) {
                 CheckItemScore checkItemScore = new CheckItemScore();
                 checkItemScore.setRemarkContent(temp.getRemarkContent());
@@ -105,10 +108,13 @@ public class CheckItemScoreController {
                 checkItemScore.setCheckItemId(temp.getCheckItemId());
                 list.add(checkItemScore);
             }
-        } else {
+        } else
+
+        {
             throw new RuntimeException("no checkItemScore in the list!");
         }
-        checkItemScoreService.insert(reportId, reportItemId, list,addCheckItemScoreRequest.getFiles());
+
+        checkItemScoreService.insert(reportId, reportItemId, list, files);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
