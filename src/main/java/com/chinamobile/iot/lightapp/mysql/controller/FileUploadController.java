@@ -1,7 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
-import com.chinamobile.iot.lightapp.mysql.dto.TestDTO;
 import com.chinamobile.iot.lightapp.mysql.dto.UploadItemPhotoVO;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.service.FileUploadService;
@@ -152,22 +151,4 @@ public class FileUploadController {
 
     }*/
 
-    /**
-     * 新增检查小项评分信息.
-     *
-     * @param
-     * @return the integer
-     */
-    @ApiOperation(value = "上传多个文件", notes = "上传多个文件")
-    @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
-    @RequestMapping(value = "/uploadMultifiles", method = RequestMethod.POST)
-    public BaseResponse uploadMultifiles(@RequestBody TestDTO testDTO, @RequestParam("files") MultipartFile[] files) {
-        for (MultipartFile file : files) {
-            fileUploadService.saveUploadedFiles(file);
-        }
-        BaseResponse response = new BaseResponse();
-        response.setCode(Constant.SUCCESS_CODE);
-        response.setMsg(Constant.SUCCESS_MSG);
-        return response;
-    }
 }
