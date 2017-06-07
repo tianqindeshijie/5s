@@ -3,7 +3,7 @@ package com.chinamobile.iot.lightapp.mysql.response;
 /**
  * Created by ztz on 2016/7/5.
  */
-public class BaseResponse {
+public class BaseResponse<T> {
     /**
      * 返回码
      */
@@ -12,7 +12,7 @@ public class BaseResponse {
      * 提示信息
      */
     private String msg;
-    private Object data;
+    private T data;
 
     public int getCode() {
         return code;
@@ -30,11 +30,11 @@ public class BaseResponse {
         this.msg = msg;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
