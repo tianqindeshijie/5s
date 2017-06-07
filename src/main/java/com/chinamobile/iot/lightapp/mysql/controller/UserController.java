@@ -48,8 +48,9 @@ public class UserController {
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "phone", value = "电话", dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "password", value = "密码", dataType = "String")})
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(@RequestParam(value = "phone", required = false) String phone,
+    public BaseResponse<com.chinamobile.iot.security.User> login(@RequestParam(value = "phone", required = false) String phone,
                       @RequestParam(value = "password", required = false) String password) {
+        return new BaseResponse();
     }
 
     /**
