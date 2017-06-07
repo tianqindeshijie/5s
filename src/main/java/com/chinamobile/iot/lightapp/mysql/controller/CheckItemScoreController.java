@@ -94,7 +94,7 @@ public class CheckItemScoreController {
     @ApiOperation(value = "新增检查小项评分", notes = "新增检查小项评分")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/checkItemScores", method = RequestMethod.POST)
-    public BaseResponse addCheckItemScore(@RequestBody AddCheckItemScoreRequest addCheckItemScoreRequest, @RequestParam("files") MultipartFile[] files) {
+    public BaseResponse addCheckItemScore(@RequestPart("addCheckItemScoreRequest") AddCheckItemScoreRequest addCheckItemScoreRequest, @RequestPart("files") MultipartFile[] files) {
         Integer reportItemId = addCheckItemScoreRequest.getReportItemId();
         Integer reportId = addCheckItemScoreRequest.getReportId();
         List<CheckItemScore> list = new ArrayList<CheckItemScore>();
