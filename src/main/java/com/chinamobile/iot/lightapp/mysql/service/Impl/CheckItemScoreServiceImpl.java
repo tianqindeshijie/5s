@@ -158,6 +158,7 @@ public class CheckItemScoreServiceImpl implements CheckItemScoreService {
         String photoIdJson = JSON.toJSONString(photoIds);
         ReportItemScore reportItemScore = new ReportItemScore();
         reportItemScore.setReportItemScoreId(reportItemScoreId);
+        reportItemScore.setPhotoIds(photoIdJson);
         reportItemScoreMapper.updateByPrimaryKeySelective(reportItemScore);
     }
 
