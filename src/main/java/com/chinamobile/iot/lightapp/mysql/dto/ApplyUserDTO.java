@@ -11,6 +11,16 @@ public class ApplyUserDTO extends Apply {
 
     private String phone;
 
+    private Integer photoId;
+
+    public Integer getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(Integer photoId) {
+        this.photoId = photoId;
+    }
+
     /**
      * Gets nick name.
      *

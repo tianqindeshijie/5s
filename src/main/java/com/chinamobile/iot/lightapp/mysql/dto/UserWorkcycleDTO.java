@@ -13,6 +13,16 @@ public class UserWorkcycleDTO {
 
     private String workCycleName;
 
+    private Integer photoId;
+
+    public Integer getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(Integer photoId) {
+        this.photoId = photoId;
+    }
+
     /**
      * Gets work cycle id.
      *
