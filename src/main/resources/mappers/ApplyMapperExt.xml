@@ -15,6 +15,7 @@
     <result column="apply_apply_time" jdbcType="TIMESTAMP" property="applyTime" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="photo_id" jdbcType="INTEGER" property="photoId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -89,7 +90,7 @@
     -->
     apply.apply_id as apply_apply_id, apply.apply_user as apply_apply_user, apply.inviter as apply_inviter, 
     apply.cycle_id as apply_cycle_id, apply.apply_type as apply_apply_type, apply.`result` as `apply_result`, 
-    apply.apply_time as apply_apply_time, nick_name, phone
+    apply.apply_time as apply_apply_time, nick_name, phone,photo_id
   </sql>
   <select id="selectByExample" parameterType="com.chinamobile.iot.lightapp.mysql.model.ApplyExample" resultMap="BaseResultMap">
     <!--
