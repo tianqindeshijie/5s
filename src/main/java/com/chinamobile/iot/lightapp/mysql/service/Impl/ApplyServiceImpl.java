@@ -42,15 +42,9 @@ public class ApplyServiceImpl implements ApplyService {
 
     @Override
     public PageInfo<ApplyUserDTO> findApplys(Apply apply, Integer userId, Integer pageNum, Integer pageSize) {
-        //查询用户所有的工作圈
-        UserWorkcycleExample userWorkcycleExample = new UserWorkcycleExample();
-        UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
-        criteria.andUserIdEqualTo(userId);
-        List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
         //查询申请列表
         ApplyExample applyExample = new ApplyExample();
         ApplyExample.Criteria criteria2 = applyExample.createCriteria();
-
         Integer inviter = apply.getInviter();
         if (inviter != null) {
             criteria2.andInviterEqualTo(inviter);
@@ -59,23 +53,11 @@ public class ApplyServiceImpl implements ApplyService {
         if (cycleId != null) {
             criteria2.andCycleIdEqualTo(cycleId);
         }
-        List<Integer> workCycleList = new ArrayList<Integer>();
-        if (list != null && list.size() > 0) {
-            Integer applyUser = apply.getApplyUser();
-            if (applyUser != null) {
-                criteria2.andApplyUserEqualTo(applyUser);
-            }
-            for (UserWorkcycle temp : list) {
-                workCycleList.add(temp.getWorkCycleId());
-            }
-            criteria2.andCycleIdIn(workCycleList);
+        Integer applyUser = apply.getApplyUser();
+        if (applyUser != null) {
+            criteria2.andApplyUserEqualTo(applyUser);
         } else {
-            Integer applyUser = apply.getApplyUser();
-            if (applyUser != null) {
-                criteria2.andApplyUserEqualTo(applyUser);
-            } else {
-                return null;
-            }
+            return null;
         }
         PageHelper.startPage(pageNum, pageSize, true, false);
         List<ApplyUserDTO> applyList = applyMapperExt.selectByExample(applyExample);
