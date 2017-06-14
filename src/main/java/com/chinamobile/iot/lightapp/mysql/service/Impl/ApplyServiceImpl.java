@@ -56,8 +56,6 @@ public class ApplyServiceImpl implements ApplyService {
         Integer applyUser = apply.getApplyUser();
         if (applyUser != null) {
             criteria2.andApplyUserEqualTo(applyUser);
-        } else {
-            return null;
         }
         PageHelper.startPage(pageNum, pageSize, true, false);
         List<ApplyUserDTO> applyList = applyMapperExt.selectByExample(applyExample);
