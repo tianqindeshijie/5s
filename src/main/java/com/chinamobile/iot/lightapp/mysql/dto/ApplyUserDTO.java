@@ -11,14 +11,24 @@ public class ApplyUserDTO extends Apply {
 
     private String phone;
 
-    private Integer photoId;
+    private Integer userPhotoId;
+    private String workCycleName;
 
-    public Integer getPhotoId() {
-        return photoId;
+
+    public Integer getUserPhotoId() {
+        return userPhotoId;
     }
 
-    public void setPhotoId(Integer photoId) {
-        this.photoId = photoId;
+    public void setUserPhotoId(Integer userPhotoId) {
+        this.userPhotoId = userPhotoId;
+    }
+
+    public String getWorkCycleName() {
+        return workCycleName;
+    }
+
+    public void setWorkCycleName(String workCycleName) {
+        this.workCycleName = workCycleName;
     }
 
     /**
