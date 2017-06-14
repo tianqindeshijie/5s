@@ -15,7 +15,8 @@
     <result column="apply_apply_time" jdbcType="TIMESTAMP" property="applyTime" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="photo_id" jdbcType="INTEGER" property="photoId" />
+    <result column="user_photo_id" jdbcType="INTEGER" property="userPhotoId" />
+    <result column="work_cycle_name" jdbcType="VARCHAR" property="workCycleName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -90,7 +91,7 @@
     -->
     apply.apply_id as apply_apply_id, apply.apply_user as apply_apply_user, apply.inviter as apply_inviter, 
     apply.cycle_id as apply_cycle_id, apply.apply_type as apply_apply_type, apply.`result` as `apply_result`, 
-    apply.apply_time as apply_apply_time, nick_name, phone,photo_id
+    apply.apply_time as apply_apply_time, nick_name, phone,user.photo_id as user_photo_id,work_cycle_name
   </sql>
   <select id="selectByExample" parameterType="com.chinamobile.iot.lightapp.mysql.model.ApplyExample" resultMap="BaseResultMap">
     <!--
@@ -103,7 +104,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from apply apply LEFT JOIN user ON apply.apply_user = user.user_id
+    from apply apply LEFT JOIN user ON apply.apply_user = user.user_id LEFT JOIN work_cycle ON apply.cycle_id = work_cycle.work_cycle_id
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
