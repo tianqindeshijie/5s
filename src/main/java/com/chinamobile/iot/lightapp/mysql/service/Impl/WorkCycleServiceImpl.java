@@ -40,7 +40,7 @@ public class WorkCycleServiceImpl implements WorkCycleService {
     public PageInfo<WorkCycle> findWorkCycles(WorkCycle workCycle, Integer pageNum, Integer pageSize) {
         WorkCycleExample workCycleExample = new WorkCycleExample();
         WorkCycleExample.Criteria criteria = workCycleExample.createCriteria();
-        criteria.andWorkCycleNameLike("%" + workCycle.getWorkCycleName());
+        criteria.andWorkCycleNameLike(workCycle.getWorkCycleName() +"%");
         PageHelper.startPage(pageNum, pageSize, true, false);
         List<WorkCycle> list = workCycleMapper.selectByExample(workCycleExample);
         return new PageInfo<WorkCycle>(list);
