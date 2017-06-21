@@ -1,5 +1,8 @@
 package com.chinamobile.iot.lightapp.mysql.controller;
 
+import com.chinamobile.iot.lightapp.mysql.exception.EmailExistsException;
+import com.chinamobile.iot.lightapp.mysql.exception.NickNameExistsException;
+import com.chinamobile.iot.lightapp.mysql.exception.PhoneExistsException;
 import com.chinamobile.iot.lightapp.mysql.response.ExceptionResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,7 +131,40 @@ public class GlobalExceptionHandler {
         log.error("Occurred MissingServletRequestParameterException, Returning HTTP 500 internal server error!", exception);
         String parameterName = exception.getParameterName();
         String parameterType = exception.getParameterType();
-        String msg=String.format("Please enter %s ,ParameterType is %s", parameterName,parameterType);
+        String msg = String.format("Please enter %s ,ParameterType is %s", parameterName, parameterType);
         return ExceptionResponse.create(HttpStatus.INTERNAL_SERVER_ERROR.value(), msg);
+    }
+
+
+    @ExceptionHandler(EmailExistsException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ExceptionResponse handleMethodArgumentNotValidException(HttpServletRequest request, EmailExistsException exception) {
+        log.error("Occurred MethodArgumentNotValidException, Returning HTTP 500 internal server error!", exception);
+        String message = exception.getMessage();
+        Map<String, String> errorMap = new HashMap<String, String>();
+        errorMap.put("email", message);
+        return ExceptionResponse.create(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Parameter valid Invalid!", errorMap);
+    }
+
+    @ExceptionHandler(NickNameExistsException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ExceptionResponse handleMethodArgumentNotValidException(HttpServletRequest request, NickNameExistsException exception) {
+        log.error("Occurred NickNameExistsException, Returning HTTP 500 internal server error!", exception);
+        String message = exception.getMessage();
+        Map<String, String> errorMap = new HashMap<String, String>();
+        errorMap.put("nickName", message);
+        return ExceptionResponse.create(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Parameter valid Invalid!", errorMap);
+    }
+    @ExceptionHandler(PhoneExistsException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ExceptionResponse handleMethodArgumentNotValidException(HttpServletRequest request, PhoneExistsException exception) {
+        log.error("Occurred PhoneExistsException, Returning HTTP 500 internal server error!", exception);
+        String message = exception.getMessage();
+        Map<String, String> errorMap = new HashMap<String, String>();
+        errorMap.put("phone", message);
+        return ExceptionResponse.create(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Parameter valid Invalid!", errorMap);
     }
 }

@@ -1,115 +1,107 @@
 package com.chinamobile.iot.lightapp.mysql.request;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.Date;
 
-/**
- * The type Add user request.
- */
+@Validated
 public class AddUserRequest implements Serializable {
-    @NotEmpty(message="用户名不能为空")
-    private String userName;
-
+    private static final long serialVersionUID = 1L;
+    @NotEmpty(message = "昵称不能为空")
     private String nickName;
-    @NotEmpty(message="电话号码不能为空")
+    @NotBlank(message = "手机号不能为空")
+    @Length(max = 20, message = "手机号不能大于20位")
+    @Pattern(regexp = "^(13|14|15|17|18)\\d{9}$", message = "手机号格式不正确")
     private String phone;
-    @NotEmpty(message="邮箱不能为空")
+    @NotEmpty(message = "邮箱不能为空")
     @Email(message = "请输入正确的邮箱")
     private String email;
-    @NotEmpty(message="密码不能为空")
+    @NotEmpty(message = "密码不能为空")
     private String password;
 
-    private static final long serialVersionUID = 1L;
+    private Integer gender;
 
-    /**
-     * Gets user name.
-     *
-     * @return the user name
-     */
-    public String getUserName() {
-        return userName;
-    }
+    private String company;
 
-    /**
-     * Sets user name.
-     *
-     * @param userName the user name
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    private String post;
 
-    /**
-     * Gets nick name.
-     *
-     * @return the nick name
-     */
+    private String department;
+
+    private String signature;
+
     public String getNickName() {
         return nickName;
     }
 
-    /**
-     * Sets nick name.
-     *
-     * @param nickName the nick name
-     */
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
 
-    /**
-     * Gets phone.
-     *
-     * @return the phone
-     */
     public String getPhone() {
         return phone;
     }
 
-    /**
-     * Sets phone.
-     *
-     * @param phone the phone
-     */
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    /**
-     * Gets email.
-     *
-     * @return the email
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     * Sets email.
-     *
-     * @param email the email
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * Gets password.
-     *
-     * @return the password
-     */
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    /**
-     * Sets password.
-     *
-     * @param password the password
-     */
     public void setPassword(String password) {
         this.password = password;
     }
