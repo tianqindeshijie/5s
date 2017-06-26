@@ -12,6 +12,8 @@
     <result column="report_region_id" jdbcType="INTEGER" property="regionId" />
     <result column="report_period_id" jdbcType="INTEGER" property="periodId" />
     <result column="report_user_id" jdbcType="INTEGER" property="userId" />
+    <result column="report_start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="report_end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="report_flag" jdbcType="INTEGER" property="flag" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -87,7 +89,7 @@
     -->
     report.report_id as report_report_id, report.report_name as report_report_name, report.cycle_id as report_cycle_id, 
     report.region_id as report_region_id, report.period_id as report_period_id, report.user_id as report_user_id, 
-    report.flag as report_flag
+    report.start_time as report_start_time, report.end_time as report_end_time, report.flag as report_flag
   </sql>
   <select id="selectByExample" parameterType="com.chinamobile.iot.lightapp.mysql.model.ReportExample" resultMap="BaseResultMap">
     <!--
@@ -145,11 +147,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into report (report_name, cycle_id, region_id, 
-      period_id, user_id, flag
-      )
+      period_id, user_id, start_time, 
+      end_time, flag)
     values (#{reportName,jdbcType=VARCHAR}, #{cycleId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, 
-      #{periodId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}
-      )
+      #{periodId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.chinamobile.iot.lightapp.mysql.model.Report">
     <!--
@@ -176,6 +178,12 @@
       <if test="userId != null">
         user_id,
       </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
       <if test="flag != null">
         flag,
       </if>
@@ -195,6 +203,12 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="flag != null">
         #{flag,jdbcType=INTEGER},
@@ -236,6 +250,12 @@
       <if test="record.userId != null">
         report.user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.startTime != null">
+        report.start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        report.end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.flag != null">
         report.flag = #{record.flag,jdbcType=INTEGER},
       </if>
@@ -256,6 +276,8 @@
       report.region_id = #{record.regionId,jdbcType=INTEGER},
       report.period_id = #{record.periodId,jdbcType=INTEGER},
       report.user_id = #{record.userId,jdbcType=INTEGER},
+      report.start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      report.end_time = #{record.endTime,jdbcType=TIMESTAMP},
       report.flag = #{record.flag,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,6 +305,12 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="flag != null">
         flag = #{flag,jdbcType=INTEGER},
       </if>
@@ -300,6 +328,8 @@
       region_id = #{regionId,jdbcType=INTEGER},
       period_id = #{periodId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
       flag = #{flag,jdbcType=INTEGER}
     where report_id = #{reportId,jdbcType=INTEGER}
   </update>

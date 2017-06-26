@@ -1,6 +1,8 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.UpdateWorkCycleAndRegion;
 import com.chinamobile.iot.lightapp.mysql.dto.UserWorkcycleDTO;
+import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleAndRegion;
 import com.chinamobile.iot.lightapp.mysql.model.Region;
 import com.chinamobile.iot.lightapp.mysql.model.WorkCycle;
 import com.github.pagehelper.PageInfo;
@@ -43,7 +45,7 @@ public interface WorkCycleService {
      * @param workCycleId the workCycle id
      * @return the workCycle by workCycle id
      */
-    public WorkCycle findWorkCycleByWorkCycleId(Integer workCycleId);
+    public WorkCycleAndRegion findWorkCycleByWorkCycleId(Integer workCycleId);
 
     /**
      * Delete by workCycle id int.
@@ -58,12 +60,12 @@ public interface WorkCycleService {
     /**
      * Update by workCycle id int.
      *
-     * @param userId    the user id
-     * @param workCycle the workCycle
+     * @param userId                   the user id
+     * @param updateWorkCycleAndRegion the update work cycle and region
      * @return the int
      */
     @Transactional
-    public int updateByWorkCycleId(Integer userId, WorkCycle workCycle);
+    public int updateByWorkCycleId(Integer userId, UpdateWorkCycleAndRegion updateWorkCycleAndRegion);
 
     /**
      * Insert int.

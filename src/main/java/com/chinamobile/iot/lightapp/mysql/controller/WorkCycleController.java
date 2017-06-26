@@ -3,7 +3,9 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dto.AddWorkCycleRequest;
+import com.chinamobile.iot.lightapp.mysql.dto.UpdateWorkCycleAndRegion;
 import com.chinamobile.iot.lightapp.mysql.dto.UserWorkcycleDTO;
+import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleAndRegion;
 import com.chinamobile.iot.lightapp.mysql.model.WorkCycle;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
@@ -47,11 +49,11 @@ public class WorkCycleController {
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(path = "/workCycles/{workCycleId}", method = RequestMethod.GET)
     public BaseResponse getWorkCycleByWorkCycleId(@PathVariable("workCycleId") Integer workCycleId) {
-        WorkCycle workCycle = workCycleService.findWorkCycleByWorkCycleId(workCycleId);
+        WorkCycleAndRegion workCycleAndRegion = workCycleService.findWorkCycleByWorkCycleId(workCycleId);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);
-        response.setData(workCycle);
+        response.setData(workCycleAndRegion);
         return response;
     }
 
@@ -85,7 +87,9 @@ public class WorkCycleController {
     /**
      * 根据指定userId查询工作圈信息
      *
-     * @param userId the user id
+     * @param userId   the user id
+     * @param pageNum  the page num
+     * @param pageSize the page size
      * @return the work cycle by user id
      */
     @ApiOperation(value = "根据用户ID查询工作圈", notes = "根据用户ID查询工作圈")
@@ -131,15 +135,15 @@ public class WorkCycleController {
     /**
      * 更新工作圈信息.
      *
-     * @param workCycle the update workCycle request
+     * @param updateWorkCycleAndRegion the update work cycle and region
      * @return the integer
      */
     @ApiOperation(value = "更新工作圈", notes = "更新工作圈")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/workCycles", method = RequestMethod.PUT)
-    public BaseResponse updateWorkCycle(@RequestBody WorkCycle workCycle) {
+    public BaseResponse updateWorkCycle(@RequestBody UpdateWorkCycleAndRegion updateWorkCycleAndRegion) {
         Integer userId = SecurityUtils.getCurrentUserId();
-        workCycleService.updateByWorkCycleId(userId, workCycle);
+        workCycleService.updateByWorkCycleId(userId, updateWorkCycleAndRegion);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg(Constant.SUCCESS_MSG);

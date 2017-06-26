@@ -64,4 +64,16 @@ public class Constant {
      * 照片类型:2 -- 大项检查照片
      */
     public static final int PHOTO_TYPE_CHECK = 2;
+    /**
+     * 操作类型:1 -- 新增
+     */
+    public static final int OPERATE_TYPE_ADD = 1;
+    /**
+     * 操作类型:2 -- 修改
+     */
+    public static final int OPERATE_TYPE_UPDATE = 2;
+    /**
+     * 操作类型:3 -- 删除
+     */
+    public static final int OPERATE_TYPE_DELETE = 3;
 }

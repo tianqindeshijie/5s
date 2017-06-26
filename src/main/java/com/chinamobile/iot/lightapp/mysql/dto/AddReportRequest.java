@@ -1,6 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class AddReportRequest implements Serializable {
 
@@ -11,6 +12,10 @@ public class AddReportRequest implements Serializable {
     private Integer regionId;
 
     private Integer periodId;
+
+    private Date startTime;
+
+    private Date endTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -46,5 +51,19 @@ public class AddReportRequest implements Serializable {
         this.periodId = periodId;
     }
 
+    public Date getStartTime() {
+        return startTime;
+    }
 
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 }
