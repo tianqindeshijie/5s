@@ -2,12 +2,12 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
+import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleUserDTO;
+import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
-import com.chinamobile.iot.security.SecurityUtils;
-import com.chinamobile.iot.lightapp.mysql.model.User;
-import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
 import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -86,7 +86,7 @@ public class UserWorkcycleController {
                                             @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                             @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Integer userId = SecurityUtils.getCurrentUserId();
-        PageInfo<User> pageInfo = userWorkcycleService.findUserWorkcycles(userId, workCycleId, pageNum, pageSize);
+        PageInfo<WorkCycleUserDTO> pageInfo = userWorkcycleService.findUserWorkcycles(userId, workCycleId, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(ResponseCode.SUCCESS);
         response.setMsg(Constant.SUCCESS_MSG);

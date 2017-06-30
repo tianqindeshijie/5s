@@ -1,7 +1,10 @@
 package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 
+import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dao.CheckItemMapper;
+import com.chinamobile.iot.lightapp.mysql.dto.CheckItemDTO;
+import com.chinamobile.iot.lightapp.mysql.dto.UpdateCheckItemDTO;
 import com.chinamobile.iot.lightapp.mysql.model.CheckItem;
 import com.chinamobile.iot.lightapp.mysql.model.CheckItemExample;
 import com.chinamobile.iot.lightapp.mysql.service.CheckItemService;
@@ -50,6 +53,22 @@ public class CheckItemServiceImpl implements CheckItemService {
     @Override
     public int updateByCheckItemId(CheckItem checkItem) {
         return checkItemMapper.updateByPrimaryKeySelective(checkItem);
+    }
+
+    @Override
+    public int updateCheckItems(UpdateCheckItemDTO updateCheckItemDTO) {
+        List<CheckItemDTO> checkItemList = updateCheckItemDTO.getCheckItemList();
+        for (CheckItemDTO temp : checkItemList) {
+            int operateType = temp.getOperateType();
+            if (operateType == Constant.OPERATE_TYPE_ADD) {
+                checkItemMapper.insert(temp);
+            } else if (operateType == Constant.OPERATE_TYPE_UPDATE) {
+                checkItemMapper.updateByPrimaryKeySelective(temp);
+            } else if (operateType == Constant.OPERATE_TYPE_DELETE) {
+                checkItemMapper.deleteByPrimaryKey(temp.getItemId());
+            }
+        }
+        return 0;
     }
 
     @Override

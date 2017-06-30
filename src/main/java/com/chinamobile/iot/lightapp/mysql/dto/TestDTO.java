@@ -22,4 +22,5 @@ public class TestDTO {
     public void setTest2(String test2) {
         this.test2 = test2;
     }
+
 }

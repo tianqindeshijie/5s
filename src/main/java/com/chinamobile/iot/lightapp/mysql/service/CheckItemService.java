@@ -1,5 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.UpdateCheckItemDTO;
 import com.chinamobile.iot.lightapp.mysql.model.CheckItem;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,15 @@ public interface CheckItemService {
      */
     @Transactional
     public int updateByCheckItemId(CheckItem checkItem);
+
+    /**
+     * Update check items int.
+     *
+     * @param updateCheckItemDTO the update check item dto
+     * @return the int
+     */
+    @Transactional
+    int updateCheckItems(UpdateCheckItemDTO updateCheckItemDTO);
 
     /**
      * Insert int.

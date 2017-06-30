@@ -2,6 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
+import com.chinamobile.iot.lightapp.mysql.dto.UpdateCheckItemDTO;
 import com.chinamobile.iot.lightapp.mysql.model.CheckItem;
 import com.chinamobile.iot.lightapp.mysql.request.AddCheckItemRequest;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
@@ -96,14 +97,14 @@ public class CheckItemController {
     /**
      * 更新检查小项信息.
      *
-     * @param checkItem the update checkItem request
+     * @param updateCheckItemDTO the update check item dto
      * @return the integer
      */
     @ApiOperation(value = "更新检查小项", notes = "更新检查小项")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/checkItems", method = RequestMethod.PUT)
-    public BaseResponse updateCheckItem(@RequestBody CheckItem checkItem) {
-        checkItemService.updateByCheckItemId(checkItem);
+    public BaseResponse updateCheckItem(@RequestBody UpdateCheckItemDTO updateCheckItemDTO) {
+        checkItemService.updateCheckItems(updateCheckItemDTO);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);

@@ -2,10 +2,7 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
-import com.chinamobile.iot.lightapp.mysql.dto.AddWorkCycleRequest;
-import com.chinamobile.iot.lightapp.mysql.dto.UpdateWorkCycleAndRegion;
-import com.chinamobile.iot.lightapp.mysql.dto.UserWorkcycleDTO;
-import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleAndRegion;
+import com.chinamobile.iot.lightapp.mysql.dto.*;
 import com.chinamobile.iot.lightapp.mysql.model.WorkCycle;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;

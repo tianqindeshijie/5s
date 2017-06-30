@@ -2,11 +2,13 @@ package com.chinamobile.iot.lightapp.mysql.controller;
 
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
+import com.chinamobile.iot.lightapp.mysql.dto.UpdateWorkCycleReportItem;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItem;
 import com.chinamobile.iot.lightapp.mysql.request.AddReportItemRequest;
 import com.chinamobile.iot.lightapp.mysql.response.BaseResponse;
 import com.chinamobile.iot.lightapp.mysql.response.ResponseCode;
 import com.chinamobile.iot.lightapp.mysql.service.ReportItemService;
+import com.chinamobile.iot.security.SecurityUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -97,14 +99,15 @@ public class ReportItemController {
     /**
      * 更新检查大项信息.
      *
-     * @param reportItem the update reportItem request
+     * @param updateWorkCycleReportItem the update work cycle report item
      * @return the integer
      */
     @ApiOperation(value = "更新检查大项", notes = "更新检查大项")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
     @RequestMapping(value = "/reportItems", method = RequestMethod.PUT)
-    public BaseResponse updateReportItem(@RequestBody ReportItem reportItem) {
-        reportItemService.updateByReportItemId(reportItem);
+    public BaseResponse updateReportItem(@RequestBody UpdateWorkCycleReportItem updateWorkCycleReportItem) {
+        Integer userId = SecurityUtils.getCurrentUserId();
+        reportItemService.updateWorkcycleReportItems(userId, updateWorkCycleReportItem);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);
         response.setMsg(Constant.SUCCESS_MSG);

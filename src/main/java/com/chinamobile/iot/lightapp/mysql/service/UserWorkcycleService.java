@@ -1,6 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
-import com.chinamobile.iot.lightapp.mysql.model.User;
+import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleUserDTO;
 import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public interface UserWorkcycleService {
      * @param pageSize    the page size
      * @return the userWorkcycles
      */
-    public PageInfo<User> findUserWorkcycles(Integer userId, Integer workCycleId, Integer pageNum, Integer pageSize);
+    public PageInfo<WorkCycleUserDTO> findUserWorkcycles(Integer userId, Integer workCycleId, Integer pageNum, Integer pageSize);
 
     /**
      * find userWorkcycle by userWorkcycle id.

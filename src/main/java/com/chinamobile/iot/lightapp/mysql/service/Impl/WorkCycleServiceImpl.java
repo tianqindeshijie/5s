@@ -3,10 +3,7 @@ package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dao.*;
-import com.chinamobile.iot.lightapp.mysql.dto.UpdateRegionDTO;
-import com.chinamobile.iot.lightapp.mysql.dto.UpdateWorkCycleAndRegion;
-import com.chinamobile.iot.lightapp.mysql.dto.UserWorkcycleDTO;
-import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleAndRegion;
+import com.chinamobile.iot.lightapp.mysql.dto.*;
 import com.chinamobile.iot.lightapp.mysql.model.*;
 import com.chinamobile.iot.lightapp.mysql.service.WorkCycleService;
 import com.github.pagehelper.PageHelper;
@@ -40,6 +37,11 @@ public class WorkCycleServiceImpl implements WorkCycleService {
     @Autowired
     private UserWorkcycleMapperExt userWorkcycleMapperExt;
 
+    @Autowired
+    private ReportItemMapper reportItemMapper;
+
+    @Autowired
+    private CheckItemMapper checkItemMapper;
     @Override
     public PageInfo<WorkCycle> findWorkCycles(WorkCycle workCycle, Integer pageNum, Integer pageSize) {
         WorkCycleExample workCycleExample = new WorkCycleExample();
@@ -81,6 +83,10 @@ public class WorkCycleServiceImpl implements WorkCycleService {
         criteria = userWorkcycleExample.createCriteria();
         criteria.andWorkCycleIdEqualTo(workCycleId);
         userWorkcycleMapper.deleteByExample(userWorkcycleExample);
+        //// TODO: 2017/6/30删除工作圈对于的区域
+
+        // TODO: 2017/6/30 删除工作圈对于的检查大项和小项
+
         return SUCCESS;
     }
 
@@ -90,7 +96,7 @@ public class WorkCycleServiceImpl implements WorkCycleService {
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
         criteria.andWorkCycleIdEqualTo(updateWorkCycleAndRegion.getWorkCycleId());
         criteria.andUserIdEqualTo(userId);
-        criteria.andIsManagerEqualTo(Constant.CYCLE_CREATER);
+        criteria.andIsManagerNotEqualTo(Constant.CYCLE_MEMBER);
         List<UserWorkcycle> list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
         if (list == null && list.size() == 0) {
             return NO_PERMISSION;

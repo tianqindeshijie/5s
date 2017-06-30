@@ -3,13 +3,12 @@ package com.chinamobile.iot.lightapp.mysql.service.Impl;
 
 import com.chinamobile.iot.lightapp.mysql.config.Constant;
 import com.chinamobile.iot.lightapp.mysql.dao.UserMapper;
+import com.chinamobile.iot.lightapp.mysql.dao.UserMapperExt;
 import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
+import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleUserDTO;
 import com.chinamobile.iot.lightapp.mysql.exception.AccessDeniedException;
-import com.chinamobile.iot.lightapp.mysql.model.User;
-import com.chinamobile.iot.lightapp.mysql.model.UserExample;
-import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
-import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycleExample;
+import com.chinamobile.iot.lightapp.mysql.model.*;
 import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +33,12 @@ public class UserWorkcycleServiceImpl implements UserWorkcycleService {
     @Autowired
     private UserMapper userMapper;
     @Autowired
+    private UserMapperExt userMapperExt;
+    @Autowired
     private WorkCycleMapper workCycleMapper;
 
     @Override
-    public PageInfo<User> findUserWorkcycles(Integer userId, Integer workCycleId, Integer pageNum, Integer pageSize) {
+    public PageInfo<WorkCycleUserDTO> findUserWorkcycles(Integer userId, Integer workCycleId, Integer pageNum, Integer pageSize) {
         //判断用户是否为该workcycle用户
         UserWorkcycleExample userWorkcycleExample = new UserWorkcycleExample();
         UserWorkcycleExample.Criteria criteria = userWorkcycleExample.createCriteria();
@@ -59,8 +60,8 @@ public class UserWorkcycleServiceImpl implements UserWorkcycleService {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria1 = userExample.createCriteria();
         criteria1.andUserIdIn(userIdList);
-        List<User> userList = userMapper.selectByExample(userExample);
-        return new PageInfo<User>(userList);
+        List<WorkCycleUserDTO> userList = userMapperExt.selectByExample(userExample);
+        return new PageInfo<WorkCycleUserDTO>(userList);
     }
 
     @Override

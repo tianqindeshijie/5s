@@ -1,5 +1,6 @@
 package com.chinamobile.iot.lightapp.mysql.service;
 
+import com.chinamobile.iot.lightapp.mysql.dto.UpdateWorkCycleReportItem;
 import com.chinamobile.iot.lightapp.mysql.model.ReportItem;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,14 @@ import java.util.List;
  */
 @Service
 public interface ReportItemService {
-
+    /**
+     * 0--操作成功.
+     */
+    public static final int SUCCESS = 0;
+    /**
+     * 1--没有权限.
+     */
+    public static final int NO_PERMISSION = 1;
 
     /**
      * find reportItems.
@@ -61,4 +69,6 @@ public interface ReportItemService {
      */
     @Transactional
     public int insert(List<ReportItem> reportItemList);
+
+    int updateWorkcycleReportItems(Integer userId, UpdateWorkCycleReportItem updateWorkCycleReportItem);
 }
