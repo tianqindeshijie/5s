@@ -1,7 +1,7 @@
 package com.chinamobile.iot.lightapp.mysql.dao;
 
 import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleUserDTO;
-import com.chinamobile.iot.lightapp.mysql.model.UserExample;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface UserMapperExt {
      *
      * @mbg.generated
      */
-    List<WorkCycleUserDTO> selectByExample(UserExample example);
+    List<WorkCycleUserDTO> selectByWorkcycleId(@Param("workcycleId") Integer workcycleId);
 }
