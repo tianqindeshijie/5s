@@ -8,14 +8,14 @@ import com.chinamobile.iot.lightapp.mysql.dao.UserWorkcycleMapper;
 import com.chinamobile.iot.lightapp.mysql.dao.WorkCycleMapper;
 import com.chinamobile.iot.lightapp.mysql.dto.WorkCycleUserDTO;
 import com.chinamobile.iot.lightapp.mysql.exception.AccessDeniedException;
-import com.chinamobile.iot.lightapp.mysql.model.*;
+import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycle;
+import com.chinamobile.iot.lightapp.mysql.model.UserWorkcycleExample;
 import com.chinamobile.iot.lightapp.mysql.service.UserWorkcycleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,20 +47,7 @@ public class UserWorkcycleServiceImpl implements UserWorkcycleService {
         if (list == null || list.size() == 0) {
             return null;
         }
-        //查找用户userId列表
-        List<Integer> userIdList = new ArrayList<Integer>();
-        userWorkcycleExample.clear();
-        criteria = userWorkcycleExample.createCriteria();
-        criteria.andWorkCycleIdEqualTo(workCycleId);
-        list = userWorkcycleMapper.selectByExample(userWorkcycleExample);
-
-        for (UserWorkcycle temp : list) {
-            userIdList.add(temp.getUserId());
-        }
-        UserExample userExample = new UserExample();
-        UserExample.Criteria criteria1 = userExample.createCriteria();
-        criteria1.andUserIdIn(userIdList);
-        List<WorkCycleUserDTO> userList = userMapperExt.selectByExample(userExample);
+        List<WorkCycleUserDTO> userList = userMapperExt.selectByWorkcycleId(workCycleId);
         return new PageInfo<WorkCycleUserDTO>(userList);
     }
 
