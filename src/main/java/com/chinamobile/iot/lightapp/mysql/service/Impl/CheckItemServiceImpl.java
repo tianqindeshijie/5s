@@ -65,7 +65,7 @@ public class CheckItemServiceImpl implements CheckItemService {
             } else if (operateType == Constant.OPERATE_TYPE_UPDATE) {
                 checkItemMapper.updateByPrimaryKeySelective(temp);
             } else if (operateType == Constant.OPERATE_TYPE_DELETE) {
-                checkItemMapper.deleteByPrimaryKey(temp.getItemId());
+                checkItemMapper.deleteByPrimaryKey(temp.getCheckItemId());
             }
         }
         return 0;
