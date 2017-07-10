@@ -67,14 +67,14 @@ public class ReportController {
      * @return the reports
      */
     @ApiOperation(value = "查询报告列表", notes = "查询报告列表")
-    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportName", value = "报告名称", dataType = "String"),
-            @ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "Integer"),
-            @ApiImplicitParam(paramType = "query", name = "regionId", value = "区域ID", dataType = "Integer"),
-            @ApiImplicitParam(paramType = "query", name = "startTime", value = "开始时间", dataType = "Date"),
-            @ApiImplicitParam(paramType = "query", name = "endTime", value = "工作圈ID", dataType = "Date"),
-            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
-            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
-            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
+    @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportName", value = "报告名称", dataType = "string"),
+            @ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "integer"),
+            @ApiImplicitParam(paramType = "query", name = "regionId", value = "区域ID", dataType = "integer"),
+            @ApiImplicitParam(paramType = "query", name = "startTime", value = "开始时间", dataType = "dateTime"),
+            @ApiImplicitParam(paramType = "query", name = "endTime", value = "工作圈ID", dataType = "dateTime"),
+            @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "integer"),
+            @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "integer"),
+            @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "string")})
     @RequestMapping(value = "/reports", method = RequestMethod.GET)
     public BaseResponse getReports(@RequestParam(value = "reportName", required = false) String reportName,
                                    @RequestParam(value = "cycleId", required = false) Integer cycleId,
