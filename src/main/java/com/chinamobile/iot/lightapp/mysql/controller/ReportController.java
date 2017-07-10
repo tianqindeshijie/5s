@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Date;
 
 /**
  * The devices controller.
@@ -59,7 +60,8 @@ public class ReportController {
      * @param reportName the report name
      * @param cycleId    the cycle id
      * @param regionId   the region id
-     * @param periodId   the period id
+     * @param startTime  the start time
+     * @param endTime    the end time
      * @param pageNum    the page num
      * @param pageSize   the page size
      * @return the reports
@@ -67,8 +69,9 @@ public class ReportController {
     @ApiOperation(value = "查询报告列表", notes = "查询报告列表")
     @ApiImplicitParams({@ApiImplicitParam(paramType = "query", name = "reportName", value = "报告名称", dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "cycleId", value = "工作圈ID", dataType = "Integer"),
-            @ApiImplicitParam(paramType = "query", name = "regionId", value = "工作圈ID", dataType = "Integer"),
-            @ApiImplicitParam(paramType = "query", name = "periodId", value = "工作圈ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "regionId", value = "区域ID", dataType = "Integer"),
+            @ApiImplicitParam(paramType = "query", name = "startTime", value = "开始时间", dataType = "Date"),
+            @ApiImplicitParam(paramType = "query", name = "endTime", value = "工作圈ID", dataType = "Date"),
             @ApiImplicitParam(paramType = "query", name = "pageNum", value = "页数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "query", name = "pageSize", value = "每页条数", dataType = "Integer"),
             @ApiImplicitParam(paramType = "header", name = "session-token", value = "session-token", required = true, dataType = "String")})
@@ -76,14 +79,16 @@ public class ReportController {
     public BaseResponse getReports(@RequestParam(value = "reportName", required = false) String reportName,
                                    @RequestParam(value = "cycleId", required = false) Integer cycleId,
                                    @RequestParam(value = "regionId", required = false) Integer regionId,
-                                   @RequestParam(value = "periodId", required = false) Integer periodId,
+                                   @RequestParam(value = "startTime", required = false) Date startTime,
+                                   @RequestParam(value = "endTime", required = false) Date endTime,
                                    @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                    @RequestParam(value = "pageSize", required = false, defaultValue = "0") Integer pageSize) {
         Report report = new Report();
         report.setReportName(reportName);
         report.setCycleId(cycleId);
         report.setRegionId(regionId);
-        report.setPeriodId(periodId);
+        report.setStartTime(startTime);
+        report.setEndTime(endTime);
         PageInfo<Report> pageInfo = reportService.findReports(report, pageNum, pageSize);
         BaseResponse response = new BaseResponse();
         response.setCode(Constant.SUCCESS_CODE);

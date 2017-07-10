@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,6 +46,15 @@ public class ReportServiceImpl implements ReportService {
         if (regionId != null) {
             criteria.andRegionIdEqualTo(regionId);
         }
+        Date startTime = report.getStartTime();
+        if (startTime != null) {
+            criteria.andStartTimeLessThanOrEqualTo(startTime);
+        }
+        Date endTime = report.getEndTime();
+        if (endTime != null) {
+            criteria.andEndTimeGreaterThanOrEqualTo(endTime);
+        }
+        reportExample.setOrderByClause("report.start_time desc"); //升序排列，desc为降序排列。
         PageHelper.startPage(pageNum, pageSize, true, false);
         List<Report> list = reportMapper.selectByExample(reportExample);
         return new PageInfo<Report>(list);
@@ -67,7 +77,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public int insert(Report report) {
-         reportMapper.insertSelective(report);
+        reportMapper.insertSelective(report);
         return report.getReportId();
     }
 
