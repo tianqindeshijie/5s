@@ -48,11 +48,11 @@ public class ReportServiceImpl implements ReportService {
         }
         Date startTime = report.getStartTime();
         if (startTime != null) {
-            criteria.andStartTimeLessThanOrEqualTo(startTime);
+            criteria.andStartTimeGreaterThanOrEqualTo(startTime);
         }
         Date endTime = report.getEndTime();
         if (endTime != null) {
-            criteria.andEndTimeGreaterThanOrEqualTo(endTime);
+            criteria.andEndTimeLessThanOrEqualTo(endTime);
         }
         reportExample.setOrderByClause("report.start_time desc"); //升序排列，desc为降序排列。
         PageHelper.startPage(pageNum, pageSize, true, false);
